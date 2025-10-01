@@ -99,3 +99,11 @@ Temporary Items
 *.bak
 *.tmp
 EOF
+
+# Frontend-specific (from Vite template)
+logs
+dist-ssr
+*.local
+*.ntvs*
+*.njsproj
+*.sw?
