@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Peach_ActiviGo.Core\Peach_ActiviGo.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Infrastructure.Data;
+using Peach_ActiviGo.Infrastructure.Repositories;
+using Peach_ActiviGo.Services.Interface;
+using Peach_ActiviGo.Services.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +34,19 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
+// --- Database ---
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// --- AutoMapper ---
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// --- Repositories ---
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+
+// --- Services ---
+builder.Services.AddScoped<IActivityService, ActivityService>();
 
 //--- Jwt Authentication ---
 var jwt = builder.Configuration.GetSection("Jwt");
@@ -65,6 +84,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

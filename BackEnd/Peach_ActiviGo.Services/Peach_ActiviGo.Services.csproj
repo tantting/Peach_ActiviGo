@@ -22,4 +22,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Peach_ActiviGo.Core\Peach_ActiviGo.Core.csproj" />
+  </ItemGroup>
+
 </Project>
