@@ -110,5 +110,6 @@ dist-ssr
 
 # Appsettings and env
 .env
+.env.*
 appsettings.json
-.appsettings.json
+appsettings.*.json
