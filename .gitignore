@@ -107,3 +107,8 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sw?
+
+# Appsettings and env
+.env
+appsettings.json
+.appsettings.json
