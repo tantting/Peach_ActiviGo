@@ -137,72 +137,6 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9117b6f-2c22-4529-845d-e69d74343d31",
-                            Email = "admin@activigo.se",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@ACTIVIGO.SE",
-                            NormalizedUserName = "ADMIN@ACTIVIGO.SE",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE67IKOcsXZojy2jU/F9tkl5zfWSYSTjejSLYSlB/oK7EEzZN/7RLeeVRMw3PVO2YQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9367a0f6-4995-4f10-a234-6939143ecc33",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@activigo.se"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "807fdaad-bf89-446b-b8c7-41898ef2e7f7",
-                            Email = "anna@activigo.se",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ANNA@ACTIVIGO.SE",
-                            NormalizedUserName = "ANNA@ACTIVIGO.SE",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMMPJ/KaFN44+ejIfRzIbpHuXCiyQ2GQiZPIFIoIhgS4HO+A74gOscoR4nFaywgQxQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3916da70-93ed-48d0-ac9a-fbc60e4ec352",
-                            TwoFactorEnabled = false,
-                            UserName = "anna@activigo.se"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "5058a998-9e37-4c2a-94f8-4ab14df269a3",
-                            Email = "bjorn@activigo.se",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "BJORN@ACTIVIGO.SE",
-                            NormalizedUserName = "BJORN@ACTIVIGO.SE",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJMIw0JusaxBczSfvWp1Iz1YMa/8rIvOPnuSJs8S1muPzHugln55cLMDuMCVZREkrg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "01be9d93-9165-47bb-ba1d-d548d0cb31cd",
-                            TwoFactorEnabled = false,
-                            UserName = "bjorn@activigo.se"
-                        },
-                        new
-                        {
-                            Id = "4",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "11ba6388-80cd-41da-949a-0a53b8558aaa",
-                            Email = "carla@activigo.se",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "CARLA@ACTIVIGO.SE",
-                            NormalizedUserName = "CARLA@ACTIVIGO.SE",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC2TrZRU0FC1hygth2VQAXdZ+CAw40X5sVPrFHHIuCOdoUEcsLXW7OM1tUyKmhFHtA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "58c43aea-ba10-4646-8b5e-e9a0cd6423f0",
-                            TwoFactorEnabled = false,
-                            UserName = "carla@activigo.se"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -878,9 +812,11 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                     b.Property<DateOnly>("CreatedDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("LatLong")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(9,6)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(9,6)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -899,7 +835,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             Id = 1,
                             Address = "Huvudgatan 1",
                             CreatedDate = new DateOnly(2025, 10, 7),
-                            LatLong = "59.33,18.06",
+                            Latitude = 59.330000m,
+                            Longitude = 18.060000m,
                             Name = "Sportcenter X"
                         },
                         new
@@ -907,7 +844,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             Id = 2,
                             Address = "Parkvägen 5",
                             CreatedDate = new DateOnly(2025, 10, 7),
-                            LatLong = "59.32,18.04",
+                            Latitude = 59.320000m,
+                            Longitude = 18.040000m,
                             Name = "Utomhusarenan"
                         },
                         new
@@ -915,7 +853,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             Id = 3,
                             Address = "Centrumtorget 2",
                             CreatedDate = new DateOnly(2025, 10, 7),
-                            LatLong = "59.34,18.05",
+                            Latitude = 59.340000m,
+                            Longitude = 18.050000m,
                             Name = "City Gym"
                         });
                 });
