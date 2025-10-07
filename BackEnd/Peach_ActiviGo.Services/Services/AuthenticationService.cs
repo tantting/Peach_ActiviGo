@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Peach_ActiviGo.Services.Auth;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.Interface;
@@ -49,9 +48,31 @@ namespace Peach_ActiviGo.Services.Services
             };
         }
 
-        public Task RegisterUserAsync(CreateUserDto dto)
+        public async Task<object?> RegisterUserAsync(CreateUserDto dto)
         {
-            throw new NotImplementedException();
+            var existingUser = await _userManager.FindByEmailAsync(dto.Email);
+            if (existingUser != null)
+            {
+                return null;
+            }
+
+            var user = new IdentityUser
+            {
+                UserName = dto.Email,
+                Email = dto.Email,
+                EmailConfirmed = true,
+            };
+
+            // Create the user with the specified password.
+            var result = await _userManager.CreateAsync(user, dto.Password);
+            if (!result.Succeeded)
+            {
+                return result.Errors;
+            }
+
+            await _userManager.AddToRoleAsync(user, "User");
+
+            return new { user.Id, user.Email };
         }
         
     }
