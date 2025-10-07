@@ -1,11 +1,10 @@
 ﻿namespace Peach_ActiviGo.Core.Models
 {
-    public class ActivitySlot
+    public class ActivitySlot : BaseEntity
     {
-        public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int Capacity { get; set; }
+        public int CapacityPerSlot  { get; set; }
         public int ActivityLocationId { get; set; }
 
         public ActivityLocation ActivityLocation { get; set; }
