@@ -5,7 +5,6 @@ using Peach_ActiviGo.Services.Interface;
 
 namespace Peach_ActiviGo.Api.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
@@ -18,18 +17,33 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ReadLoginResponseDto?> Login([FromBody] ReadLoginDto dto)
+        public async Task<IActionResult> Login([FromBody] ReadLoginDto dto)
         {
             var result = await _authService.LoginAsync(dto);
-
-            return result;
+            if (result == null)
+            {
+                return Unauthorized();
+            }
+           
+            return Ok(result);
         }
-
+       
         [HttpPut("CreateAccount")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
         {
-            await _authService.RegisterUserAsync(dto);
+            var result = await _authService.RegisterUserAsync(dto);
+            if (result == null)
+            {
+                return BadRequest("User already exists.");
+            }
             return Ok("Account Created");
+        }
+
+        [Authorize]
+        [HttpGet("AuthorizeTest")]
+        public IActionResult Test()
+        {
+            return Ok("Ýou are Authorized!");
         }
     }
 }
