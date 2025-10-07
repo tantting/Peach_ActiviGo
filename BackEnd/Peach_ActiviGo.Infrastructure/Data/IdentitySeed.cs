@@ -18,13 +18,13 @@ namespace Peach_ActiviGo.Infrastructure.Data
             }
 
             // --- Admin ---
-            var admin = await userManager.FindByEmailAsync("kimpabooy@live.com");
+            var admin = await userManager.FindByEmailAsync("exempel@live.com");
             if (admin == null)
             {
                 admin = new IdentityUser
                 {
-                    UserName = "kimpabooy@live.com",
-                    Email = "kimpabooy@live.com",
+                    UserName = "exempel@live.com",
+                    Email = "exempel@live.com",
                     EmailConfirmed = true
                 };
                 await userManager.CreateAsync(admin, "Abc123!!");
