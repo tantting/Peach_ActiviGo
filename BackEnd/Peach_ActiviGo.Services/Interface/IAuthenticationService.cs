@@ -5,6 +5,6 @@ namespace Peach_ActiviGo.Services.Interface
     public interface IAuthenticationService
     {
         Task<ReadLoginResponseDto?> LoginAsync(ReadLoginDto dto);
-        Task RegisterUserAsync(CreateUserDto dto);
+        Task<object?> RegisterUserAsync(CreateUserDto dto);
     }
 }

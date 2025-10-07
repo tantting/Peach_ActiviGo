@@ -27,7 +27,7 @@ namespace Peach_ActiviGo.Infrastructure.Data
                     Email = "exempel@live.com",
                     EmailConfirmed = true
                 };
-                await userManager.CreateAsync(admin, "Abc123!!");
+                await userManager.CreateAsync(admin, "Abc123!");
                 await userManager.AddToRoleAsync(admin, "Admin");
             }
 
