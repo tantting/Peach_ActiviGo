@@ -1,20 +1,30 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Peach_ActiviGo.Infrastructure.Data;
 using System.Text;
+using Peach_ActiviGo.Infrastructure.Data;
+using Peach_ActiviGo.Services.Auth;
+using Peach_ActiviGo.Services.Interface;
+using Peach_ActiviGo.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 //Database
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+{
+    opt.Password.RequireDigit = true;
+    opt.Password.RequiredLength = 6;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireUppercase = true;
+    opt.Password.RequireLowercase = true;
+    opt.User.RequireUniqueEmail = true;
+})
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -42,7 +52,9 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
+// --- Dependency Injection ---
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<JwtTokenService>();
 
 //--- Jwt Authentication ---
 var jwt = builder.Configuration.GetSection("Jwt");
@@ -69,6 +81,7 @@ builder.Services.AddAuthentication(opt =>
 
 // --- Authorization ---
 builder.Services.AddAuthorization(opt => opt.AddPolicy("AdminOnly", p => p.RequireRole("Admin")));
+
 
 var app = builder.Build();
 
