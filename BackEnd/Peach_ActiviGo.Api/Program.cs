@@ -79,7 +79,7 @@ using (var scope = app.Services.CreateScope())
 
     // --- Kör migrationer ---
     var dbContext = services.GetRequiredService<AppDbContext>();
-    //dbContext.Database.Migrate();
+    dbContext.Database.Migrate();
 
     // --- Seed Identity users & roles  ---
     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();

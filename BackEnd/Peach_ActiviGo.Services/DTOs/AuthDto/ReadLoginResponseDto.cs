@@ -3,6 +3,5 @@
     public class ReadLoginResponseDto
     {
         public string Token { get; set; }
-        public DateTime Expiration { get; set; }
     }
 }
