@@ -4,9 +4,9 @@
     {
         public int ActivityId { get; set; }
         public int LocationId { get; set; }
-        public int NumberOfFields { get; set; }
-        public int CapacityPerField { get; set; }
+        public int Capacity { get; set; }
         public bool IsIndoor { get; set; }
+        public bool isActive { get; set; } = true;
 
         public Activity Activity { get; set; }
         public Location Location { get; set; }
