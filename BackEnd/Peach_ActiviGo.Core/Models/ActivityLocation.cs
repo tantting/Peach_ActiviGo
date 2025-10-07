@@ -1,12 +1,10 @@
 ﻿namespace Peach_ActiviGo.Core.Models
 {
-    public class ActivityLocation
+    public class ActivityLocation : BaseEntity
     {
-        public int Id { get; set; }
         public int ActivityId { get; set; }
         public int LocationId { get; set; }
-        public bool IsActive { get; set; }
-        public int NumFields { get; set; }
+        public int NumberOfFields { get; set; }
         public int CapacityPerField { get; set; }
         public bool IsIndoor { get; set; }
 
