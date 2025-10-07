@@ -6,9 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Peach_ActiviGo.Infrastructure.Data;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Peach_ActiviGo.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +41,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 //--- Jwt Authentication ---
