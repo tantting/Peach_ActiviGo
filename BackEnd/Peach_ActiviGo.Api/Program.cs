@@ -6,8 +6,20 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Peach_ActiviGo.Infrastructure.Data;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+//Database
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllers();
