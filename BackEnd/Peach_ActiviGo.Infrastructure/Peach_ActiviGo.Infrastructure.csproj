@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
@@ -20,6 +19,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Peach_ActiviGo.Core\Peach_ActiviGo.Core.csproj" />
   </ItemGroup>
 
 </Project>
