@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Peach_ActiviGo.Services.DTOs
+namespace Peach_ActiviGo.Services.DTOs.CategoryDtos
 {
     public class CategoryCreateDto
     {

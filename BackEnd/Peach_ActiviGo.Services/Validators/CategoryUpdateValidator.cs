@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Peach_ActiviGo.Services.DTOs;
+using Peach_ActiviGo.Services.DTOs.CategoryDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
