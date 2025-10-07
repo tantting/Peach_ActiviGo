@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Peach_ActiviGo.Core.Models;
 
 namespace Peach_ActiviGo.Infrastructure.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<IdentityUser>
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
     }
 
@@ -25,7 +28,7 @@ public class AppDbContext : DbContext
             // Category 1 - * Activity
             modelBuilder.Entity<Activity>()
                 .HasOne(a => a.Category)
-                .WithMany(c => c.Activities)
+                .WithMany()
                 .HasForeignKey(a => a.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -33,25 +36,88 @@ public class AppDbContext : DbContext
             modelBuilder.Entity<ActivityLocation>()
                 .HasOne(al => al.Activity)
                 .WithMany()
-                .HasForeignKey(al => al.ActivityId);
+                .HasForeignKey(al => al.ActivityId)
+                .OnDelete(DeleteBehavior.Restrict); 
 
             modelBuilder.Entity<ActivityLocation>()
                 .HasOne(al => al.Location)
                 .WithMany(l => l.ActivityLocations)
-                .HasForeignKey(al => al.LocationId);
+                .HasForeignKey(al => al.LocationId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ActivitySlot 1 - * Booking
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.ActivitySlot)
                 .WithMany()
-                .HasForeignKey(b => b.ActivitySlotId);
+                .HasForeignKey(b => b.ActivitySlotId)
+                .OnDelete(DeleteBehavior.Restrict); 
 
             // Unik kombination (Activity + Location + IsIndoor)
             modelBuilder.Entity<ActivityLocation>()
                 .HasIndex(al => new { al.ActivityId, al.LocationId, al.IsIndoor })
                 .IsUnique();
+            
+            modelBuilder.Entity<Booking>()
+                .HasOne<IdentityUser>()
+                .WithMany()
+                .HasForeignKey(b => b.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            modelBuilder.Entity<ActivitySlot>()
+                .HasOne(s => s.ActivityLocation)
+                .WithMany()
+                .HasForeignKey(s => s.ActivityLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // -------- SEED DATA --------
+            
+            var hasher = new PasswordHasher<IdentityUser>();
+
+            var admin = new IdentityUser
+            {
+                Id = "1",
+                UserName = "admin@activigo.se",
+                NormalizedUserName = "ADMIN@ACTIVIGO.SE",
+                Email = "admin@activigo.se",
+                NormalizedEmail = "ADMIN@ACTIVIGO.SE",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "Admin123!")
+            };
+
+            var user1 = new IdentityUser
+            {
+                Id = "2",
+                UserName = "anna@activigo.se",
+                NormalizedUserName = "ANNA@ACTIVIGO.SE",
+                Email = "anna@activigo.se",
+                NormalizedEmail = "ANNA@ACTIVIGO.SE",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "User123!")
+            };
+
+            var user2 = new IdentityUser
+            {
+                Id = "3",
+                UserName = "bjorn@activigo.se",
+                NormalizedUserName = "BJORN@ACTIVIGO.SE",
+                Email = "bjorn@activigo.se",
+                NormalizedEmail = "BJORN@ACTIVIGO.SE",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "User123!")
+            };
+
+            var user3 = new IdentityUser
+            {
+                Id = "4",
+                UserName = "carla@activigo.se",
+                NormalizedUserName = "CARLA@ACTIVIGO.SE",
+                Email = "carla@activigo.se",
+                NormalizedEmail = "CARLA@ACTIVIGO.SE",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "User123!")
+            };
+
+            modelBuilder.Entity<IdentityUser>().HasData(admin, user1, user2, user3);
 
             // 🏷️ Kategorier
             modelBuilder.Entity<Category>().HasData(
@@ -81,14 +147,14 @@ public class AppDbContext : DbContext
 
             // 📍 ActivityLocations (koppling aktivitet-plats)
             modelBuilder.Entity<ActivityLocation>().HasData(
-                new ActivityLocation { Id = 1, ActivityId = 1, LocationId = 1, NumberOfFields = 3, CapacityPerField = 4, IsIndoor = true },
-                new ActivityLocation { Id = 2, ActivityId = 1, LocationId = 2, NumberOfFields = 2, CapacityPerField = 4, IsIndoor = false },
-                new ActivityLocation { Id = 3, ActivityId = 2, LocationId = 1, NumberOfFields = 4, CapacityPerField = 2, IsIndoor = true },
-                new ActivityLocation { Id = 4, ActivityId = 3, LocationId = 1, NumberOfFields = 1, CapacityPerField = 8, IsIndoor = true },
-                new ActivityLocation { Id = 5, ActivityId = 4, LocationId = 2, NumberOfFields = 1, CapacityPerField = 10, IsIndoor = false },
-                new ActivityLocation { Id = 6, ActivityId = 5, LocationId = 3, NumberOfFields = 1, CapacityPerField = 12, IsIndoor = true },
-                new ActivityLocation { Id = 7, ActivityId = 6, LocationId = 2, NumberOfFields = 1, CapacityPerField = 15, IsIndoor = false },
-                new ActivityLocation { Id = 8, ActivityId = 7, LocationId = 2, NumberOfFields = 1, CapacityPerField = 20, IsIndoor = false }
+                new ActivityLocation { Id = 1, ActivityId = 1, LocationId = 1, Capacity = 4, IsIndoor = true },
+                new ActivityLocation { Id = 2, ActivityId = 1, LocationId = 2, Capacity = 4, IsIndoor = false },
+                new ActivityLocation { Id = 3, ActivityId = 2, LocationId = 1, Capacity = 2, IsIndoor = true },
+                new ActivityLocation { Id = 4, ActivityId = 3, LocationId = 1, Capacity = 8, IsIndoor = true },
+                new ActivityLocation { Id = 5, ActivityId = 4, LocationId = 2, Capacity = 10, IsIndoor = false },
+                new ActivityLocation { Id = 6, ActivityId = 5, LocationId = 3, Capacity = 12, IsIndoor = true },
+                new ActivityLocation { Id = 7, ActivityId = 6, LocationId = 2, Capacity = 15, IsIndoor = false },
+                new ActivityLocation { Id = 8, ActivityId = 7, LocationId = 2, Capacity = 20, IsIndoor = false }
             );
 
             // 🕒 ActivitySlots (20+ tillfällen kommande veckor)
@@ -108,7 +174,6 @@ public class AppDbContext : DbContext
                         ActivityLocationId = locId,
                         StartTime = day.AddHours(17),
                         EndTime = day.AddHours(18),
-                        CapacityPerSlot = rand.Next(6, 12)
                     });
                 }
             }
