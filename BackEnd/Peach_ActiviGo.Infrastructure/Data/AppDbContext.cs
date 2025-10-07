@@ -25,6 +25,15 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
 
             // -------- RELATIONER --------
 
+            //Location
+            modelBuilder.Entity<Location>()
+                .Property(l => l.Latitude)
+                .HasColumnType("decimal(9,6)");
+
+            modelBuilder.Entity<Location>()
+                .Property(l => l.Longitude)
+                .HasColumnType("decimal(9,6)");
+            
             // Category 1 - * Activity
             modelBuilder.Entity<Activity>()
                 .HasOne(a => a.Category)
@@ -128,9 +137,30 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
 
             // 📍 Platser
             modelBuilder.Entity<Location>().HasData(
-                new Location { Id = 1, Name = "Sportcenter X", Address = "Huvudgatan 1", LatLong = "59.33,18.06" },
-                new Location { Id = 2, Name = "Utomhusarenan", Address = "Parkvägen 5", LatLong = "59.32,18.04" },
-                new Location { Id = 3, Name = "City Gym", Address = "Centrumtorget 2", LatLong = "59.34,18.05" }
+                new Location 
+                { 
+                    Id = 1, 
+                    Name = "Sportcenter X", 
+                    Address = "Huvudgatan 1", 
+                    Latitude = 59.330000m, 
+                    Longitude = 18.060000m 
+                },
+                new Location 
+                { 
+                    Id = 2, 
+                    Name = "Utomhusarenan", 
+                    Address = "Parkvägen 5", 
+                    Latitude = 59.320000m, 
+                    Longitude = 18.040000m 
+                },
+                new Location 
+                { 
+                    Id = 3, 
+                    Name = "City Gym", 
+                    Address = "Centrumtorget 2", 
+                    Latitude = 59.340000m, 
+                    Longitude = 18.050000m 
+                }
             );
 
             // 🏐 Aktiviteter
