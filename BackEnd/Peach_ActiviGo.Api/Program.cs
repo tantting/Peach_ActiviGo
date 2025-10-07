@@ -1,6 +1,10 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Peach_ActiviGo.Infrastructure.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +32,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+
 
 //--- Jwt Authentication ---
 var jwt = builder.Configuration.GetSection("Jwt");
@@ -56,6 +62,22 @@ builder.Services.AddAuthentication(opt =>
 builder.Services.AddAuthorization(opt => opt.AddPolicy("AdminOnly", p => p.RequireRole("Admin")));
 
 var app = builder.Build();
+
+// --- Seed Identity & Domändata ---
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    // --- Kör migrationer ---
+    //var dbContext = services.GetRequiredService<Peach_ActiviGoDbContext>();
+    //dbContext.Database.Migrate();
+
+    // --- Seed Identity users & roles  ---
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await IdentitySeed.InitializeAsync(userManager, roleManager);
+    //object identitySeedResult = await IdentitySeed.InitializeAsync(userManager, roleManager);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
