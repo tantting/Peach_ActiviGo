@@ -25,9 +25,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Peach_ActiviGo API", Version = "v1" });
@@ -48,11 +45,6 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
-
 
 //--- Jwt Authentication ---
 var jwt = builder.Configuration.GetSection("Jwt");
