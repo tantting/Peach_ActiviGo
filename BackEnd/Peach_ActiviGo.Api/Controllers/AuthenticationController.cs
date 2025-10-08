@@ -40,6 +40,17 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok("Account Created");
         }
 
+        [HttpGet("GetAllAccounts")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var result = await _authService.GetAllUsersAsync();
+            if (result == null || !result.Any())
+            {
+                return NotFound("No users found.");
+            }
+            return Ok(result);
+        }
+
         [HttpPut("UpdateAccount")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto dto)
         {
