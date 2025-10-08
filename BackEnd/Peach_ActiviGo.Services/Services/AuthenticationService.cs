@@ -106,5 +106,30 @@ namespace Peach_ActiviGo.Services.Services
             return new { user.Id, user.Email, Message = "Account updated successfully." };
         }
 
+        public async Task<object?> DeleteUserAsync(DeleteUserDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // Verify the password before allowing deletion.
+            var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+            if (!passwordCheck.Succeeded)
+            {
+                return null;
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (!result.Succeeded) 
+            {
+                return result.Errors;
+            }
+
+            return new { user.Id, user.Email, Message = "Account deleted successfully." };
+        }
+
     }
 }
