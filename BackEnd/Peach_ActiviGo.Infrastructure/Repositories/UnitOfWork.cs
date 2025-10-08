@@ -7,14 +7,16 @@ namespace Peach_ActiviGo.Infrastructure.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _context;
-    //private IMapper _mapper;
+    private ILocationRepository _locations; 
+    
     
     public UnitOfWork(AppDbContext context, IMapper mapper)
     {
         _context = context;
-        //_mapper = mapper;
     }
-    
+
+    public ILocationRepository Locations => _locations ??= new LocationRepository(_context);
+
     public async Task<int> SaveChangesAsync(CancellationToken ct)
     {
         return await _context.SaveChangesAsync(ct);
