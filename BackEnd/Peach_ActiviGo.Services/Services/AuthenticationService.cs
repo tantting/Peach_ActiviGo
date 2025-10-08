@@ -140,5 +140,42 @@ namespace Peach_ActiviGo.Services.Services
 
             return Task.FromResult<IEnumerable<GetUsersDto>?>(users);
         }
+
+        public async Task<ReadLoginResponseDto?> RefreshTokenAsync(RefreshTokenDto dto)
+        {
+            // Validate the existing token.
+            var getToken = _jwtTokenService.GetCurrentToken(dto.Token);
+            if (getToken == null)
+            {
+                return null;
+            }
+
+            // Extract the email claim from the token.
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // Get user roles for token generation.
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles == null)
+            {
+                return null;
+            }
+
+            // Generate a new token.
+            var newToken = _jwtTokenService.GenerateJwtToken(user, roles);
+            if (newToken.Token == getToken)
+            {
+                return null;
+            }
+
+            // Return the new token.
+            return new ReadLoginResponseDto
+            {
+                Token = newToken.Token,
+            };
+        }
     }
 }
