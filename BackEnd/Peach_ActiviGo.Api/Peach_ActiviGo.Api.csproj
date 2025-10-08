@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Peach_ActiviGo.Core\Peach_ActiviGo.Core.csproj" />
     <ProjectReference Include="..\Peach_ActiviGo.Infrastructure\Peach_ActiviGo.Infrastructure.csproj" />
     <ProjectReference Include="..\Peach_ActiviGo.Services\Peach_ActiviGo.Services.csproj" />
   </ItemGroup>

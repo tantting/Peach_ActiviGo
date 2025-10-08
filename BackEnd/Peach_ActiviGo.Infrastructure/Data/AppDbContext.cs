@@ -79,54 +79,6 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
                 .OnDelete(DeleteBehavior.Restrict);
 
             // -------- SEED DATA --------
-            
-            // var hasher = new PasswordHasher<IdentityUser>();
-            //
-            // var admin = new IdentityUser
-            // {
-            //     Id = "1",
-            //     UserName = "admin@activigo.se",
-            //     NormalizedUserName = "ADMIN@ACTIVIGO.SE",
-            //     Email = "admin@activigo.se",
-            //     NormalizedEmail = "ADMIN@ACTIVIGO.SE",
-            //     EmailConfirmed = true,
-            //     PasswordHash = hasher.HashPassword(null, "Admin123!")
-            // };
-            //
-            // var user1 = new IdentityUser
-            // {
-            //     Id = "2",
-            //     UserName = "anna@activigo.se",
-            //     NormalizedUserName = "ANNA@ACTIVIGO.SE",
-            //     Email = "anna@activigo.se",
-            //     NormalizedEmail = "ANNA@ACTIVIGO.SE",
-            //     EmailConfirmed = true,
-            //     PasswordHash = hasher.HashPassword(null, "User123!")
-            // };
-            //
-            // var user2 = new IdentityUser
-            // {
-            //     Id = "3",
-            //     UserName = "bjorn@activigo.se",
-            //     NormalizedUserName = "BJORN@ACTIVIGO.SE",
-            //     Email = "bjorn@activigo.se",
-            //     NormalizedEmail = "BJORN@ACTIVIGO.SE",
-            //     EmailConfirmed = true,
-            //     PasswordHash = hasher.HashPassword(null, "User123!")
-            // };
-            //
-            // var user3 = new IdentityUser
-            // {
-            //     Id = "4",
-            //     UserName = "carla@activigo.se",
-            //     NormalizedUserName = "CARLA@ACTIVIGO.SE",
-            //     Email = "carla@activigo.se",
-            //     NormalizedEmail = "CARLA@ACTIVIGO.SE",
-            //     EmailConfirmed = true,
-            //     PasswordHash = hasher.HashPassword(null, "User123!")
-            // };
-
-            // modelBuilder.Entity<IdentityUser>().HasData(admin, user1, user2, user3);
 
             // 🏷️ Kategorier
             modelBuilder.Entity<Category>().HasData(
