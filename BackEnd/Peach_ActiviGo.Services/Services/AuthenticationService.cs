@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Peach_ActiviGo.Services.Auth;
+using Peach_ActiviGo.Services.DTOs.AuthDto;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.Interface;
 
@@ -72,8 +73,38 @@ namespace Peach_ActiviGo.Services.Services
 
             await _userManager.AddToRoleAsync(user, "User");
 
-            return new { user.Id, user.Email };
+            return new { user.Id, user.Email, Message = "Account created successfully." };
         }
-        
+
+        public async Task<object?> UpdateUserAsync(UpdateUserDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // Verify the current password before allowing an update.
+            var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+            if (!passwordCheck.Succeeded)
+            {
+                return null;
+            }
+
+            // Update the password if a new password is provided.
+            if (!string.IsNullOrEmpty(dto.NewPassword))
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var passwordChangeResult = await _userManager.ResetPasswordAsync(user, token, dto.NewPassword);
+                if (!passwordChangeResult.Succeeded)
+                {
+                    return passwordChangeResult.Errors;
+                }
+            }
+
+            // return an object with user.Id, user.Email and a message.
+            return new { user.Id, user.Email, Message = "Account updated successfully." };
+        }
+
     }
 }
