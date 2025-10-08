@@ -8,6 +8,12 @@ using Peach_ActiviGo.Infrastructure.Data;
 using Peach_ActiviGo.Services.Auth;
 using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Services;
+using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Infrastructure.Repositories;
+using Peach_ActiviGo.Services.Mapping;
+using FluentValidation;
+using Peach_ActiviGo.Services.Validators;
+using Peach_ActiviGo.Services.DTOs.CategoryDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +37,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -82,6 +95,9 @@ builder.Services.AddAuthentication(opt =>
 // --- Authorization ---
 builder.Services.AddAuthorization(opt => opt.AddPolicy("AdminOnly", p => p.RequireRole("Admin")));
 
+// --- Validators ---
+builder.Services.AddScoped<IValidator<CategoryCreateDto>, CategoryCreateValidator>();
+builder.Services.AddScoped<IValidator<CategoryUpdateDto>, CategoryUpdateValidator>();
 
 var app = builder.Build();
 

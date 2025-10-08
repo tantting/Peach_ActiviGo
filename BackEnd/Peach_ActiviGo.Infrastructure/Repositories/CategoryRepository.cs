@@ -1,12 +1,9 @@
-﻿using Peach_ActiviGo.Core.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Peach_ActiviGo.Infrastructure.Repositories
 {
