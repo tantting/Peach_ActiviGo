@@ -14,6 +14,8 @@ using Peach_ActiviGo.Services.Mapping;
 using FluentValidation;
 using Peach_ActiviGo.Services.Validators;
 using Peach_ActiviGo.Services.DTOs.CategoryDtos;
+using Microsoft.Extensions.DependencyInjection;
+using Peach_ActiviGo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
     .AddDefaultTokenProviders();
 
 
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);

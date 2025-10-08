@@ -51,7 +51,7 @@ namespace Peach_ActiviGo.Api.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] ActivityRequestDto dto)
         {
             var updated = await _activityService.UpdateAsync(id, dto);
-            if (!updated)
+            if (updated == null)
             {
                 return NotFound();
             }
