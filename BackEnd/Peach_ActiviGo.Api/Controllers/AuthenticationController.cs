@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Peach_ActiviGo.Services.DTOs.AuthDto;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.Interface;
 
@@ -37,6 +38,18 @@ namespace Peach_ActiviGo.Api.Controllers
                 return BadRequest("User already exists.");
             }
             return Ok("Account Created");
+        }
+
+        [HttpPut("UpdateAccount")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto dto)
+        {
+            var result = await _authService.UpdateUserAsync(dto);
+            if (result == null)
+            {
+                return BadRequest("User does not exist.");
+            }
+            
+            return Ok("Account Updated");
         }
 
         [Authorize]
