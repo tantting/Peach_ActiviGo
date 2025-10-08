@@ -4,16 +4,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Infrastructure.Data;
+using Peach_ActiviGo.Infrastructure.Repositories;
 using Peach_ActiviGo.Services.Auth;
 using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Services;
+using Peach_ActiviGo.Services.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Database
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
 {
@@ -54,6 +59,8 @@ builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin(
 
 // --- Dependency Injection ---
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<LocationService, LocationService>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<JwtTokenService>();
 
 //--- Jwt Authentication ---
@@ -85,12 +92,12 @@ builder.Services.AddAuthorization(opt => opt.AddPolicy("AdminOnly", p => p.Requi
 
 var app = builder.Build();
 
-// --- Seed Identity & Domändata ---
+// --- Seed Identity & Domï¿½ndata ---
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    // --- Kör migrationer ---
+    // --- Kï¿½r migrationer ---
     var dbContext = services.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
 
