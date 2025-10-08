@@ -34,6 +34,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+
+builder.Services.AddScoped<IActivityService, ActivityService>();
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
+
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
