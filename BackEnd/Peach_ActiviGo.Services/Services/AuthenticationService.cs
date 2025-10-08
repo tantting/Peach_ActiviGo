@@ -131,5 +131,14 @@ namespace Peach_ActiviGo.Services.Services
             return new { user.Id, user.Email, Message = "Account deleted successfully." };
         }
 
+        public Task<IEnumerable<GetUsersDto>?> GetAllUsersAsync()
+        {
+            var users = _userManager.Users.Select(u => new GetUsersDto
+            {
+                Email = u.Email
+            });
+
+            return Task.FromResult<IEnumerable<GetUsersDto>?>(users);
+        }
     }
 }
