@@ -8,6 +8,7 @@ namespace Peach_ActiviGo.Services.Interface
         Task<ReadLoginResponseDto?> LoginAsync(ReadLoginDto dto);
         Task<object?> RegisterUserAsync(CreateUserDto dto);
         Task<object?> UpdateUserAsync(UpdateUserDto dto);
-        
+        Task<object?> DeleteUserAsync(DeleteUserDto dto);
+
     }
 }
