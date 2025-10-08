@@ -8,6 +8,7 @@ using Peach_ActiviGo.Infrastructure.Data;
 using Peach_ActiviGo.Services.Auth;
 using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Services;
+using Peach_ActiviGo.Services.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
+
+
+builder.Services.AddScoped<IActivityService, ActivityService>();
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
+
+
 
 // Add services to the container.
 builder.Services.AddControllers();
