@@ -9,6 +9,7 @@ namespace Peach_ActiviGo.Services.Interface
         Task<object?> RegisterUserAsync(CreateUserDto dto);
         Task<object?> UpdateUserAsync(UpdateUserDto dto);
         Task<object?> DeleteUserAsync(DeleteUserDto dto);
+        Task<IEnumerable<GetUsersDto>?> GetAllUsersAsync();
 
     }
 }
