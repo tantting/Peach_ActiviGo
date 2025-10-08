@@ -10,6 +10,7 @@ namespace Peach_ActiviGo.Services.Interface
         Task<object?> UpdateUserAsync(UpdateUserDto dto);
         Task<object?> DeleteUserAsync(DeleteUserDto dto);
         Task<IEnumerable<GetUsersDto>?> GetAllUsersAsync();
+        Task<ReadLoginResponseDto?> RefreshTokenAsync(RefreshTokenDto dto);
 
     }
 }
