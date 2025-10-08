@@ -77,6 +77,18 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         [Authorize]
+        [HttpPost("RefreshToken")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
+        {
+            var result = await _authService.RefreshTokenAsync(refreshTokenDto);
+            if (result == null)
+            {
+                return Unauthorized("Invalid token.");
+            }
+            return Ok(result);
+        }
+
+        [Authorize]
         [HttpGet("AuthorizeTest")]
         public IActionResult Test()
         {
