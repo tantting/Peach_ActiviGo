@@ -52,6 +52,19 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok("Account Updated");
         }
 
+        [HttpDelete("DeleteAccount")]
+        public async Task<IActionResult> DeleteUser([FromBody] DeleteUserDto dto)
+        {
+            var result = await _authService.DeleteUserAsync(dto);
+
+            if (result == null)
+            {
+                return BadRequest("User does not exist.");
+            }
+
+            return Ok("Account deleted successfully.");
+        }
+
         [Authorize]
         [HttpGet("AuthorizeTest")]
         public IActionResult Test()
