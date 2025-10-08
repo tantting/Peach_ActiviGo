@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Peach_ActiviGo.Core\Peach_ActiviGo.Core.csproj" />
+    <ProjectReference Include="..\Peach_ActiviGo.Infrastructure\Peach_ActiviGo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
