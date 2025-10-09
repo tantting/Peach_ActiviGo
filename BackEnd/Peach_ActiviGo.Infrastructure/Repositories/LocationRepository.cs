@@ -14,12 +14,12 @@ public class LocationRepository : ILocationRepository
         _context = context; 
     }
 
-    public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken ct = default)
+    public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken ct)
     {
         return await _context.Locations.ToListAsync();
     }
 
-    public async Task<Location> GetLocationByIdAsync(int id, CancellationToken ct = default)
+    public async Task<Location> GetLocationByIdAsync(int id, CancellationToken ct)
     {
         return await _context.Locations.FindAsync(id, ct);
     }

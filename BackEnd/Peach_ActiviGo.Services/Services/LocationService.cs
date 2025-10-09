@@ -17,19 +17,19 @@ public class LocationService : ILocationService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ReadLocationDto>> GetAllLocationsAsync(CancellationToken ct = default)
+    public async Task<IEnumerable<ReadLocationDto>> GetAllLocationsAsync(CancellationToken ct)
     {
-        var locations =await  _unitOfWork.Locations.GetAllLocationsAsync();
+        var locations =await  _unitOfWork.Locations.GetAllLocationsAsync(ct);
         return _mapper.Map<IEnumerable<ReadLocationDto>>(locations);
     }
 
-    public async Task<ReadLocationDto> GetLocationByIdAsync(int id, CancellationToken ct = default)
+    public async Task<ReadLocationDto> GetLocationByIdAsync(int id, CancellationToken ct)
     {
         var location = await _unitOfWork.Locations.GetLocationByIdAsync(id, ct);
         return location == null ? null : _mapper.Map<ReadLocationDto>(location);
     }
 
-    public async Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto, CancellationToken ct = default)
+    public async Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto, CancellationToken ct)
     {
         if(string.IsNullOrWhiteSpace(locationDto.Name) || string.IsNullOrWhiteSpace(locationDto.Address))
         {
@@ -43,7 +43,7 @@ public class LocationService : ILocationService
         return _mapper.Map<ReadLocationDto>(newLocation);
     }
 
-    public async Task<bool>UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct = default)
+    public async Task<bool>UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct)
     {
         var existingLocation = await _unitOfWork.Locations.GetLocationByIdAsync(id, ct);
         if (existingLocation == null)
@@ -56,7 +56,7 @@ public class LocationService : ILocationService
         return true;
     }
 
-    public async Task<bool> DeleteLocationAsync(int id, CancellationToken ct = default)
+    public async Task<bool> DeleteLocationAsync(int id, CancellationToken ct)
     {
         var locationToDelete = await _unitOfWork.Locations.GetLocationByIdAsync(id, ct);
         if (locationToDelete == null)
