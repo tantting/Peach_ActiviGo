@@ -1,7 +1,8 @@
 namespace Peach_ActiviGo.Services.DTOs.LocationDto;
 
-public class ReadLocationDto
+public record ReadLocationDto
 {
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
     public decimal Latitude { get; set; }
