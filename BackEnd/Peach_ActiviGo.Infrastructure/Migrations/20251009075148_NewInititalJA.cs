@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Peach_ActiviGo.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate6 : Migration
+    public partial class NewInititalJA : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,7 +76,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LatLong = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
                     CreatedDate = table.Column<DateOnly>(type: "date", nullable: false),
                     UpdatedDate = table.Column<DateOnly>(type: "date", nullable: true)
                 },
@@ -308,34 +309,23 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[,]
-                {
-                    { "1", 0, "e9117b6f-2c22-4529-845d-e69d74343d31", "admin@activigo.se", true, false, null, "ADMIN@ACTIVIGO.SE", "ADMIN@ACTIVIGO.SE", "AQAAAAIAAYagAAAAEE67IKOcsXZojy2jU/F9tkl5zfWSYSTjejSLYSlB/oK7EEzZN/7RLeeVRMw3PVO2YQ==", null, false, "9367a0f6-4995-4f10-a234-6939143ecc33", false, "admin@activigo.se" },
-                    { "2", 0, "807fdaad-bf89-446b-b8c7-41898ef2e7f7", "anna@activigo.se", true, false, null, "ANNA@ACTIVIGO.SE", "ANNA@ACTIVIGO.SE", "AQAAAAIAAYagAAAAEMMPJ/KaFN44+ejIfRzIbpHuXCiyQ2GQiZPIFIoIhgS4HO+A74gOscoR4nFaywgQxQ==", null, false, "3916da70-93ed-48d0-ac9a-fbc60e4ec352", false, "anna@activigo.se" },
-                    { "3", 0, "5058a998-9e37-4c2a-94f8-4ab14df269a3", "bjorn@activigo.se", true, false, null, "BJORN@ACTIVIGO.SE", "BJORN@ACTIVIGO.SE", "AQAAAAIAAYagAAAAEJMIw0JusaxBczSfvWp1Iz1YMa/8rIvOPnuSJs8S1muPzHugln55cLMDuMCVZREkrg==", null, false, "01be9d93-9165-47bb-ba1d-d548d0cb31cd", false, "bjorn@activigo.se" },
-                    { "4", 0, "11ba6388-80cd-41da-949a-0a53b8558aaa", "carla@activigo.se", true, false, null, "CARLA@ACTIVIGO.SE", "CARLA@ACTIVIGO.SE", "AQAAAAIAAYagAAAAEC2TrZRU0FC1hygth2VQAXdZ+CAw40X5sVPrFHHIuCOdoUEcsLXW7OM1tUyKmhFHtA==", null, false, "58c43aea-ba10-4646-8b5e-e9a0cd6423f0", false, "carla@activigo.se" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedDate", "Description", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2025, 10, 7), null, "Träning", null },
-                    { 2, new DateOnly(2025, 10, 7), null, "Spel", null },
-                    { 3, new DateOnly(2025, 10, 7), null, "Kondition", null }
+                    { 1, new DateOnly(2025, 10, 9), null, "Träning", null },
+                    { 2, new DateOnly(2025, 10, 9), null, "Spel", null },
+                    { 3, new DateOnly(2025, 10, 9), null, "Kondition", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Locations",
-                columns: new[] { "Id", "Address", "CreatedDate", "LatLong", "Name", "UpdatedDate" },
+                columns: new[] { "Id", "Address", "CreatedDate", "Latitude", "Longitude", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, "Huvudgatan 1", new DateOnly(2025, 10, 7), "59.33,18.06", "Sportcenter X", null },
-                    { 2, "Parkvägen 5", new DateOnly(2025, 10, 7), "59.32,18.04", "Utomhusarenan", null },
-                    { 3, "Centrumtorget 2", new DateOnly(2025, 10, 7), "59.34,18.05", "City Gym", null }
+                    { 1, "Huvudgatan 1", new DateOnly(2025, 10, 9), 59.330000m, 18.060000m, "Sportcenter X", null },
+                    { 2, "Parkvägen 5", new DateOnly(2025, 10, 9), 59.320000m, 18.040000m, "Utomhusarenan", null },
+                    { 3, "Centrumtorget 2", new DateOnly(2025, 10, 9), 59.340000m, 18.050000m, "City Gym", null }
                 });
 
             migrationBuilder.InsertData(
@@ -343,14 +333,14 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "Description", "ImageUrl", "Name", "Price", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateOnly(2025, 10, 7), "Racketsport i par", "/img/padel.jpg", "Padel", 120m, null },
-                    { 2, 2, new DateOnly(2025, 10, 7), "Inomhus pingis", "/img/pingis.jpg", "Pingis", 80m, null },
-                    { 3, 1, new DateOnly(2025, 10, 7), "Inomhusklättring", "/img/climb.jpg", "Klättring", 150m, null },
-                    { 4, 1, new DateOnly(2025, 10, 7), "Träning i utegym", "/img/utegym.jpg", "Utegym", 0m, null },
-                    { 5, 1, new DateOnly(2025, 10, 7), "Lugn och fokuserad träning", "/img/yoga.jpg", "Yoga", 100m, null },
-                    { 6, 3, new DateOnly(2025, 10, 7), "Högintensiv utomhusträning", "/img/bootcamp.jpg", "Bootcamp", 120m, null },
-                    { 7, 3, new DateOnly(2025, 10, 7), "Gruppträning löpning", "/img/run.jpg", "Löpning", 60m, null },
-                    { 8, 1, new DateOnly(2025, 10, 7), "Kondition och styrka", "/img/crossfit.jpg", "Crossfit", 140m, null }
+                    { 1, 2, new DateOnly(2025, 10, 9), "Racketsport i par", "/img/padel.jpg", "Padel", 120m, null },
+                    { 2, 2, new DateOnly(2025, 10, 9), "Inomhus pingis", "/img/pingis.jpg", "Pingis", 80m, null },
+                    { 3, 1, new DateOnly(2025, 10, 9), "Inomhusklättring", "/img/climb.jpg", "Klättring", 150m, null },
+                    { 4, 1, new DateOnly(2025, 10, 9), "Träning i utegym", "/img/utegym.jpg", "Utegym", 0m, null },
+                    { 5, 1, new DateOnly(2025, 10, 9), "Lugn och fokuserad träning", "/img/yoga.jpg", "Yoga", 100m, null },
+                    { 6, 3, new DateOnly(2025, 10, 9), "Högintensiv utomhusträning", "/img/bootcamp.jpg", "Bootcamp", 120m, null },
+                    { 7, 3, new DateOnly(2025, 10, 9), "Gruppträning löpning", "/img/run.jpg", "Löpning", 60m, null },
+                    { 8, 1, new DateOnly(2025, 10, 9), "Kondition och styrka", "/img/crossfit.jpg", "Crossfit", 140m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -358,14 +348,14 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                 columns: new[] { "Id", "ActivityId", "Capacity", "CreatedDate", "IsIndoor", "LocationId", "UpdatedDate", "isActive" },
                 values: new object[,]
                 {
-                    { 1, 1, 4, new DateOnly(2025, 10, 7), true, 1, null, true },
-                    { 2, 1, 4, new DateOnly(2025, 10, 7), false, 2, null, true },
-                    { 3, 2, 2, new DateOnly(2025, 10, 7), true, 1, null, true },
-                    { 4, 3, 8, new DateOnly(2025, 10, 7), true, 1, null, true },
-                    { 5, 4, 10, new DateOnly(2025, 10, 7), false, 2, null, true },
-                    { 6, 5, 12, new DateOnly(2025, 10, 7), true, 3, null, true },
-                    { 7, 6, 15, new DateOnly(2025, 10, 7), false, 2, null, true },
-                    { 8, 7, 20, new DateOnly(2025, 10, 7), false, 2, null, true }
+                    { 1, 1, 4, new DateOnly(2025, 10, 9), true, 1, null, true },
+                    { 2, 1, 4, new DateOnly(2025, 10, 9), false, 2, null, true },
+                    { 3, 2, 2, new DateOnly(2025, 10, 9), true, 1, null, true },
+                    { 4, 3, 8, new DateOnly(2025, 10, 9), true, 1, null, true },
+                    { 5, 4, 10, new DateOnly(2025, 10, 9), false, 2, null, true },
+                    { 6, 5, 12, new DateOnly(2025, 10, 9), true, 3, null, true },
+                    { 7, 6, 15, new DateOnly(2025, 10, 9), false, 2, null, true },
+                    { 8, 7, 20, new DateOnly(2025, 10, 9), false, 2, null, true }
                 });
 
             migrationBuilder.InsertData(
@@ -373,30 +363,30 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                 columns: new[] { "Id", "ActivityLocationId", "CreatedDate", "EndTime", "IsCanselled", "StartTime", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 9, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 9, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 2, 1, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 12, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 12, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 3, 1, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 15, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 15, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 4, 2, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 10, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 10, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 5, 2, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 13, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 13, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 6, 2, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 16, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 16, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 7, 3, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 11, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 11, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 8, 3, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 14, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 14, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 9, 3, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 17, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 17, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 10, 4, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 12, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 12, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 11, 4, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 15, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 15, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 12, 4, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 13, 5, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 13, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 13, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 14, 5, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 16, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 16, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 15, 5, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 19, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 19, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 16, 6, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 14, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 14, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 17, 6, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 17, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 17, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 18, 6, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 20, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 19, 7, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 15, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 15, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 20, 7, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 21, 7, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 21, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 22, 8, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 16, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 16, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 23, 8, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 19, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 19, 17, 0, 0, 0, DateTimeKind.Local), null },
-                    { 24, 8, new DateOnly(2025, 10, 7), new DateTime(2025, 10, 22, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 22, 17, 0, 0, 0, DateTimeKind.Local), null }
+                    { 1, 1, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 11, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 11, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 2, 1, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 14, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 14, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 3, 1, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 17, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 17, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 4, 2, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 12, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 12, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 5, 2, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 15, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 15, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 6, 2, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 7, 3, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 13, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 13, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 8, 3, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 16, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 16, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 9, 3, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 19, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 19, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 10, 4, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 14, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 14, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 11, 4, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 17, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 17, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 12, 4, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 20, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 13, 5, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 15, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 15, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 14, 5, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 15, 5, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 21, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 16, 6, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 16, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 16, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 17, 6, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 19, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 19, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 18, 6, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 22, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 22, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 19, 7, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 17, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 17, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 20, 7, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 20, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 21, 7, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 23, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 23, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 22, 8, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 23, 8, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 21, 17, 0, 0, 0, DateTimeKind.Local), null },
+                    { 24, 8, new DateOnly(2025, 10, 9), new DateTime(2025, 10, 24, 18, 0, 0, 0, DateTimeKind.Local), false, new DateTime(2025, 10, 24, 17, 0, 0, 0, DateTimeKind.Local), null }
                 });
 
             migrationBuilder.CreateIndex(
