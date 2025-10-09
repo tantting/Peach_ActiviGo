@@ -76,7 +76,7 @@ namespace Peach_ActiviGo.Api.Controllers
         //PUT: api/Location/5
 
         [HttpPut("{id}", Name = "UpdateLocation")]
-        public async Task<IActionResult> UpdateLocation([FromRoute] int id, [FromBody] UpdateLocationDto dto, IValidator<UpdateLocationDto> validator)
+        public async Task<IActionResult> UpdateLocation([FromRoute] int id, [FromBody] UpdateLocationDto dto, CancellationToken ct,IValidator<UpdateLocationDto> validator)
         {
             var validationResult = await validator.ValidateAsync(dto);
             
@@ -85,7 +85,7 @@ namespace Peach_ActiviGo.Api.Controllers
                 return BadRequest(validationResult.Errors);
             }
             
-            var updatedLocation = await _locationService.UpdateLocationAsync(id, dto);
+            var updatedLocation = await _locationService.UpdateLocationAsync(id, dto, ct);
             if (!updatedLocation)
             {
                 return NotFound(new { errorMessage = "Location not found!" });
