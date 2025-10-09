@@ -1,4 +1,5 @@
-﻿using Peach_ActiviGo.Services.DTOs.AuthDtos;
+﻿using Peach_ActiviGo.Services.DTOs.AuthDto;
+using Peach_ActiviGo.Services.DTOs.AuthDtos;
 
 namespace Peach_ActiviGo.Services.Interface
 {
@@ -6,5 +7,10 @@ namespace Peach_ActiviGo.Services.Interface
     {
         Task<ReadLoginResponseDto?> LoginAsync(ReadLoginDto dto);
         Task<object?> RegisterUserAsync(CreateUserDto dto);
+        Task<object?> UpdateUserAsync(UpdateUserDto dto);
+        Task<object?> DeleteUserAsync(DeleteUserDto dto);
+        Task<IEnumerable<GetUsersDto>?> GetAllUsersAsync();
+        Task<ReadLoginResponseDto?> RefreshTokenAsync(RefreshTokenDto dto);
+
     }
 }

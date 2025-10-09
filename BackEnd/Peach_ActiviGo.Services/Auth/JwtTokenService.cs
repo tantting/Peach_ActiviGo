@@ -47,5 +47,21 @@ namespace Peach_ActiviGo.Services.Auth
 
             return (new JwtSecurityTokenHandler().WriteToken(token), expires);
         }
+
+        public object GetCurrentToken(string? token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token ?? string.Empty);
+            var tokenData = new
+            {
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"],
+                Claims = jwtToken.Claims.Select(c => new { c.Type, c.Value }),
+                NotBefore = jwtToken.ValidFrom,
+                Expires = jwtToken.ValidTo,
+                SigningCredentials = jwtToken.SigningCredentials?.ToString()
+            };
+            return tokenData;
+        }
     }
 }
