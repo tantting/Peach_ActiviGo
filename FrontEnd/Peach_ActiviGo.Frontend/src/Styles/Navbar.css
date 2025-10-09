@@ -1,13 +1,18 @@
 .navbar {
     background-color: #ffffff;
-    padding: 10px 20px;
+    padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .navbar-content {
     display: flex;
     align-items: center;
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .navbar a {
@@ -15,12 +20,16 @@
     text-decoration: none;
     margin: 0 15px;
     font-weight: 500;
-    transition: transform 0.2s, color 0.2s;
+    transition: color 0.2s;
 }
 
 .navbar a:hover {
-    transform: scale(1.1);
-    color: #646cff;
+    color: #e79a6e;
+}
+
+.navbar button:hover {
+    background-color: #d68958;
+    transform: scale(1.05);
 }
 
 .logo-link {

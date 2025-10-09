@@ -4,6 +4,28 @@
   margin: 0 auto;
   padding: 2rem;
   min-height: calc(100vh - 80px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center page headers */
+.page-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.page-container>p {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Responsive padding for smaller screens */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
 }
 
 /* Activities Grid */

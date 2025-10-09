@@ -8,6 +8,14 @@ export default function Kategorier() {
       
       <div className="categories-list">
         <div className="category-item">
+
+        {/* Lägg in data ifrån Kategorier här */}
+        {/* Nedan divvar är bara exempeldata */}
+        
+
+
+
+
           <h3>🏃‍♂️ Kondition</h3>
           <p>Löpning, cykling, simning och andra konditionsaktiviteter</p>
         </div>

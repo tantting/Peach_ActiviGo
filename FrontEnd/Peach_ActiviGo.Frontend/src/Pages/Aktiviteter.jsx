@@ -8,6 +8,14 @@ export default function Aktiviteter() {
       
       <div className="activities-grid">
         <div className="activity-card">
+        
+        {/* Lägg in data ifrån Aktiviteter här */}
+        {/* Nedan divvar är bara exempeldata */}
+        
+
+
+
+
           <h3>Fotboll</h3>
           <p>Träna fotboll med andra entusiaster</p>
         </div>
