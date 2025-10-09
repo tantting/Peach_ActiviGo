@@ -1,21 +1,22 @@
-using Microsoft.AspNetCore.Identity;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
-using Peach_ActiviGo.Infrastructure.Data;
-using Peach_ActiviGo.Services.Auth;
-using Peach_ActiviGo.Services.Interface;
-using Peach_ActiviGo.Services.Services;
 using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Infrastructure.Data;
 using Peach_ActiviGo.Infrastructure.Repositories;
-using Peach_ActiviGo.Services.Mapping;
-using FluentValidation;
-using Peach_ActiviGo.Services.Validators;
-using Peach_ActiviGo.Services.DTOs.CategoryDtos;
-using Microsoft.Extensions.DependencyInjection;
 using Peach_ActiviGo.Services;
+using Peach_ActiviGo.Services.Auth;
+using Peach_ActiviGo.Services.DTOs.AuthDto;
+using Peach_ActiviGo.Services.DTOs.AuthDtos;
+using Peach_ActiviGo.Services.DTOs.CategoryDtos;
+using Peach_ActiviGo.Services.Interface;
+using Peach_ActiviGo.Services.Mapping;
+using Peach_ActiviGo.Services.Services;
+using Peach_ActiviGo.Services.Validators;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -108,6 +109,11 @@ builder.Services.AddAuthorization(opt => opt.AddPolicy("AdminOnly", p => p.Requi
 // --- Validators ---
 builder.Services.AddScoped<IValidator<CategoryCreateDto>, CategoryCreateValidator>();
 builder.Services.AddScoped<IValidator<CategoryUpdateDto>, CategoryUpdateValidator>();
+builder.Services.AddScoped<IValidator<CreateUserDto>, CreateUserDtoValidator>();
+builder.Services.AddScoped<IValidator<DeleteUserDto>, DeleteUserDtoValidator>();
+builder.Services.AddScoped<IValidator<RefreshTokenDto>, RefreshTokenDtoValidator>();
+builder.Services.AddScoped<IValidator<ReadLoginDto>, ReadLoginDtoValidator>();
+builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserDtoValidator>();
 
 var app = builder.Build();
 
