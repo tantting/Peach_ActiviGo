@@ -113,4 +113,5 @@ dist-ssr
 .env.*
 appsettings.json
 appsettings.*.json
+appsettings.Development.json
 /BackEnd/Peach_ActiviGo.Api/appsettings.Development.json
