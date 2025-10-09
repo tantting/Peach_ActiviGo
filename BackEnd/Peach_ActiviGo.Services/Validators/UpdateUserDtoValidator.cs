@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
 
 namespace Peach_ActiviGo.Services.Validators
@@ -12,7 +11,7 @@ namespace Peach_ActiviGo.Services.Validators
                 .NotEmpty()
                 .EmailAddress()
                 .MaximumLength(256);
-           RuleFor(x => x.Password)
+           RuleFor(x => x.CurrentPassword)
                 .NotEmpty()
                 .MinimumLength(6)
                 .MaximumLength(100)

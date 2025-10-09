@@ -85,7 +85,7 @@ namespace Peach_ActiviGo.Services.Services
             }
 
             // Verify the current password before allowing an update.
-            var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
+            var passwordCheck = await _signInManager.CheckPasswordSignInAsync(user, dto.CurrentPassword, false);
             if (!passwordCheck.Succeeded)
             {
                 return null;

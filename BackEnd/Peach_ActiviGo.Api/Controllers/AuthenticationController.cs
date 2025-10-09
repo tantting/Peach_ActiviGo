@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
@@ -67,8 +68,17 @@ namespace Peach_ActiviGo.Api.Controllers
             }
 
             var result = await _authService.UpdateUserAsync(dto);
-            
-            return Ok("Account Updated");
+            if (result == null)
+            {
+                return BadRequest("Current password is incorrect or user not found.");
+            }
+
+            //if (result is IEnumerable<IdentityError> errors)
+            //{
+            //    return BadRequest(errors);
+            //}
+
+            return Ok(result);
         }
 
         [HttpDelete("DeleteAccount")]
