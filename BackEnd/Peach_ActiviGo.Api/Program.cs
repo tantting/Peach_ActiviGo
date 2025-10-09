@@ -4,19 +4,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Peach_ActiviGo.Core.Interface;
+using System.Text;
 using Peach_ActiviGo.Infrastructure.Data;
-using Peach_ActiviGo.Infrastructure.Repositories;
-using Peach_ActiviGo.Services;
 using Peach_ActiviGo.Services.Auth;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
-using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.DTOs.CategoryDtos;
 using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Mapping;
 using Peach_ActiviGo.Services.Services;
 using Peach_ActiviGo.Services.Validators;
-using System.Text;
+using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Infrastructure.Repositories;
+using Peach_ActiviGo.Services;
+using Peach_ActiviGo.Services.DTOs.AuthDtos;
+using Peach_ActiviGo.Services.DTOs.LocationDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,24 +38,24 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-
+// --- Dependency Injection Repos and Service layer---
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+// AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
-
-
+builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
-builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
-
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -76,8 +77,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-// --- Dependency Injection ---
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+// --- Jwt Dependency Injection ---
 builder.Services.AddScoped<JwtTokenService>();
 
 //--- Jwt Authentication ---
@@ -114,15 +114,17 @@ builder.Services.AddScoped<IValidator<DeleteUserDto>, DeleteUserDtoValidator>();
 builder.Services.AddScoped<IValidator<RefreshTokenDto>, RefreshTokenDtoValidator>();
 builder.Services.AddScoped<IValidator<ReadLoginDto>, ReadLoginDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateLocationDto>, CreateLocationDtoValidator>();
+builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValidator>();
 
 var app = builder.Build();
 
-// --- Seed Identity & Domändata ---
+// --- Seed Identity & Domï¿½ndata ---
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    // --- Kör migrationer ---
+    // --- Kï¿½r migrationer ---
     var dbContext = services.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
 
