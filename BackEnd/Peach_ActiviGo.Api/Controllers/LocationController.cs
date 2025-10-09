@@ -51,11 +51,6 @@ namespace Peach_ActiviGo.Api.Controllers
             {
                 return BadRequest(validationResult.Errors);
             }
-            
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(validationResult.Errors);
-            }
             var createdLocation = await _locationService.CreateLocationAsync(dto, ct);
             return CreatedAtRoute("GetLocationById", new { id = createdLocation.Id}, createdLocation);
         }   
@@ -70,7 +65,7 @@ namespace Peach_ActiviGo.Api.Controllers
                 return NotFound();
             }
 
-            return Ok("Activity deleted successfully");
+            return Ok("Location deleted successfully");
         }
 
         //PUT: api/Location/5
