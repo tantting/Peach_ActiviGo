@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Services.DTOs.LocationDto;
@@ -7,6 +8,8 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Tags("Admin")]
+    [Authorize(Roles = "Admin")]
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
