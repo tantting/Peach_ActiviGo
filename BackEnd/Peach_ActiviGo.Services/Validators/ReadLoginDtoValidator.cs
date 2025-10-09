@@ -3,9 +3,9 @@ using Peach_ActiviGo.Services.DTOs.AuthDtos;
 
 namespace Peach_ActiviGo.Services.Validators
 {
-    public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
+    public class ReadLoginDtoValidator : AbstractValidator<ReadLoginDto>
     {
-        public CreateUserDtoValidator()
+        public ReadLoginDtoValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty()

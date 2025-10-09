@@ -19,13 +19,15 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] ReadLoginDto dto)
+        public async Task<IActionResult> Login([FromBody] ReadLoginDto dto, IValidator<ReadLoginDto> validator)
         {
-            var result = await _authService.LoginAsync(dto);
-            if (result == null)
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
             {
-                return Unauthorized();
+                return BadRequest(validationResult.Errors);
             }
+
+            var result = await _authService.LoginAsync(dto);
            
             return Ok(result);
         }
@@ -56,39 +58,45 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         [HttpPut("UpdateAccount")]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto dto)
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto dto, IValidator<UpdateUserDto> validator)
         {
-            var result = await _authService.UpdateUserAsync(dto);
-            if (result == null)
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
             {
-                return BadRequest("User does not exist.");
+                return BadRequest(validationResult.Errors);
             }
+
+            var result = await _authService.UpdateUserAsync(dto);
             
             return Ok("Account Updated");
         }
 
         [HttpDelete("DeleteAccount")]
-        public async Task<IActionResult> DeleteUser([FromBody] DeleteUserDto dto)
+        public async Task<IActionResult> DeleteUser([FromBody] DeleteUserDto dto, IValidator<DeleteUserDto> validator)
         {
-            var result = await _authService.DeleteUserAsync(dto);
-
-            if (result == null)
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
             {
-                return BadRequest("User does not exist.");
+                return BadRequest(validationResult.Errors);
             }
+
+            var result = await _authService.DeleteUserAsync(dto);
 
             return Ok("Account deleted successfully.");
         }
 
         [Authorize]
         [HttpPost("RefreshToken")]
-        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto dto, IValidator<RefreshTokenDto> validator)
         {
-            var result = await _authService.RefreshTokenAsync(refreshTokenDto);
-            if (result == null)
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
             {
-                return Unauthorized("Invalid token.");
+                return BadRequest(validationResult.Errors);
             }
+
+            var result = await _authService.RefreshTokenAsync(dto);
+            
             return Ok(result);
         }
 

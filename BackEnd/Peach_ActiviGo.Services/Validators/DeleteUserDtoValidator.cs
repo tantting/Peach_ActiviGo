@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Peach_ActiviGo.Services.DTOs.AuthDtos;
+using Peach_ActiviGo.Services.DTOs.AuthDto;
 
 namespace Peach_ActiviGo.Services.Validators
 {
-    public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
+    public class DeleteUserDtoValidator : AbstractValidator<DeleteUserDto>
     {
-        public CreateUserDtoValidator()
+        public DeleteUserDtoValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty()
@@ -16,6 +16,7 @@ namespace Peach_ActiviGo.Services.Validators
                 .MinimumLength(6)
                 .MaximumLength(100)
                 .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$");
+            
         }
     }
 }
