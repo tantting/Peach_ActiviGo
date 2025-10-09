@@ -13,7 +13,11 @@ using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Mapping;
 using Peach_ActiviGo.Services.Services;
 using Peach_ActiviGo.Services.Validators;
-using System.Text;
+using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Infrastructure.Repositories;
+using Peach_ActiviGo.Services;
+using Peach_ActiviGo.Services.DTOs.AuthDtos;
+using Peach_ActiviGo.Services.DTOs.LocationDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -112,6 +116,8 @@ builder.Services.AddScoped<IValidator<DeleteUserDto>, DeleteUserDtoValidator>();
 builder.Services.AddScoped<IValidator<RefreshTokenDto>, RefreshTokenDtoValidator>();
 builder.Services.AddScoped<IValidator<ReadLoginDto>, ReadLoginDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateLocationDto>, CreateLocationDtoValidator>();
+builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValidator>();
 
 var app = builder.Build();
 

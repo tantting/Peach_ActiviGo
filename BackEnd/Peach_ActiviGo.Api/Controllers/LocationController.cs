@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Services.DTOs.LocationDto;
 using Peach_ActiviGo.Services.Interface;
+using FluentValidation;
 
 namespace Peach_ActiviGo.Api.Controllers
 {
@@ -21,15 +22,15 @@ namespace Peach_ActiviGo.Api.Controllers
 
         // GET: api/Location
         [HttpGet(Name = "GetAllLocations")]
-        public async Task<IActionResult> GetAllLocations(CancellationToken ct = default)
+        public async Task<IActionResult> GetAllLocations(CancellationToken ct)
         {
-            var locations = await _locationService.GetAllLocationsAsync();
+            var locations = await _locationService.GetAllLocationsAsync(ct);
             return Ok(locations);
         }
 
         // GET: api/Location/5
         [HttpGet("{id}", Name = "GetLocationById")]
-        public async Task<IActionResult> GetLocationById(int id, CancellationToken ct = default)
+        public async Task<IActionResult> GetLocationById(int id, CancellationToken ct)
         {
             var location = await _locationService.GetLocationByIdAsync(id, ct);
             if (location == null)
@@ -42,16 +43,26 @@ namespace Peach_ActiviGo.Api.Controllers
         
         // POST: api/Location
         [HttpPost(Name = "CreateLocation")]
-        public async Task<IActionResult> CreateLocation([FromBody] CreateLocationDto dto, CancellationToken ct = default)
+        public async Task<IActionResult> CreateLocation([FromBody] CreateLocationDto dto, CancellationToken ct, IValidator<CreateLocationDto> validator)
         { 
+            var validationResult = await validator.ValidateAsync(dto);
             
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
             var createdLocation = await _locationService.CreateLocationAsync(dto, ct);
             return CreatedAtRoute("GetLocationById", new { id = createdLocation.Id}, createdLocation);
         }   
 
         // DELETE: api/Location/5
         [HttpDelete("{id}", Name = "DeleteLocation")]
-        public async Task<IActionResult> DeleteLocation(int id, CancellationToken ct = default)
+        public async Task<IActionResult> DeleteLocation(int id, CancellationToken ct)
         {
             var deletedLocation = await _locationService.DeleteLocationAsync(id, ct);
             if (!deletedLocation)
@@ -65,8 +76,15 @@ namespace Peach_ActiviGo.Api.Controllers
         //PUT: api/Location/5
 
         [HttpPut("{id}", Name = "UpdateLocation")]
-        public async Task<IActionResult> UpdateLocation([FromRoute] int id, [FromBody] UpdateLocationDto dto)
+        public async Task<IActionResult> UpdateLocation([FromRoute] int id, [FromBody] UpdateLocationDto dto, IValidator<UpdateLocationDto> validator)
         {
+            var validationResult = await validator.ValidateAsync(dto);
+            
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            
             var updatedLocation = await _locationService.UpdateLocationAsync(id, dto);
             if (!updatedLocation)
             {
