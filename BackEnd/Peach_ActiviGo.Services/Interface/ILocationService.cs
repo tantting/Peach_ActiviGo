@@ -4,9 +4,9 @@ namespace Peach_ActiviGo.Services.Interface;
 
 public interface ILocationService
 {
-    Task<IEnumerable<ReadLocationDto>> GetAllLocationsAsync();
-    Task<ReadLocationDto> GetLocationByIdAsync(int id);
-    Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto);
-    Task UpdateLocationAsync(int id, UpdateLocationDto locationDto);
-    Task DeleteLocationAsync(int id);   
+    Task<IEnumerable<ReadLocationDto>> GetAllLocationsAsync(CancellationToken ct = default);
+    Task<ReadLocationDto> GetLocationByIdAsync(int id, CancellationToken ct = default);
+    Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto, CancellationToken ct = default);
+    Task<bool>UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct = default);
+    Task<bool> DeleteLocationAsync(int id, CancellationToken ct = default);   
 }

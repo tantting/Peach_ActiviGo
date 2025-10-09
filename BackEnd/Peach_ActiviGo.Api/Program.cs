@@ -40,24 +40,24 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-
+// --- Dependency Injection Repos and Service layer---
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+// AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
-
-
+builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
-builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
-
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -79,10 +79,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-// --- Dependency Injection ---
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddScoped<LocationService, LocationService>();
-builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+// --- Jwt Dependency Injection ---
 builder.Services.AddScoped<JwtTokenService>();
 
 //--- Jwt Authentication ---

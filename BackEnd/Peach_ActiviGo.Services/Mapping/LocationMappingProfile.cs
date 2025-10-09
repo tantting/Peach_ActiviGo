@@ -10,5 +10,7 @@ public class LocationMappingProfile : Profile
     {
         // CreateMap<Source, Destination>();
         CreateMap<Location, ReadLocationDto>();
+        CreateMap<CreateLocationDto, Location>();
+        CreateMap<UpdateLocationDto, Location>();
     }
 }
