@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
@@ -30,13 +31,16 @@ namespace Peach_ActiviGo.Api.Controllers
         }
        
         [HttpPut("CreateAccount")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto, IValidator<CreateUserDto> validator)
         {
-            var result = await _authService.RegisterUserAsync(dto);
-            if (result == null)
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
             {
-                return BadRequest("User already exists.");
+                return BadRequest(validationResult.Errors);
             }
+
+            var result = await _authService.RegisterUserAsync(dto);
+
             return Ok("Account Created");
         }
 
