@@ -47,11 +47,14 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 // AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(BookingMappingProfile).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
