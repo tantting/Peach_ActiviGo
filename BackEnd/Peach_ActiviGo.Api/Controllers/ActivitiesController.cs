@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Peach_ActiviGo.Services.DTOs;
+using Peach_ActiviGo.Services.DTOs.ActivityDtos;
 using Peach_ActiviGo.Services.Interface;
 
 namespace Peach_ActiviGo.Api.Controllers
@@ -8,6 +8,7 @@ namespace Peach_ActiviGo.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Admin")]
+    [Tags("Admin")]
     public class ActivitiesController : ControllerBase
     {
         private readonly IActivityService _activityService;
