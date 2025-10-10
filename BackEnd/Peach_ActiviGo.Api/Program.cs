@@ -144,5 +144,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("AllowAll"); //<---- Vi behöver lägga till detta för att nå våra API:er
 app.MapControllers();
 app.Run();
