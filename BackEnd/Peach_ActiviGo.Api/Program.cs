@@ -18,6 +18,8 @@ using Peach_ActiviGo.Infrastructure.Repositories;
 using Peach_ActiviGo.Services;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.DTOs.LocationDto;
+using Peach_ActiviGo.Core.Interfaces;
+using Peach_ActiviGo.Services.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +49,8 @@ builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IActivitySlotRepository, ActivitySlotRepository>();
+builder.Services.AddScoped<IActivitySlotService, ActivitySlotService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
@@ -54,6 +58,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(ActivitySlotProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(BookingMappingProfile).Assembly);
 
 // Add services to the container.
@@ -119,6 +124,8 @@ builder.Services.AddScoped<IValidator<ReadLoginDto>, ReadLoginDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserDtoValidator>();
 builder.Services.AddScoped<IValidator<CreateLocationDto>, CreateLocationDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValidator>();
+builder.Services.AddScoped<IValidator<ActivitySlotRequestDto>, ActivitySlotValidator>();
+
 
 var app = builder.Build();
 
