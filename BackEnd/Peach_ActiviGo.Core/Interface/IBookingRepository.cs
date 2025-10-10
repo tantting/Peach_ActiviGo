@@ -1,6 +1,6 @@
 namespace Peach_ActiviGo.Core.Interface;
 
-public class IBookingRepository
+public interface IBookingRepository
 {
     
 }
