@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Peach_ActiviGo.Services.DTOs
+﻿namespace Peach_ActiviGo.Services.DTOs.ActivityDtos
 {
     public class ActivityResponseDto
     {

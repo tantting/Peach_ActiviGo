@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Peach_ActiviGo.Core.Models;
-using Peach_ActiviGo.Services.DTOs;
+using Peach_ActiviGo.Services.DTOs.ActivityDtos;
 
 namespace Peach_ActiviGo.Services.Mapping
 {
