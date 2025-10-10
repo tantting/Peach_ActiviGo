@@ -1,88 +1,68 @@
 .navbar {
     background-color: #ffffff;
+    padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     width: 100%;
 }
 
-.navbar-container {
+.navbar-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.navbar-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    height: 60px;
-}
-
-.navbar-item {
-    margin-right: 40px;
-}
-
-.navbar-item:last-child {
-    margin-right: 0;
-}
-
-.navbar-link {
+.navbar a {
+    color: #333;
     text-decoration: none;
-    color: #333333;
-    font-size: 16px;
+    margin: 0 15px;
     font-weight: 500;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    display: block;
+    transition: color 0.2s;
 }
 
-.navbar-link:hover {
-    background-color: #f0f0f0;
-    color: #0ff307;
-    transform: translateY(-1px);
+.navbar a:hover {
+    color: #e79a6e;
 }
 
-.navbar-link:active {
-    transform: translateY(0);
+.navbar button:hover {
+    background-color: #d68958;
+    transform: scale(1.05);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .navbar-container {
-        padding: 0 15px;
-    }
-
-    .navbar-menu {
-        height: 50px;
-    }
-
-    .navbar-item {
-        margin-right: 20px;
-    }
-
-    .navbar-link {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
+.logo-link {
+    margin: 0 !important;
 }
 
-@media (max-width: 480px) {
-    .navbar-menu {
-        justify-content: space-between;
-        height: 45px;
-    }
+.logo-link h1 {
+    margin: 0;
+    color: #333;
+}
 
-    .navbar-item {
-        margin-right: 0;
-    }
+.auth-buttons button a {
+    color: white;
+    margin: 0;
+}
 
-    .navbar-link {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
+.nav-links {
+    display: flex;
+    align-items: left;
+}
+
+.auth-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button {
+    background-color: #e79a6e;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
 }
