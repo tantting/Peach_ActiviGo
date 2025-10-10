@@ -1,6 +1,16 @@
 import React from 'react'
+import FetchWeather from '../Components/FetchWeather'
+import { useState } from 'react'
+
 
 export default function Aktiviteter() {
+  const [showWeather, setShowWeather] = useState(false)
+
+  const handleFetchWeather = () => {
+    // Visa väderkomponenten
+    setShowWeather(true)
+  }
+
   return (
     <div className="page-container">
       <h1>Aktiviteter</h1>
@@ -18,6 +28,13 @@ export default function Aktiviteter() {
 
           <h3>Fotboll</h3>
           <p>Träna fotboll med andra entusiaster</p>
+          <button className="WeatherButton" onClick={handleFetchWeather}>Hämta väder</button>
+          {/* Visa väderdata när man trycker på knappen */}
+          {showWeather && (
+            <div>
+              <FetchWeather />
+            </div>
+          )}
         </div>
         <div className="activity-card">
           <h3>Löpning</h3>
