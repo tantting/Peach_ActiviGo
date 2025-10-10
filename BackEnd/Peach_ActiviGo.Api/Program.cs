@@ -51,13 +51,15 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IActivitySlotRepository, ActivitySlotRepository>();
 builder.Services.AddScoped<IActivitySlotService, ActivitySlotService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 // AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivitySlotProfile).Assembly);
-
+builder.Services.AddAutoMapper(cfg => { }, typeof(BookingMappingProfile).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
