@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.Interface;
 
 namespace Peach_ActiviGo.Api.Controllers
@@ -16,8 +17,26 @@ namespace Peach_ActiviGo.Api.Controllers
         }
         
         //GetAll
+        [HttpGet(Name = "GetAllBookings")]
+        [ProducesResponseType(typeof(IEnumerable<Booking>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookings(CancellationToken ct)
+        {
+            var bookings = await _bookingService.GetAllBookingsAsync(ct);
+            return Ok(bookings);
+        }
         
         // GetAllbyId
+        [HttpGet("{id}", Name = "GetBookingById")]
+        [ProducesResponseType(typeof(Booking), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Booking>> GetBookingById(int id, CancellationToken ct)
+        {
+            var booking = await _bookingService.GetBookingByIdAsync(id, ct);
+            if (booking == null)
+            {
+                return NotFound(new { errorMessage = "Booking not found!" });
+            }   
+            return Ok(booking);
+        }
         
         // GetAll By MemberId and status
         
@@ -26,5 +45,6 @@ namespace Peach_ActiviGo.Api.Controllers
         // Update (Avbokad för Cut-off)
         
         // Delete
+        
     }
 }
