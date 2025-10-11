@@ -25,21 +25,21 @@ public class BookingRepository : IBookingRepository
     {
         return await _context.Bookings
             .Include(b=>b.ActivitySlot)
-            .FirstOrDefaultAsync(b=>b.Id == id, ct);
+            .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
 
     public void AddBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Add(booking);
     }
-
+    // Update Booking (Avbokad för cut-off)
     public void UpdateBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Update(booking);
     }
 
     public void DeleteBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Remove(booking);
     }
 }
