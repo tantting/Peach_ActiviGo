@@ -9,6 +9,7 @@ namespace Peach_ActiviGo.Services.DTOs.BookingDtos
 {
     public class BookingUpdateDto
     {
+        public int Id { get; set; }
         public BookingStatus Status { get; set; } = BookingStatus.Cancelled;
     }
 }

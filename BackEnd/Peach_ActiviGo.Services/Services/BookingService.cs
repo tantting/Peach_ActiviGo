@@ -26,24 +26,60 @@ public class BookingService : IBookingService
         return _mapper.Map<IEnumerable<BookingDto>>(entities);
     }
 
-    public async Task<BookingDto?> GetBookingByIdAsync(int id, CancellationToken ct)
+    public async Task<BookingDto> GetBookingByIdAsync(int id, CancellationToken ct)
     {
         var entity = await _unitOfWork.Bookings.GetBookingByIdAsync(id, ct);
-        return entity is null ? null : _mapper.Map<BookingDto>(entity);
+        if (entity is null) throw new InvalidOperationException("Booking not found.");
+        return _mapper.Map<BookingDto>(entity);
     }
 
-    public Task AddBookingAsync(BookingDto booking, CancellationToken ct)
+    public async Task AddBookingAsync(BookingCreateDto booking, CancellationToken ct)
     {
-        
+        var entity = _mapper.Map<Booking>(booking);
+        entity.Status = Core.Enums.BookingStatus.Active;
+        _unitOfWork.Bookings.AddBooking(entity);
+        await _unitOfWork.SaveChangesAsync(ct);
+
     }
 
-    public Task UpdateBookingAsync(Booking booking, CancellationToken ct)
+    public async Task UpdateBookingAsync(BookingUpdateDto booking, CancellationToken ct)
     {
-        throw new NotImplementedException();
-    }
+        var existingBooking = await _unitOfWork.Bookings.GetBookingByIdAsync(booking.Id, ct);
+        if (existingBooking == null)
+        {
+            throw new InvalidOperationException("Booking not found.");
+        }
 
-    public Task DeleteBookingAsync(int id, CancellationToken ct)
+        // slotens tider för cutoff
+        await _context.Entry(existingBooking).Reference(b => b.ActivitySlot).LoadAsync(ct);
+
+        // endpointen stödjer bara avbokning
+        if (booking.Status != Core.Enums.BookingStatus.Cancelled)
+            return;
+
+        // cutoff: 24h före start
+        var cutoff = TimeSpan.FromHours(24);
+        var nowUtc = DateTime.UtcNow;
+        var cutoffTime = existingBooking.ActivitySlot.StartTime - cutoff;
+
+        if (nowUtc > cutoffTime)
+            throw new InvalidOperationException("Cannot cancel booking after the cut-off time.");
+
+        // sätt status
+        existingBooking.Status = Core.Enums.BookingStatus.Cancelled;
+        existingBooking.CancelledAt = nowUtc;
+
+        _unitOfWork.Bookings.UpdateBooking(existingBooking);
+        await _unitOfWork.SaveChangesAsync(ct);
+    }
+    
+
+    public async Task DeleteBookingAsync(int id, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        var entity = await _unitOfWork.Bookings.GetBookingByIdAsync(id, ct);
+        if (entity is null) return;
+
+        _unitOfWork.Bookings.DeleteBooking(entity);
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }   
