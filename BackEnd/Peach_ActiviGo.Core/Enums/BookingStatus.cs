@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Peach_ActiviGo.Core.Enums
 {
-    internal class BookingStatus
+    public enum BookingStatus
     {
+        Active = 1,
+        Cancelled = 2
     }
 }
