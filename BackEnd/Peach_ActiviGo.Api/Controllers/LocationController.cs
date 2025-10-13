@@ -15,10 +15,12 @@ namespace Peach_ActiviGo.Api.Controllers
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
+        private readonly IActivityLocationService _activityLocationService;
 
-        public LocationController(ILocationService locationService)
+        public LocationController(ILocationService locationService, IActivityLocationService activityLocationService)
         {
             _locationService = locationService;
+            _activityLocationService = activityLocationService;
         }
 
         // GET: api/Location
@@ -97,7 +99,7 @@ namespace Peach_ActiviGo.Api.Controllers
                 return BadRequest(validationResult.Errors);
             }
 
-            var result = await _locationService.UpdateActivityLocationAsync(dto, ct);
+            var result = await _activityLocationService.UpdateActivityLocationAsync(dto, ct);
             if (!result)
             {
                 return NotFound(new { errorMessage = $"No ActivityLocation found with Id {dto.id}" });
@@ -109,7 +111,7 @@ namespace Peach_ActiviGo.Api.Controllers
         [HttpGet("GetAllActivityLocations")]
         public async Task<IActionResult> GetAllActivityLocations(CancellationToken ct)
         {
-            var locations = await _locationService.GetAllActivityLocationsAsync(ct);
+            var locations = await _activityLocationService.GetAllActivityLocationsAsync(ct);
 
             return Ok(locations);
         }
