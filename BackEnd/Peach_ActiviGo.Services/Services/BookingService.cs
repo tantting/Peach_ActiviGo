@@ -33,12 +33,18 @@ public class BookingService : IBookingService
         return _mapper.Map<BookingDto>(entity);
     }
 
-    public async Task AddBookingAsync(BookingCreateDto booking, CancellationToken ct)
+    public async Task<BookingDto> AddBookingAsync(BookingCreateDto dto, string userId, CancellationToken ct)
     {
-        var entity = _mapper.Map<Booking>(booking);
-        entity.Status = Core.Enums.BookingStatus.Active;
-        _unitOfWork.Bookings.AddBooking(entity);
+        var booking = new Booking
+        {
+            CustomerId = userId,
+            ActivitySlotId = dto.ActivitySlotId,
+            Status = Core.Enums.BookingStatus.Active,
+            CancelledAt = null,
+        };
+        _unitOfWork.Bookings.AddBooking(booking);
         await _unitOfWork.SaveChangesAsync(ct);
+        return _mapper.Map<BookingDto>(booking);
 
     }
 
@@ -82,4 +88,5 @@ public class BookingService : IBookingService
         _unitOfWork.Bookings.DeleteBooking(entity);
         await _unitOfWork.SaveChangesAsync(ct);
     }
+
 }   

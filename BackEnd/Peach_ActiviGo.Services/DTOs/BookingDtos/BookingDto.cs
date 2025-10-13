@@ -11,7 +11,8 @@ namespace Peach_ActiviGo.Services.DTOs.BookingDtos
     {
         public int Id { get; set; }
         public string CustomerId { get; set; }
-        public int ActivitySlotId { get; set; }
+        public string Activity { get; set; }
+        public string Location { get; set; }
         public DateTime BookingDate { get; set; }
 
         public BookingStatus Status { get; set; }

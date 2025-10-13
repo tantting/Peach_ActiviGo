@@ -9,7 +9,7 @@ namespace Peach_ActiviGo.Core.Models
         public string CustomerId { get; set; }
         public IdentityUser Customer { get; set; }
 
-        public DateTime BookingDate { get; set; } = DateTime.Now;
+        
         public int ActivitySlotId { get; set; }
         public ActivitySlot ActivitySlot { get; set; }
 
