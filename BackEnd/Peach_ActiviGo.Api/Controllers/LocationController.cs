@@ -90,8 +90,8 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok("Location updated successfully");
         }
 
-        [HttpPut("UpdateActivityLocation")]
-        public async Task<IActionResult> UpdateActivityLocation([FromBody] UpdateActivityLocationDto dto, CancellationToken ct, IValidator<UpdateActivityLocationDto> validator)
+        [HttpPut("UpdateActivityLocationStatus")]
+        public async Task<IActionResult> UpdateActivityStatusLocation([FromBody] UpdateActivityLocationDto dto, CancellationToken ct, IValidator<UpdateActivityLocationDto> validator)
         {
             var validationResult = await validator.ValidateAsync(dto);
             if (!validationResult.IsValid)
@@ -99,7 +99,7 @@ namespace Peach_ActiviGo.Api.Controllers
                 return BadRequest(validationResult.Errors);
             }
 
-            var result = await _activityLocationService.UpdateActivityLocationAsync(dto, ct);
+            var result = await _activityLocationService.UpdateActivityLocationStatusAsync(dto, ct);
             if (!result)
             {
                 return NotFound(new { errorMessage = $"No ActivityLocation found with Id {dto.id}" });

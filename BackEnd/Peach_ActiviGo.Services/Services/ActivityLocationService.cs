@@ -15,7 +15,7 @@ namespace Peach_ActiviGo.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> UpdateActivityLocationAsync(UpdateActivityLocationDto dto, CancellationToken ct)
+        public async Task<bool> UpdateActivityLocationStatusAsync(UpdateActivityLocationDto dto, CancellationToken ct)
         {
             var activityLocation = await _unitOfWork.ActivityLocations.GetActivityLocationByIdAsync(dto.id, ct);
 
