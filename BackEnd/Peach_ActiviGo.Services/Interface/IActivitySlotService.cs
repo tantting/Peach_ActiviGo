@@ -8,8 +8,8 @@ namespace Peach_ActiviGo.Services.Interface
     {
         Task<IEnumerable<ActivitySlot>> GetAllAsync();
         Task<ActivitySlot?> GetByIdAsync(int id);
-        Task<ActivitySlot> CreateAsync(ActivitySlot slot);
-        Task<ActivitySlot?> UpdateAsync(int id, ActivitySlot slot);
+        Task<ActivitySlot> CreateAsync(ActivitySlotRequestDto dto);
+        Task<ActivitySlot?> UpdateAsync(int id, ActivitySlotRequestDto dto);
         Task<bool> DeleteAsync(int id);
     }
 }
