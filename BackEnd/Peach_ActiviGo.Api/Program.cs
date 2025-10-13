@@ -4,22 +4,22 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Core.Interfaces;
 using Peach_ActiviGo.Infrastructure.Data;
+using Peach_ActiviGo.Infrastructure.Repositories;
 using Peach_ActiviGo.Services.Auth;
+using Peach_ActiviGo.Services.DTOs;
+using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
+using Peach_ActiviGo.Services.DTOs.AuthDtos;
 using Peach_ActiviGo.Services.DTOs.CategoryDtos;
+using Peach_ActiviGo.Services.DTOs.LocationDto;
 using Peach_ActiviGo.Services.Interface;
 using Peach_ActiviGo.Services.Mapping;
 using Peach_ActiviGo.Services.Services;
 using Peach_ActiviGo.Services.Validators;
-using Peach_ActiviGo.Core.Interface;
-using Peach_ActiviGo.Infrastructure.Repositories;
-using Peach_ActiviGo.Services;
-using Peach_ActiviGo.Services.DTOs.AuthDtos;
-using Peach_ActiviGo.Services.DTOs.LocationDto;
-using Peach_ActiviGo.Core.Interfaces;
-using Peach_ActiviGo.Services.DTOs;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +53,7 @@ builder.Services.AddScoped<IActivitySlotRepository, ActivitySlotRepository>();
 builder.Services.AddScoped<IActivitySlotService, ActivitySlotService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IActivityLocationRepository, ActivityLocationRepository>();
 
 // AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
@@ -125,7 +126,7 @@ builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserDtoValidator>();
 builder.Services.AddScoped<IValidator<CreateLocationDto>, CreateLocationDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValidator>();
 builder.Services.AddScoped<IValidator<ActivitySlotRequestDto>, ActivitySlotValidator>();
-
+builder.Services.AddScoped<IValidator<UpdateActivityLocationDto>, UpdateActivityLocationDtoValidator>();
 
 var app = builder.Build();
 
