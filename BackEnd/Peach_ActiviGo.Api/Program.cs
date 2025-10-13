@@ -54,6 +54,7 @@ builder.Services.AddScoped<IActivitySlotService, ActivitySlotService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IActivityLocationRepository, ActivityLocationRepository>();
+builder.Services.AddScoped<IActivityLocationService, ActivityLocationService>();
 
 // AutoMapper Profiles
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityProfile).Assembly);
