@@ -1,7 +1,6 @@
 using AutoMapper;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
-using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.DTOs.LocationDto;
 using Peach_ActiviGo.Services.Interface;
 
@@ -67,31 +66,5 @@ public class LocationService : ILocationService
         _unitOfWork.Locations.DeleteLocation(locationToDelete);
         await _unitOfWork.SaveChangesAsync(ct);
         return true;
-    }
-
-
-    // --- ActivityLocation specific methods ---
-    public async Task<bool> UpdateActivityLocationAsync(UpdateActivityLocationDto dto, CancellationToken ct)
-    {
-        var activityLocation = await _unitOfWork.ActivityLocations.GetActivityLocationByIdAsync(dto.id, ct);
-
-        // If the activity location doesn't exist, return false
-        if (activityLocation == null)
-        {
-            return false;
-        }
-
-        _mapper.Map(dto, activityLocation);
-        activityLocation.UpdatedDate = DateOnly.FromDateTime(DateTime.Now);
-
-        await _unitOfWork.SaveChangesAsync(ct);
-        return true;
-    }
-
-    public async Task<IEnumerable<ReadActivityLocationDto>> GetAllActivityLocationsAsync(CancellationToken ct)
-    {
-        var activityLocations = await _unitOfWork.ActivityLocations.GetAllActivityLocationsAsync(ct);
-
-        return _mapper.Map<IEnumerable<ReadActivityLocationDto>>(activityLocations);
     }
 }
