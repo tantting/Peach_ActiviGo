@@ -48,7 +48,7 @@ namespace Peach_ActiviGo.Api.Controllers
         public async Task<IActionResult> Create([FromBody] ActivitySlotRequestDto dto)
         {
             var entity = _mapper.Map<ActivitySlot>(dto);
-            var created = await _service.CreateAsync(entity);
+            var created = await _service.CreateAsync(dto);
             return Ok(_mapper.Map<ActivitySlotResponseDto>(created));
         }
 
@@ -56,7 +56,7 @@ namespace Peach_ActiviGo.Api.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] ActivitySlotRequestDto dto)
         {
             var entity = _mapper.Map<ActivitySlot>(dto);
-            var updated = await _service.UpdateAsync(id, entity);
+            var updated = await _service.UpdateAsync(id, dto);
             if (updated == null) return NotFound();
             return Ok(_mapper.Map<ActivitySlotResponseDto>(updated));
         }

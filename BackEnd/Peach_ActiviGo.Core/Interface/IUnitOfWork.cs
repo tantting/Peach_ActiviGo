@@ -4,5 +4,6 @@ public interface IUnitOfWork
 {
     ILocationRepository Locations { get; }
     IBookingRepository Bookings { get; }
-    Task <int> SaveChangesAsync(CancellationToken ct);
+    IActivityLocationRepository ActivityLocations { get; }
+    Task<int> SaveChangesAsync(CancellationToken ct);
 }
