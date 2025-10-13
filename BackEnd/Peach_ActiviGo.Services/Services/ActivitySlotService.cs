@@ -1,5 +1,7 @@
-﻿using Peach_ActiviGo.Core.Interfaces;
+﻿using FluentValidation;
+using Peach_ActiviGo.Core.Interfaces;
 using Peach_ActiviGo.Core.Models;
+using Peach_ActiviGo.Services.DTOs;
 using Peach_ActiviGo.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,12 @@ namespace Peach_ActiviGo.Services.Services
     public class ActivitySlotService : IActivitySlotService
     {
         private readonly IActivitySlotRepository _repo;
+        private readonly IValidator<ActivitySlotRequestDto> _validator;
 
-        public ActivitySlotService(IActivitySlotRepository repo)
+        public ActivitySlotService(IActivitySlotRepository repo, IValidator<ActivitySlotRequestDto> validator)
         {
             _repo = repo;
+            _validator = validator;
         }
 
         public async Task<IEnumerable<ActivitySlot>> GetAllAsync()
@@ -26,34 +30,17 @@ namespace Peach_ActiviGo.Services.Services
             return await _repo.GetByIdAsync(id);
         }
 
-        public async Task<ActivitySlot> CreateAsync(ActivitySlot slot)
+        public async Task<ActivitySlot> CreateAsync(ActivitySlotRequestDto dto)
         {
-            if (!await _repo.ActivityLocationExistsAsync(slot.ActivityLocationId))
-            {
-                throw new ArgumentException($"ActivityLocation {slot.ActivityLocationId} does not exist.");
-            }
+            await _validator.ValidateAndThrowAsync(dto);
 
-            if (!IsAlignedToHour(slot.StartTime) || !IsAlignedToHour(slot.EndTime))
+            var slot = new ActivitySlot
             {
-                throw new ArgumentException("StartTime and EndTime must be on whole hours.");
-            }
-
-            if (slot.EndTime <= slot.StartTime)
-            {
-                throw new ArgumentException("EndTime must be after StartTime.");
-            }
-
-            if ((slot.EndTime - slot.StartTime).TotalMinutes % 60 != 0)
-            {
-                throw new ArgumentException("Slot duration must be a whole number of hours.");
-            }
-
-            if (await _repo.AnyOverlapAsync(slot.ActivityLocationId, slot.StartTime, slot.EndTime))
-            {
-                throw new InvalidOperationException(message: "Slot overlaps with existing slot.");
-            }
-
-            slot.IsCanselled = false;
+                StartTime = dto.StartTime,
+                EndTime = dto.EndTime,
+                ActivityLocationId = dto.ActivityLocationId,
+                IsCanselled = false
+            };
 
             await _repo.AddAsync(slot);
             await _repo.SaveChangesAsync();
@@ -61,7 +48,7 @@ namespace Peach_ActiviGo.Services.Services
             return slot;
         }
 
-        public async Task<ActivitySlot?> UpdateAsync(int id, ActivitySlot slot)
+        public async Task<ActivitySlot?> UpdateAsync(int id, ActivitySlotRequestDto dto)
         {
             var existing = await _repo.GetByIdAsync(id);
             if (existing == null)
@@ -69,34 +56,11 @@ namespace Peach_ActiviGo.Services.Services
                 return null;
             }
 
-            if (!await _repo.ActivityLocationExistsAsync(slot.ActivityLocationId))
-            {
-                throw new ArgumentException($"ActivityLocation {slot.ActivityLocationId} does not exist.");
-            }
+            await _validator.ValidateAndThrowAsync(dto);
 
-            if (!IsAlignedToHour(slot.StartTime) || !IsAlignedToHour(slot.EndTime))
-            {
-                throw new ArgumentException("StartTime and EndTime must be on whole hours.");
-            }
-
-            if (slot.EndTime <= slot.StartTime)
-            {
-                throw new ArgumentException("EndTime must be after StartTime.");
-            }
-
-            if ((slot.EndTime - slot.StartTime).TotalMinutes % 60 != 0)
-            {
-                throw new ArgumentException("Slot duration must be a whole number of hours.");
-            }
-
-            if (await _repo.AnyOverlapAsync(slot.ActivityLocationId, slot.StartTime, slot.EndTime, excludeSlotId: id))
-            {
-                throw new InvalidOperationException("Slot overlaps with existing slot.");
-            }
-
-            existing.StartTime = slot.StartTime;
-            existing.EndTime = slot.EndTime;
-            existing.ActivityLocationId = slot.ActivityLocationId;
+            existing.StartTime = dto.StartTime;
+            existing.EndTime = dto.EndTime;
+            existing.ActivityLocationId = dto.ActivityLocationId;
 
             await _repo.UpdateAsync(existing);
             await _repo.SaveChangesAsync();
@@ -118,11 +82,6 @@ namespace Peach_ActiviGo.Services.Services
             await _repo.SaveChangesAsync();
 
             return true;
-        }
-
-        private static bool IsAlignedToHour(DateTime dt)
-        {
-            return dt.Minute == 0 && dt.Second == 0 && dt.Millisecond == 0;
         }
     }
 }
