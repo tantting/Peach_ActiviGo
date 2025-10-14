@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.Interface;
 
 namespace Peach_ActiviGo.Api.Controllers
 {
+    //[Authorize( Roles = "AdminOnly")]
     [Route("api/[controller]")]
     [ApiController]
     public class ActivityLocationController : ControllerBase
@@ -41,5 +43,11 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok(locations);
         }
 
+        [HttpPost("FilterActivityLocations")]
+        public async Task<IActionResult> FilterActivityLocations([FromBody] ActivityLocationFilterDto filter, CancellationToken ct)
+        {
+            var result = await _activityLocationService.FilterActivityLocationsAsync(filter, ct);
+            return Ok(result);
+        }
     }
 }
