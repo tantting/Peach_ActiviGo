@@ -15,6 +15,6 @@ namespace Peach_ActiviGo.Core.Models
 
         public BookingStatus Status { get; set; } = BookingStatus.Active;
         public DateTime? CancelledAt { get; set; }
-        
+        public DateTime BookingDate { get; set; }
     }
 }
