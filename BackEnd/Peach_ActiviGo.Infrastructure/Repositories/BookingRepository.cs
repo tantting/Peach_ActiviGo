@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -12,29 +13,33 @@ public class BookingRepository : IBookingRepository
     {
         _context = context; 
     }
-
-    public Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
+    // GetAll Bookings
+    public async Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
     {
-        throw new NotImplementedException();
+        return await _context.Bookings
+            .Include(b=>b.ActivitySlot)
+            .ToListAsync(ct);
     }
-
-    public Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
+    //Get Booking by Id
+    public async Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        return await _context.Bookings
+            .Include(b=>b.ActivitySlot)
+            .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
 
     public void AddBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Add(booking);
     }
-
+    // Update Booking (Avbokad för cut-off)
     public void UpdateBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Update(booking);
     }
 
     public void DeleteBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Remove(booking);
     }
 }
