@@ -169,7 +169,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             }
         }
 
-        // >>> NEW: Lägg till några HISTORISKA slots (i dåtid) innan vi ropar HasData(slots).
+        // HISTORISKA slots (i dåtid)
         var histDates = new[]
         {
             DateTime.Today.AddDays(-10),
@@ -177,7 +177,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             DateTime.Today.AddDays(-4),
             DateTime.Today.AddDays(-2)
         };
-        var histLocs = new[] { 1, 3, 5, 7 }; // välj valfria ActivityLocationId som finns
+        var histLocs = new[] { 1, 3, 5, 7 }; 
         var histIds = new List<int>();
 
         for (int i = 0; i < histDates.Length; i++)
@@ -191,25 +191,20 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             });
             histIds.Add(idCounter++);
         }
-        // <<< NEW (slut historiska slots)
 
         modelBuilder.Entity<ActivitySlot>().HasData(slots);
 
-        // ===== ADD 2: BOOKINGS för DINA BEFINTLIGA ANVÄNDARE =====
-        // 1) Klistra in EXAKTA Id-strängar från din tabell dbo.AspNetUsers (kolumnen "Id").
-        //    Titta i din bild/tabell och mappa rätt e-post → rätt variabel här nedan.
+        // ===== ADD : BOOKINGS för DINA BEFINTLIGA ANVÄNDARE =====
+        
 
-        var USER3_ID = "1f9ede01-aff8-4803-910c-24e78bc7fb8a";  // user3@example.com (markerad rad på din bild)
+        var USER3_ID = "1f9ede01-aff8-4803-910c-24e78bc7fb8a";  // user3@example.com 
         var ADMIN_ID = "2786eacf-fda5-4772-9336-5cb72ccce08b";   // exempel@live.com
         var USER4_ID = "3217607b-81cc-4fdd-a16f-00e186e2d74f";   // user4@example.com
         var TEST_ID = "8a54eb5f-01bc-4055-a6bf-be2048462451";   // test@mail.com
         var USER2_ID = "aa2c47dc-15f2-4e15-b409-7f94b48e554c";   // user2@example.com
         var USER1_ID = "cce4e116-f149-4d7a-9094-e3cfc2a62229";   // user1@example.com
 
-        // 2) Skapa bokningar. Använd fasta datum (inte DateTime.Now) i HasData.
-        //    * Om du gjorde ADD 1 ovan kan du använda histIds[0..3] för "gamla bokningar".
-        //    * Dina befintliga (kommande) slots börjar normalt på Id = 1 och uppåt (från din egen slots-loop).
-
+        // 2) Skapa bokningar.
         var bookingSeed = new List<Booking>
 {
     // —— Historiska bokningar (kräver ADD 1) ——
@@ -218,7 +213,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
     new Booking { Id = 1003, CustomerId = USER3_ID, ActivitySlotId = histIds[2], BookingDate = histDates[2].AddDays(-1) },
     new Booking { Id = 1004, CustomerId = TEST_ID,  ActivitySlotId = histIds[3], BookingDate = histDates[3].AddDays(-1) },
 
-    // —— Kommande bokningar (pekar på dina redan seedade framtida slots) ——
+    // —— Kommande bokningar ——
     new Booking { Id = 1005, CustomerId = USER1_ID, ActivitySlotId = 1, BookingDate = new DateTime(2025, 01, 10, 12, 00, 00) },
     new Booking { Id = 1006, CustomerId = USER2_ID, ActivitySlotId = 2, BookingDate = new DateTime(2025, 01, 11, 12, 00, 00) },
     new Booking { Id = 1007, CustomerId = USER3_ID, ActivitySlotId = 3, BookingDate = new DateTime(2025, 01, 12, 12, 00, 00) },
