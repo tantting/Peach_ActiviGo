@@ -38,5 +38,21 @@ namespace Peach_ActiviGo.Services.Services
 
             return _mapper.Map<IEnumerable<ReadActivityLocationDto>>(activityLocations);
         }
+
+        public async Task<IEnumerable<ReadActivityLocationDto>> FilterActivityLocationsAsync(ActivityLocationFilterDto filter, CancellationToken ct)
+        {
+            // Mappa DTO till parametrar
+            var activityLocations = await _unitOfWork.ActivityLocations
+                .FilterActivityLocations(
+                    filter.StartDate,
+                    filter.EndDate,
+                    filter.CategoryId,
+                    filter.IsIndoor,
+                    filter.LocationId,
+                    filter.OnlyAvailableSlots,
+                    ct);
+
+            return _mapper.Map<IEnumerable<ReadActivityLocationDto>>(activityLocations);
+        }
     }
 }
