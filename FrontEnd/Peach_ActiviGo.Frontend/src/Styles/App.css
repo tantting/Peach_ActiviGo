@@ -28,26 +28,6 @@
   }
 }
 
-/* Activities Grid */
-.activities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.activity-card {
-  background: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.activity-card:hover {
-  transform: translateY(-4px);
-}
-
 /* Categories */
 .categories-list {
   display: grid;
@@ -155,10 +135,6 @@
   margin-top: 1rem;
 }
 
-.auth-button:hover {
-  background-color: #d68958;
-}
-
 .auth-link {
   text-align: center;
   margin-top: 1rem;
@@ -171,22 +147,6 @@
 
 .auth-link a:hover {
   text-decoration: underline;
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
