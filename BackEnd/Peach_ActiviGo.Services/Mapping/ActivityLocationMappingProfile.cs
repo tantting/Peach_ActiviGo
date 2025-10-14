@@ -8,14 +8,14 @@ namespace Peach_ActiviGo.Services.Mapping
     {
         public ActivityLocationMappingProfile()
         {
-            // Mapping Model -> DTO
+            // Model -> DTO
             CreateMap<ActivityLocation, ReadActivityLocationDto>()
                 .ForMember(dest => dest.ActivityName, opt => opt.MapFrom(src => src.Activity.Name))
                 .ForMember(dest => dest.LocationName, opt => opt.MapFrom(src => src.Location.Name));
 
             CreateMap<ActivityLocation, UpdateActivityLocationDto>();
 
-            // Mapping DTO -> Model
+            // DTO -> Model
             CreateMap<ReadActivityLocationDto, ActivityLocation>();
             CreateMap<UpdateActivityLocationDto, ActivityLocation>();
         }
