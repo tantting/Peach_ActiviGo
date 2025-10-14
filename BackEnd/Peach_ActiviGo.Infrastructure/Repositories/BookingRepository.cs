@@ -11,14 +11,26 @@ public class BookingRepository : IBookingRepository
     
     public BookingRepository(AppDbContext context)
     {
-        _context = context; 
+        _context = context;
     }
     // GetAll Bookings
     public async Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
     {
+        //return await _context.Bookings
+        //    .Include(b=>b.ActivitySlot)
+        //    .ToListAsync(ct);
+
         return await _context.Bookings
-            .Include(b=>b.ActivitySlot)
-            .ToListAsync(ct);
+        .AsNoTracking()
+        .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+                .ThenInclude(al => al.Activity)
+        .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+                .ThenInclude(al => al.Location)
+        //.Include(b => b.Customer) // lägg till om du behöver kundens Email i DTO
+        .OrderBy(b => b.ActivitySlot.StartTime)
+        .ToListAsync(ct);
     }
     //Get Booking by Id
     public async Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
