@@ -10,7 +10,7 @@ public class LocationService : ILocationService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    
+
     public LocationService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -19,7 +19,7 @@ public class LocationService : ILocationService
 
     public async Task<IEnumerable<ReadLocationDto>> GetAllLocationsAsync(CancellationToken ct)
     {
-        var locations =await  _unitOfWork.Locations.GetAllLocationsAsync(ct);
+        var locations = await _unitOfWork.Locations.GetAllLocationsAsync(ct);
         return _mapper.Map<IEnumerable<ReadLocationDto>>(locations);
     }
 
@@ -31,19 +31,19 @@ public class LocationService : ILocationService
 
     public async Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto, CancellationToken ct)
     {
-        if(string.IsNullOrWhiteSpace(locationDto.Name) || string.IsNullOrWhiteSpace(locationDto.Address))
+        if (string.IsNullOrWhiteSpace(locationDto.Name) || string.IsNullOrWhiteSpace(locationDto.Address))
         {
             throw new ArgumentException("Location name and address cannot be empty.");
         }
-        
+
         var newLocation = _mapper.Map<Location>(locationDto);
         _unitOfWork.Locations.AddLocation(newLocation);
         await _unitOfWork.SaveChangesAsync(ct);
-        
+
         return _mapper.Map<ReadLocationDto>(newLocation);
     }
 
-    public async Task<bool>UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct)
+    public async Task<bool> UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct)
     {
         var existingLocation = await _unitOfWork.Locations.GetLocationByIdAsync(id, ct);
         if (existingLocation == null)

@@ -8,5 +8,5 @@ public interface ILocationService
     Task<ReadLocationDto> GetLocationByIdAsync(int id, CancellationToken ct);
     Task<ReadLocationDto> CreateLocationAsync(CreateLocationDto locationDto, CancellationToken ct);
     Task<bool>UpdateLocationAsync(int id, UpdateLocationDto locationDto, CancellationToken ct);
-    Task<bool> DeleteLocationAsync(int id, CancellationToken ct = default);   
+    Task<bool> DeleteLocationAsync(int id, CancellationToken ct = default);
 }

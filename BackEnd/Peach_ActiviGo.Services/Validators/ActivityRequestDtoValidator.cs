@@ -1,5 +1,5 @@
-﻿using Peach_ActiviGo.Services.DTOs;
-using FluentValidation;
+﻿using FluentValidation;
+using Peach_ActiviGo.Services.DTOs.ActivityDtos;
 
 namespace Peach_ActiviGo.Services.Validators
 {
