@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Peach_ActiviGo.Core.Models;
+using Peach_ActiviGo.Services.DTOs.BookingDtos;
 using Peach_ActiviGo.Services.Interface;
+using System.Security.Claims;
 
 namespace Peach_ActiviGo.Api.Controllers
 {
@@ -37,14 +40,30 @@ namespace Peach_ActiviGo.Api.Controllers
             }   
             return Ok(booking);
         }
-        
+
         // GetAll By MemberId and status
-        
+
         // CreateBooking
-        
+        [Authorize (Roles = "Member")]
+        [HttpPost(Name = "CreateBooking")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
+        public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto bookingCreateDto, CancellationToken ct)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized(new { errorMessage = "User not authorized." });
+            }
+
+            
+            await _bookingService.AddBookingAsync(bookingCreateDto, userId, ct);
+            return CreatedAtRoute("GetAllBookings", null);
+        }
+
         // Update (Avbokad för Cut-off)
-        
+
         // Delete
-        
+
     }
 }
