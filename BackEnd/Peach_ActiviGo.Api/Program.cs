@@ -62,6 +62,7 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(LocationMappingProfile).Assemb
 builder.Services.AddAutoMapper(cfg => { }, typeof(CategoryProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(ActivitySlotProfile).Assembly);
 builder.Services.AddAutoMapper(cfg => { }, typeof(BookingMappingProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(ActivityLocationMappingProfile).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
