@@ -27,7 +27,7 @@ namespace Peach_ActiviGo.Api.Controllers
             var bookings = await _bookingService.GetAllBookingsAsync(ct);
             return Ok(bookings);
         }
-        
+
         // GetAllbyId
         [HttpGet("{id}", Name = "GetBookingById")]
         [ProducesResponseType(typeof(Booking), StatusCodes.Status200OK)]
@@ -37,7 +37,7 @@ namespace Peach_ActiviGo.Api.Controllers
             if (booking == null)
             {
                 return NotFound(new { errorMessage = "Booking not found!" });
-            }   
+            }
             return Ok(booking);
         }
 

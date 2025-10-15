@@ -33,12 +33,20 @@ public class BookingRepository : IBookingRepository
         .ToListAsync(ct);
     }
     //Get Booking by Id
-    public async Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
+    public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken ct)
     {
         return await _context.Bookings
-            .Include(b=>b.ActivitySlot)
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+                .ThenInclude(s => s.ActivityLocation)
+                    .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+                .ThenInclude(s => s.ActivityLocation)
+                    .ThenInclude(al => al.Location)
+            // .Include(b => b.Customer) // om DTO ska visa kunddata
             .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
+
 
     public void AddBooking(Booking booking)
     {
