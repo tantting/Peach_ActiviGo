@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Registrera() {
+export default function RegisterView() {
 const [formData, setFormData] = useState({
     name: '',
     email: '',
