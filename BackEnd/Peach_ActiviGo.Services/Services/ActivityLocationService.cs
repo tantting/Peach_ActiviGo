@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Peach_ActiviGo.Core.Filter;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.Interface;
@@ -41,16 +42,19 @@ namespace Peach_ActiviGo.Services.Services
 
         public async Task<IEnumerable<ReadActivityLocationDto>> FilterActivityLocationsAsync(ActivityLocationFilterDto filter, CancellationToken ct)
         {
-            // Mappa DTO till parametrar
+            // Mappa DTO till filter-objektet
+            var coreFilter = new ActivityLocationFilter
+            {
+                StartDate = filter.StartDate,
+                EndDate = filter.EndDate,
+                CategoryId = filter.CategoryId,
+                IsIndoor = filter.IsIndoor,
+                LocationId = filter.LocationId,
+                OnlyAvailableSlots = filter.OnlyAvailableSlots
+            };
+
             var activityLocations = await _unitOfWork.ActivityLocations
-                .FilterActivityLocations(
-                    filter.StartDate,
-                    filter.EndDate,
-                    filter.CategoryId,
-                    filter.IsIndoor,
-                    filter.LocationId,
-                    filter.OnlyAvailableSlots,
-                    ct);
+                .FilterActivityLocations(coreFilter, ct);
 
             return _mapper.Map<IEnumerable<ReadActivityLocationDto>>(activityLocations);
         }

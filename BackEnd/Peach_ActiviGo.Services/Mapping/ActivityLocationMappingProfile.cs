@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Peach_ActiviGo.Core.Models;
+using Peach_ActiviGo.Core.Filter;
 using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 
 namespace Peach_ActiviGo.Services.Mapping
@@ -18,6 +19,9 @@ namespace Peach_ActiviGo.Services.Mapping
             // DTO -> Model
             CreateMap<ReadActivityLocationDto, ActivityLocation>();
             CreateMap<UpdateActivityLocationDto, ActivityLocation>();
+
+            // Filter DTO -> Filter Model
+            CreateMap<ActivityLocationFilterDto, ActivityLocationFilter>();
         }
     }
 }
