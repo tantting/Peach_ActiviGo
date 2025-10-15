@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.BookingDtos;
 using Peach_ActiviGo.Services.Interface;
@@ -43,6 +44,18 @@ namespace Peach_ActiviGo.Api.Controllers
 
         // GetAll By MemberId and status
 
+        [HttpGet("member/{memberId}/status/{status}")]
+        [ProducesResponseType(typeof(IEnumerable<BookingDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<BookingDto>>> GetAllByMemberIdAndStatus(
+        string memberId,
+        BookingStatus status,
+        CancellationToken ct)
+        {
+            var result = await _bookingService.GetAllByMemberIdAndStatusAsync(memberId, status, ct);
+            return Ok(result);
+        }
+
         // CreateBooking
         [Authorize (Roles = "Member")]
         [HttpPost(Name = "CreateBooking")]
@@ -63,7 +76,21 @@ namespace Peach_ActiviGo.Api.Controllers
 
         // Update (Avbokad för Cut-off)
 
-        // Delete
+        
+        // DELETE by id
+        [HttpDelete("{id:int}", Name = "DeleteBooking")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteBooking(int id, CancellationToken ct)
+        {
+           
+            var existing = await _bookingService.GetBookingByIdAsync(id, ct);
+            if (existing is null)
+                return NotFound(new { errorMessage = "Booking not found!" });
+
+            await _bookingService.DeleteBookingAsync(id, ct);
+            return NoContent();
+        }
 
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -23,12 +24,11 @@ public class BookingRepository : IBookingRepository
         return await _context.Bookings
         .AsNoTracking()
         .Include(b => b.ActivitySlot)
-            .ThenInclude(s => s.ActivityLocation)
-                .ThenInclude(al => al.Activity)
+        .ThenInclude(s => s.ActivityLocation)
+        .ThenInclude(al => al.Activity)
         .Include(b => b.ActivitySlot)
-            .ThenInclude(s => s.ActivityLocation)
-                .ThenInclude(al => al.Location)
-        //.Include(b => b.Customer) // lägg till om du behöver kundens Email i DTO
+        .ThenInclude(s => s.ActivityLocation)
+        .ThenInclude(al => al.Location)
         .OrderBy(b => b.ActivitySlot.StartTime)
         .ToListAsync(ct);
     }
@@ -38,14 +38,33 @@ public class BookingRepository : IBookingRepository
         return await _context.Bookings
             .AsNoTracking()
             .Include(b => b.ActivitySlot)
-                .ThenInclude(s => s.ActivityLocation)
-                    .ThenInclude(al => al.Activity)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
             .Include(b => b.ActivitySlot)
-                .ThenInclude(s => s.ActivityLocation)
-                    .ThenInclude(al => al.Location)
-            // .Include(b => b.Customer) // om DTO ska visa kunddata
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
             .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
+
+    public async Task<IEnumerable<Booking>> GetByMemberAndStatusAsync(
+    string memberId, BookingStatus? status, CancellationToken ct)
+    {
+        var query = _context.Bookings
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .Where(b => b.CustomerId == memberId);
+
+        if (status.HasValue)
+            query = query.Where(b => b.Status == status.Value);
+
+        return await query
+            .OrderBy(b => b.ActivitySlot.StartTime)
+            .ToListAsync(ct);}
 
 
     public void AddBooking(Booking booking)
