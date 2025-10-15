@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Kategorier() {
+export default function CategoryView() {
   return (
     <div className="page-container">
       <h1>Kategorier</h1>
