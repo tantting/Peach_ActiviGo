@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Kontakt() {
+export default function ContactView() {
   return (
     <div className="page-container">
       <h1>Kontakt</h1>

@@ -11,7 +11,7 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [Tags("Admin")]
     public class ActivitySlotsController : ControllerBase
     {

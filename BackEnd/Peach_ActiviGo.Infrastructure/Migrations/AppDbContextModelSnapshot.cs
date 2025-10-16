@@ -781,6 +781,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
+                    b.HasIndex("CustomerId1");
+
                     b.ToTable("Bookings");
 
                     b.HasData(

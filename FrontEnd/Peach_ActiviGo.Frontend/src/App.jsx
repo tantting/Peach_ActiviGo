@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar.jsx'
-import Aktiviteter from './Pages/Aktiviteter.jsx'
-import Kategorier from './Pages/Kategorier.jsx'
-import Kontakt from './Pages/Kontakt.jsx'
-import Login from './Pages/Login.jsx'
-import Registrera from './Pages/Registrera.jsx'
+import ActivityView from './Pages/ActivityView.jsx'
+import CategoryView from './Pages/CategoryView.jsx'
+import ContactView from './Pages/ContactView.jsx'
+import LoginView from './Pages/LoginView.jsx'
+import RegisterView from './Pages/RegisterView.jsx'
 // CSS
 import './Styles/App.css'
 import './Styles/Navbar.css'
@@ -14,11 +14,11 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Aktiviteter />} />
-        <Route path="/about" element={<Kategorier />} />
-        <Route path="/contact" element={<Kontakt />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Registrera />} />
+        <Route path="/" element={<ActivityView />} />
+        <Route path="/about" element={<CategoryView />} />
+        <Route path="/contact" element={<ContactView />} />
+        <Route path="/login" element={<LoginView />} />
+        <Route path="/signup" element={<RegisterView />} />
       </Routes>
     </Router>
   )
