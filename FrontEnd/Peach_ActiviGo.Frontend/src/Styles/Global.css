@@ -1,8 +1,5 @@
-/* ==========================================================================
-   GLOBAL STYLES - Kombinerad App.css och index.css
-   ========================================================================== */
 
-/* Root Variables & Base Styles */
+/* Base Styles */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -27,7 +24,6 @@ body {
   background-color: #ffffff;
 }
 
-/* Typography */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
