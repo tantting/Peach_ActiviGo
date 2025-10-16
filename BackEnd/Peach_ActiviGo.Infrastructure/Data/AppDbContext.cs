@@ -196,32 +196,32 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
 
         // ===== ADD : BOOKINGS för DINA BEFINTLIGA ANVÄNDARE =====
         
+//
+//         var USER3_ID = "1f9ede01-aff8-4803-910c-24e78bc7fb8a";  // user3@example.com 
+//         var ADMIN_ID = "2786eacf-fda5-4772-9336-5cb72ccce08b";   // exempel@live.com
+//         var USER4_ID = "3217607b-81cc-4fdd-a16f-00e186e2d74f";   // user4@example.com
+//         var TEST_ID = "8a54eb5f-01bc-4055-a6bf-be2048462451";   // test@mail.com
+//         var USER2_ID = "aa2c47dc-15f2-4e15-b409-7f94b48e554c";   // user2@example.com
+//         var USER1_ID = "cce4e116-f149-4d7a-9094-e3cfc2a62229";   // user1@example.com
+//
+//         // 2) Skapa bokningar.
+//         var bookingSeed = new List<Booking>
+// {
+//     // —— Historiska bokningar (kräver ADD 1) ——
+//     new Booking { Id = 1001, CustomerId = USER1_ID, ActivitySlotId = histIds[0], BookingDate = histDates[0].AddDays(-1) },
+//     new Booking { Id = 1002, CustomerId = USER2_ID, ActivitySlotId = histIds[1], BookingDate = histDates[1].AddDays(-1) },
+//     new Booking { Id = 1003, CustomerId = USER3_ID, ActivitySlotId = histIds[2], BookingDate = histDates[2].AddDays(-1) },
+//     new Booking { Id = 1004, CustomerId = TEST_ID,  ActivitySlotId = histIds[3], BookingDate = histDates[3].AddDays(-1) },
+//
+//     // —— Kommande bokningar ——
+//     new Booking { Id = 1005, CustomerId = USER1_ID, ActivitySlotId = 1, BookingDate = new DateTime(2025, 01, 10, 12, 00, 00) },
+//     new Booking { Id = 1006, CustomerId = USER2_ID, ActivitySlotId = 2, BookingDate = new DateTime(2025, 01, 11, 12, 00, 00) },
+//     new Booking { Id = 1007, CustomerId = USER3_ID, ActivitySlotId = 3, BookingDate = new DateTime(2025, 01, 12, 12, 00, 00) },
+//     new Booking { Id = 1008, CustomerId = USER4_ID, ActivitySlotId = 4, BookingDate = new DateTime(2025, 01, 13, 12, 00, 00) },
+//     new Booking { Id = 1009, CustomerId = ADMIN_ID, ActivitySlotId = 5, BookingDate = new DateTime(2025, 01, 14, 12, 00, 00) }
+// };
 
-        var USER3_ID = "1f9ede01-aff8-4803-910c-24e78bc7fb8a";  // user3@example.com 
-        var ADMIN_ID = "2786eacf-fda5-4772-9336-5cb72ccce08b";   // exempel@live.com
-        var USER4_ID = "3217607b-81cc-4fdd-a16f-00e186e2d74f";   // user4@example.com
-        var TEST_ID = "8a54eb5f-01bc-4055-a6bf-be2048462451";   // test@mail.com
-        var USER2_ID = "aa2c47dc-15f2-4e15-b409-7f94b48e554c";   // user2@example.com
-        var USER1_ID = "cce4e116-f149-4d7a-9094-e3cfc2a62229";   // user1@example.com
-
-        // 2) Skapa bokningar.
-        var bookingSeed = new List<Booking>
-{
-    // —— Historiska bokningar (kräver ADD 1) ——
-    new Booking { Id = 1001, CustomerId = USER1_ID, ActivitySlotId = histIds[0], BookingDate = histDates[0].AddDays(-1) },
-    new Booking { Id = 1002, CustomerId = USER2_ID, ActivitySlotId = histIds[1], BookingDate = histDates[1].AddDays(-1) },
-    new Booking { Id = 1003, CustomerId = USER3_ID, ActivitySlotId = histIds[2], BookingDate = histDates[2].AddDays(-1) },
-    new Booking { Id = 1004, CustomerId = TEST_ID,  ActivitySlotId = histIds[3], BookingDate = histDates[3].AddDays(-1) },
-
-    // —— Kommande bokningar ——
-    new Booking { Id = 1005, CustomerId = USER1_ID, ActivitySlotId = 1, BookingDate = new DateTime(2025, 01, 10, 12, 00, 00) },
-    new Booking { Id = 1006, CustomerId = USER2_ID, ActivitySlotId = 2, BookingDate = new DateTime(2025, 01, 11, 12, 00, 00) },
-    new Booking { Id = 1007, CustomerId = USER3_ID, ActivitySlotId = 3, BookingDate = new DateTime(2025, 01, 12, 12, 00, 00) },
-    new Booking { Id = 1008, CustomerId = USER4_ID, ActivitySlotId = 4, BookingDate = new DateTime(2025, 01, 13, 12, 00, 00) },
-    new Booking { Id = 1009, CustomerId = ADMIN_ID, ActivitySlotId = 5, BookingDate = new DateTime(2025, 01, 14, 12, 00, 00) }
-};
-
-        modelBuilder.Entity<Booking>().HasData(bookingSeed);
+        // modelBuilder.Entity<Booking>().HasData(bookingSeed);
 
     }
 }

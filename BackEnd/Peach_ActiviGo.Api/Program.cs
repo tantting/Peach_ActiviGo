@@ -145,6 +145,7 @@ using (var scope = app.Services.CreateScope())
     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     await IdentitySeed.InitializeAsync(userManager, roleManager);
+    await BookingSeed.InitializeAsync(dbContext); // <-- Seed bokningar efter att IdentitySeed har k�rts
 }
 
 // Configure the HTTP request pipeline.
