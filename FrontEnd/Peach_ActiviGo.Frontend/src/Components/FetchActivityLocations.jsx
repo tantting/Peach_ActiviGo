@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
-import FetchPeachApi from './HelperFunctions/FetchPeachApi.jsx'
+import { useState, useEffect } from "react";
+import FetchPeachApi from "./HelperFunctions/FetchPeachApi.jsx";
 
-const FetchActivity = () => {
-  const [activities, setActivities] = useState([]);
+const FetchActivityLocations = () => {
+  const [activityLocations, setActivityLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const apiCall = () => {
       setLoading(true);
-      FetchPeachApi('/api/ActivityLocation/GetAllActivityLocations')
+      FetchPeachApi("/api/ActivityLocation/GetAllActivityLocations")
         .then((data) => {
-          setActivities(data);
+          setActivityLocations(data);
         })
         .catch((error) => {
           setError(error.message);
-          setActivities([]);
+          setActivityLocations([]);
         })
         .finally(() => {
           setLoading(false);
@@ -26,7 +26,7 @@ const FetchActivity = () => {
   }, []);
 
   // Returnera data som en custom hook som sen används i ActivityView.jsx
-  return { activities, loading, error };
+  return { activityLocations, loading, error };
 };
 
-export default FetchActivity
+export default FetchActivityLocations;
