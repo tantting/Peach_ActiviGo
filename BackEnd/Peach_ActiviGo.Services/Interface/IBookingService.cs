@@ -11,6 +11,6 @@ public interface IBookingService
     Task<IEnumerable<BookingDto>> GetAllByMemberIdAndStatusAsync(
         string memberId, BookingStatus? status, CancellationToken ct);
     Task<BookingDto> AddBookingAsync(BookingCreateDto booking, string userId, CancellationToken ct);
-    Task UpdateBookingAsync(BookingUpdateDto booking, CancellationToken ct);
+    Task CancelBookingBeforeCutOffAsync(int id, CancellationToken ct);
     Task DeleteBookingAsync(int id, CancellationToken ct);
 }

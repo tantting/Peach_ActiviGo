@@ -103,7 +103,15 @@ namespace Peach_ActiviGo.Api.Controllers
             return CreatedAtRoute("GetAllBookings", null);
         }
 
-        // Update (Avbokad för Cut-off)
+        // Avboka före Cut-off)
+        [HttpPut("{id:int}", Name = "CancelBooking")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CancelBooking(int id, CancellationToken ct)
+        {
+            await _bookingService.CancelBookingBeforeCutOffAsync(id, ct);
+            return NoContent();
+        }
 
         
         // DELETE by id

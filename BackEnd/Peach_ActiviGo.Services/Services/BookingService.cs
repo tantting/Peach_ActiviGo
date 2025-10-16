@@ -63,22 +63,22 @@ public class BookingService : IBookingService
 
     }
 
-    public async Task UpdateBookingAsync(BookingUpdateDto booking, CancellationToken ct)
+    public async Task CancelBookingBeforeCutOffAsync(int id, CancellationToken ct)
     {
-        var existingBooking = await _unitOfWork.Bookings.GetBookingByIdAsync(booking.Id, ct);
+        var existingBooking = await _unitOfWork.Bookings.GetBookingByIdAsync(id, ct);
         if (existingBooking == null)
         {
             throw new InvalidOperationException("Booking not found.");
         }
 
-        // slotens tider för cutoff
+        // slotens tider fï¿½r cutoff
         await _context.Entry(existingBooking).Reference(b => b.ActivitySlot).LoadAsync(ct);
 
-        // endpointen stödjer bara avbokning
-        if (booking.Status != Core.Enums.BookingStatus.Cancelled)
-            return;
+        // endpointen stï¿½djer bara avbokning
+        if (existingBooking.Status == BookingStatus.Cancelled)
+            throw new InvalidOperationException("Booking is already cancelled.");
 
-        // cutoff: 24h före start
+        // cutoff: 24h fï¿½re start
         var cutoff = TimeSpan.FromHours(24);
         var nowUtc = DateTime.UtcNow;
         var cutoffTime = existingBooking.ActivitySlot.StartTime - cutoff;
@@ -86,7 +86,7 @@ public class BookingService : IBookingService
         if (nowUtc > cutoffTime)
             throw new InvalidOperationException("Cannot cancel booking after the cut-off time.");
 
-        // sätt status
+        // sï¿½tt status
         existingBooking.Status = Core.Enums.BookingStatus.Cancelled;
         existingBooking.CancelledAt = nowUtc;
 
