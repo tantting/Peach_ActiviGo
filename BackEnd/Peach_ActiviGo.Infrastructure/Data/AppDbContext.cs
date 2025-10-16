@@ -67,7 +67,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
                 .IsUnique();
             
             modelBuilder.Entity<Booking>()
-                .HasOne<IdentityUser>()
+                .HasOne(b => b.Customer)
                 .WithMany()
                 .HasForeignKey(b => b.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);

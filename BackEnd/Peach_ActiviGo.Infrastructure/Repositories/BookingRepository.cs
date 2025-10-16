@@ -17,8 +17,14 @@ public class BookingRepository : IBookingRepository
     public async Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
     {
         return await _context.Bookings
-            .Include(b=>b.ActivitySlot)
-            .ToListAsync(ct);
+            .Include(b => b.Customer)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(slot => slot.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(slot => slot.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .ToListAsync();
     }
     //Get Booking by Id
     public async Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
@@ -32,7 +38,7 @@ public class BookingRepository : IBookingRepository
     {
         _context.Bookings.Add(booking);
     }
-    // Update Booking (Avbokad för cut-off)
+    // Update Booking (Avbokad fï¿½r cut-off)
     public void UpdateBooking(Booking booking)
     {
         _context.Bookings.Update(booking);

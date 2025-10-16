@@ -5,6 +5,7 @@ using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.BookingDtos;
 using Peach_ActiviGo.Services.Interface;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace Peach_ActiviGo.Api.Controllers
 {
@@ -13,10 +14,12 @@ namespace Peach_ActiviGo.Api.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public BookingController(IBookingService bookingService)
+        public BookingController(IBookingService bookingService, UserManager<IdentityUser> userManager)
         {
             _bookingService = bookingService;
+            _userManager = userManager;
         }
         
         //GetAll
@@ -44,13 +47,39 @@ namespace Peach_ActiviGo.Api.Controllers
         // GetAll By MemberId and status
 
         // CreateBooking
-        [Authorize (Roles = "Member")]
+        //[Authorize (Roles = "Member")]
         [HttpPost(Name = "CreateBooking")]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
         public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto bookingCreateDto, CancellationToken ct)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            // 👇 Lägg in detta precis här:
+            var claims = User.Claims.Select(c => $"{c.Type}: {c.Value}");
+            Console.WriteLine("🧩 Inloggad användares claims:");
+            foreach (var c in claims)
+                Console.WriteLine(c);
+            
+            var nameIdentifierClaims = User.Claims
+                .Where(c => c.Type == ClaimTypes.NameIdentifier)
+                .Select(c => c.Value)
+                .ToList();
+
+            var userId = nameIdentifierClaims.LastOrDefault();
+
+          //  var userId = User.FindFirstValue("sub");
+            
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Ingen NameIdentifier-claim hittades i tokenen.");
+            
+            var user = await _userManager.FindByIdAsync(userId);  // kräver att du injicerar UserManager<IdentityUser>
+
+            if (user == null)
+                return BadRequest($"Ingen användare med ID '{userId}' hittades i databasen.");
+
+            // (valfritt) logga även till konsol:
+            Console.WriteLine($"✅ Token UserId: {userId}, UserName: {user?.UserName}");
+            
             if (userId == null)
             {
                 return Unauthorized(new { errorMessage = "User not authorized." });

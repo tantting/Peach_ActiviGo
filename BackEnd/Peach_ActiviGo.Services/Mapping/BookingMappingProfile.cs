@@ -11,6 +11,7 @@ public class BookingMappingProfile : Profile
         // CreateMap<Source, Destination>();
 
         CreateMap<Booking, BookingDto>()
+            .ForMember(dest => dest.CustomerEmail, opt => opt.MapFrom(src => src.Customer.UserName))
             .ForMember(dest => dest.Activity, opt => opt.MapFrom(src => src.ActivitySlot.ActivityLocation.Activity.Name))
             .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.ActivitySlot.ActivityLocation.Location.Name))
             .ForMember(dest => dest.IsUpcoming, opt => opt.MapFrom(src => src.ActivitySlot.StartTime > DateTime.Now));
