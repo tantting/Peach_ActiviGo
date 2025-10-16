@@ -1,10 +1,10 @@
-import FetchActivity from '../Components/FetchActivity'
-import FetchWeather from '../Components/FetchWeather'
-import WeatherCard from '../Components/WeatherCard'
-import '../Styles/Activity.css'
+import FetchActivityLocations from "../Components/FetchActivityLocations";
+import FetchWeather from "../Components/FetchWeather";
+import ActivityLocationCard from "../Components/ActivityLocationCard";
+import "../Styles/Activity.css";
 
 export default function Aktiviteter() {
-  const { activities, loading, error } = FetchActivity();
+  const { activityLocations, loading, error } = FetchActivityLocations();
   const { weather, weatherLoading } = FetchWeather();
 
   if (loading) {
@@ -32,15 +32,14 @@ export default function Aktiviteter() {
     <div className="page-container">
       <h1>Populära Aktiviteter</h1>
       <div className="activities-grid">
-        {activities.length > 0 ? (
-          activities.map((activity) => (
-            <div key={activity.id} className="activity-card">
-              <h3>{activity.activityName}</h3>
-              <p>Plats: {activity.locationName}</p>
-              <p>Status: {activity.isActive ? 'Aktiv' : 'Inaktiv'}</p>
-
-              <WeatherCard weather={weather} weatherLoading={weatherLoading} />
-            </div>
+        {activityLocations.length > 0 ? (
+          activityLocations.map((activityLocation) => (
+            <ActivityLocationCard
+              key={activityLocation.id}
+              activityLocation={activityLocation}
+              weather={weather}
+              weatherLoading={weatherLoading}
+            />
           ))
         ) : (
           <div className="activity-card">
