@@ -1,5 +1,6 @@
 import FetchActivity from '../Components/FetchActivity'
 import FetchWeather from '../Components/FetchWeather'
+import WeatherCard from '../Components/WeatherCard'
 import '../Styles/Activity.css'
 
 export default function Aktiviteter() {
@@ -38,27 +39,7 @@ export default function Aktiviteter() {
               <p>Plats: {activity.locationName}</p>
               <p>Status: {activity.isActive ? 'Aktiv' : 'Inaktiv'}</p>
 
-              <div className="weather-container">
-                {weatherLoading ? (
-                  <p>Laddar väder...</p>
-                ) : weather ? (
-                  <div className="weather-content">
-                    <div className="weather-text">
-                      <h4>Väder i {weather.name}</h4>
-                      <p>Temperatur: {weather.main.temp}°C</p>
-                      <p>Förhållande: {weather.weather[0].description}</p>
-                      <p>Känns som: {weather.main.feels_like}°C</p>
-                    </div>
-                    <img
-                      className="weather-image"
-                      src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-                      alt={weather.weather[0].description}
-                    />
-                  </div>
-                ) : (
-                  <p>Kunde inte hämta väderdata</p>
-                )}
-              </div>
+              <WeatherCard weather={weather} weatherLoading={weatherLoading} />
             </div>
           ))
         ) : (

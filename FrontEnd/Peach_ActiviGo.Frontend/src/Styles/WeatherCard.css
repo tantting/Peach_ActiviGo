@@ -1,0 +1,45 @@
+/*----Weather Styles----*/
+.weather-container {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.weather-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.weather-text {
+    flex: 1;
+}
+
+.weather-image {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    padding: 5px;
+    display: block;
+}
+
+/*----Error Message Styles----*/
+.weather-container p {
+    margin: 0;
+    color: #555;
+}
+
+.weather-text h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.weather-text p {
+    margin: 4px 0;
+    color: #666;
+    font-size: 0.9em;
+}
