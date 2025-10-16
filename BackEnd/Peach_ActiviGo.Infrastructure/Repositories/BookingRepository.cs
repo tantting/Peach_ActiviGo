@@ -17,22 +17,51 @@ public class BookingRepository : IBookingRepository
     public async Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
     {
         return await _context.Bookings
-            .Include(b => b.Customer)
+            .AsNoTracking()
             .Include(b => b.ActivitySlot)
-            .ThenInclude(slot => slot.ActivityLocation)
+            .ThenInclude(s => s.ActivityLocation)
             .ThenInclude(al => al.Activity)
             .Include(b => b.ActivitySlot)
-            .ThenInclude(slot => slot.ActivityLocation)
+            .ThenInclude(s => s.ActivityLocation)
             .ThenInclude(al => al.Location)
-            .ToListAsync();
+            .OrderBy(b => b.ActivitySlot.StartTime)
+            .ToListAsync(ct);
+    }
     }
     //Get Booking by Id
-    public async Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
+    public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken ct)
     {
         return await _context.Bookings
-            .Include(b=>b.ActivitySlot)
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
             .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
+
+    public async Task<IEnumerable<Booking>> GetByMemberAndStatusAsync(
+    string memberId, BookingStatus? status, CancellationToken ct)
+    {
+        var query = _context.Bookings
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .Where(b => b.CustomerId == memberId);
+
+        if (status.HasValue)
+            query = query.Where(b => b.Status == status.Value);
+
+        return await query
+            .OrderBy(b => b.ActivitySlot.StartTime)
+            .ToListAsync(ct);}
+
 
     public void AddBooking(Booking booking)
     {

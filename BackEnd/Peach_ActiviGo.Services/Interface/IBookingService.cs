@@ -1,3 +1,4 @@
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.BookingDtos;
 
@@ -7,6 +8,8 @@ public interface IBookingService
 {
     Task<IEnumerable<BookingDto>> GetAllBookingsAsync(CancellationToken ct);
     Task<BookingDto> GetBookingByIdAsync(int id, CancellationToken ct);
+    Task<IEnumerable<BookingDto>> GetAllByMemberIdAndStatusAsync(
+        string memberId, BookingStatus? status, CancellationToken ct);
     Task<BookingDto> AddBookingAsync(BookingCreateDto booking, string userId, CancellationToken ct);
     Task UpdateBookingAsync(BookingUpdateDto booking, CancellationToken ct);
     Task DeleteBookingAsync(int id, CancellationToken ct);

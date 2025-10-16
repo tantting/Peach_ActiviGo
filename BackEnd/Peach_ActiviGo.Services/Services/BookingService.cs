@@ -1,4 +1,5 @@
 using AutoMapper;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -33,6 +34,13 @@ public class BookingService : IBookingService
         return _mapper.Map<BookingDto>(entity);
     }
 
+    public async Task<IEnumerable<BookingDto>> GetAllByMemberIdAndStatusAsync(
+    string memberId, BookingStatus? status, CancellationToken ct)
+    {
+        var entities = await _unitOfWork.Bookings.GetByMemberAndStatusAsync(memberId, status, ct);
+        return _mapper.Map<IEnumerable<BookingDto>>(entities);
+    }
+
     public async Task<BookingDto> AddBookingAsync(BookingCreateDto dto, string userId, CancellationToken ct)
     {
         var booking = new Booking
@@ -41,10 +49,17 @@ public class BookingService : IBookingService
             ActivitySlotId = dto.ActivitySlotId,
             Status = Core.Enums.BookingStatus.Active,
             CancelledAt = null,
+            BookingDate = DateTime.UtcNow
         };
+
         _unitOfWork.Bookings.AddBooking(booking);
         await _unitOfWork.SaveChangesAsync(ct);
-        return _mapper.Map<BookingDto>(booking);
+
+        // Ladda om med samma Includes som i GetById/GetAll
+        var saved = await _unitOfWork.Bookings.GetBookingByIdAsync(booking.Id, ct);
+        if (saved is null) throw new InvalidOperationException("Failed to reload created booking.");
+
+        return _mapper.Map<BookingDto>(saved);
 
     }
 

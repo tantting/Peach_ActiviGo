@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Peach_ActiviGo.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Peach_ActiviGo.Infrastructure.Data;
 namespace Peach_ActiviGo.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251014141756_addedBookingsSeedData")]
+    partial class addedBookingsSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -762,9 +765,6 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CancelledAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateOnly>("CreatedDate")
                         .HasColumnType("date");
 
@@ -780,8 +780,6 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                     b.HasIndex("ActivitySlotId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("CustomerId1");
 
                     b.ToTable("Bookings");
 
