@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -27,7 +28,7 @@ public class BookingRepository : IBookingRepository
             .OrderBy(b => b.ActivitySlot.StartTime)
             .ToListAsync(ct);
     }
-    }
+    
     //Get Booking by Id
     public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken ct)
     {
