@@ -1,5 +1,5 @@
-import FetchActivityLocations from "../Components/FetchActivityLocations";
-import FetchWeather from "../Components/FetchWeather";
+import FetchActivityLocations from "../Components/HelperFunctions/FetchActivityLocations";
+import FetchWeather from "../Components/HelperFunctions/FetchWeather";
 import ActivityLocationCard from "../Components/ActivityLocationCard";
 import "../Styles/Activity.css";
 

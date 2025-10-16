@@ -1,4 +1,3 @@
-
 /***
  * Sparar data i localStorage med en timestamp
  * @param {string} key - Nyckeln för localStorage
@@ -9,11 +8,11 @@ export const saveLocalStorage = (key, data) => {
   try {
     const cacheData = {
       timestamp: Date.now(),
-      data: data
+      data: data,
     };
     localStorage.setItem(key, JSON.stringify(cacheData));
   } catch (error) {
-    console.error('Fel vid sparande till localStorage:', error);
+    console.error("Fel vid sparande till localStorage:", error);
   }
 };
 
@@ -26,7 +25,7 @@ export const saveLocalStorage = (key, data) => {
 export const getLocalStorage = (key) => {
   try {
     const cached = localStorage.getItem(key);
-    
+
     if (!cached) {
       console.log(`Ingen permanent data hittad för ${key}`);
       return null;
@@ -36,7 +35,10 @@ export const getLocalStorage = (key) => {
     console.log(`Laddade permanent data för ${key}`);
     return data;
   } catch (error) {
-    console.error('Fel vid läsning av permanent data från localStorage:', error);
+    console.error(
+      "Fel vid läsning av permanent data från localStorage:",
+      error
+    );
     return null;
   }
 };
@@ -51,7 +53,7 @@ export const getLocalStorage = (key) => {
 export const getTimedCache = (key, maxAge) => {
   try {
     const cached = localStorage.getItem(key);
-    
+
     if (!cached) {
       console.log(`Ingen cache hittad för ${key}`);
       return null;
@@ -65,15 +67,23 @@ export const getTimedCache = (key, maxAge) => {
 
     // Logga för debugging
     if (isFresh) {
-      console.log(`Laddade ${key} från cache (ålder: ${Math.round(timeSinceTimestamp / 1000 / 60)}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`);
+      console.log(
+        `Laddade ${key} från cache (ålder: ${Math.round(
+          timeSinceTimestamp / 1000 / 60
+        )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+      );
       return data;
     } else {
-      console.log(`Cache för ${key} är för gammal (ålder: ${Math.round(timeSinceTimestamp / 1000 / 60)}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`);
+      console.log(
+        `Cache för ${key} är för gammal (ålder: ${Math.round(
+          timeSinceTimestamp / 1000 / 60
+        )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+      );
       console.log(`Hämtar ny data...`);
       return null;
     }
   } catch (error) {
-    console.error('Fel vid läsning från localStorage:', error);
+    console.error("Fel vid läsning från localStorage:", error);
     return null;
   }
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FetchPeachApi from "./HelperFunctions/FetchPeachApi.jsx";
+import FetchPeachApi from "./FetchPeachApi.jsx";
 
 const FetchActivityLocations = () => {
   const [activityLocations, setActivityLocations] = useState([]);
