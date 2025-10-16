@@ -10,6 +10,7 @@ namespace Peach_ActiviGo.Services.DTOs.BookingDtos
     public class BookingDto
     {
         public int Id { get; set; }
+        public string CustomerId { get; set; }
         public string CustomerEmail { get; set; }
         public string? Activity { get; set; }
         public string? Location { get; set; }
