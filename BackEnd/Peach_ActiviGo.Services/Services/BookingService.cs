@@ -45,6 +45,7 @@ public class BookingService : IBookingService
     {
         bool alreadyBooked = await _unitOfWork.Bookings
             .UserHasActiveBookingAsync(userId, dto.ActivitySlotId, ct);
+      
         if (alreadyBooked)
         {
             throw new InvalidOperationException("User already has an active booking for this activity slot.");
