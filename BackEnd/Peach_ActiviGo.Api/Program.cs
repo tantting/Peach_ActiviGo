@@ -13,6 +13,7 @@ using Peach_ActiviGo.Services.DTOs;
 using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.DTOs.AuthDto;
 using Peach_ActiviGo.Services.DTOs.AuthDtos;
+using Peach_ActiviGo.Services.DTOs.BookingDtos;
 using Peach_ActiviGo.Services.DTOs.CategoryDtos;
 using Peach_ActiviGo.Services.DTOs.LocationDto;
 using Peach_ActiviGo.Services.Interface;
@@ -129,6 +130,7 @@ builder.Services.AddScoped<IValidator<CreateLocationDto>, CreateLocationDtoValid
 builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValidator>();
 builder.Services.AddScoped<IValidator<ActivitySlotRequestDto>, ActivitySlotValidator>();
 builder.Services.AddScoped<IValidator<UpdateActivityLocationDto>, UpdateActivityLocationDtoValidator>();
+builder.Services.AddScoped<IValidator<BookingCreateDto>, CreateBookingDtoValidator>();
 
 var app = builder.Build();
 
