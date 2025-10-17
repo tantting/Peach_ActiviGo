@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -12,29 +14,79 @@ public class BookingRepository : IBookingRepository
     {
         _context = context; 
     }
-
-    public Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
+    // GetAll Bookings
+    public async Task<IEnumerable<Booking>> GetAllBookingsAsync(CancellationToken ct)
     {
-        throw new NotImplementedException();
+        return await _context.Bookings
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b =>b.Customer)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .OrderBy(b => b.ActivitySlot.StartTime)
+            .ToListAsync(ct);
+    }
+    
+    //Get Booking by Id
+    public async Task<Booking?> GetBookingByIdAsync(int id, CancellationToken ct)
+    {
+        return await _context.Bookings
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b =>b.Customer)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .FirstOrDefaultAsync(b => b.Id == id, ct);
     }
 
-    public Task<Booking> GetBookingByIdAsync(int id, CancellationToken ct)
+    public async Task<IEnumerable<Booking>> GetByMemberAndStatusAsync(
+    string memberId, BookingStatus? status, CancellationToken ct)
     {
-        throw new NotImplementedException();
-    }
+        var query = _context.Bookings
+            .AsNoTracking()
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Activity)
+            .Include(b => b.ActivitySlot)
+            .ThenInclude(s => s.ActivityLocation)
+            .ThenInclude(al => al.Location)
+            .Where(b => b.CustomerId == memberId);
+
+        if (status.HasValue)
+            query = query.Where(b => b.Status == status.Value);
+
+        return await query
+            .OrderBy(b => b.ActivitySlot.StartTime)
+            .ToListAsync(ct);}
+
 
     public void AddBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Add(booking);
     }
-
+    // Update Booking (Avbokad f�r cut-off)
     public void UpdateBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Update(booking);
     }
 
     public void DeleteBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        _context.Bookings.Remove(booking);
+    }
+    
+    public async Task<bool> UserHasActiveBookingAsync(string userId, int activitySlotId, CancellationToken ct)
+    {
+        return await _context.Bookings
+            .AsNoTracking()
+            .AnyAsync(b => b.CustomerId == userId 
+                           && b.ActivitySlotId == activitySlotId 
+                           && b.Status == BookingStatus.Active, ct);
     }
 }
