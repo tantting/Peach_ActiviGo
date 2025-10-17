@@ -6,6 +6,7 @@ using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.BookingDtos;
 using Peach_ActiviGo.Services.Interface;
 using System.Security.Claims;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
 namespace Peach_ActiviGo.Api.Controllers
@@ -63,43 +64,35 @@ namespace Peach_ActiviGo.Api.Controllers
         //[Authorize (Roles = "Member")]
         [HttpPost(Name = "CreateBooking")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-
-        public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto bookingCreateDto, CancellationToken ct)
+        public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto dto, CancellationToken ct, IValidator<BookingCreateDto> validator)
         {
-            
-            // 👇 Lägg in detta precis här:
-            var claims = User.Claims.Select(c => $"{c.Type}: {c.Value}");
-            Console.WriteLine("🧩 Inloggad användares claims:");
-            foreach (var c in claims)
-                Console.WriteLine(c);
-            
+            var validationResult = await validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            //There are multiple NameIdentifier-claims in the token, so we need to get them all and pick the last one
             var nameIdentifierClaims = User.Claims
                 .Where(c => c.Type == ClaimTypes.NameIdentifier)
                 .Select(c => c.Value)
                 .ToList();
 
             var userId = nameIdentifierClaims.LastOrDefault();
-
-          //  var userId = User.FindFirstValue("sub");
             
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized("Ingen NameIdentifier-claim hittades i tokenen.");
             
-            var user = await _userManager.FindByIdAsync(userId);  // kräver att du injicerar UserManager<IdentityUser>
+            var user = await _userManager.FindByIdAsync(userId); 
 
             if (user == null)
                 return BadRequest($"Ingen användare med ID '{userId}' hittades i databasen.");
-
-            // (valfritt) logga även till konsol:
-            Console.WriteLine($"✅ Token UserId: {userId}, UserName: {user?.UserName}");
             
             if (userId == null)
             {
                 return Unauthorized(new { errorMessage = "User not authorized." });
             }
-
-            
-            await _bookingService.AddBookingAsync(bookingCreateDto, userId, ct);
+            await _bookingService.AddBookingAsync(dto, userId, ct);
             return CreatedAtRoute("GetAllBookings", null);
         }
 
