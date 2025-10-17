@@ -10,5 +10,6 @@ public interface IBookingRepository
     Task<IEnumerable<Booking>> GetByMemberAndStatusAsync(string memberId, BookingStatus? status, CancellationToken ct);
     void AddBooking(Booking booking);
     void UpdateBooking(Booking booking);
-    void DeleteBooking(Booking booking);    
+    void DeleteBooking(Booking booking);
+    Task<bool> UserHasActiveBookingAsync(string userId, int activitySlotId, CancellationToken ct);
 }

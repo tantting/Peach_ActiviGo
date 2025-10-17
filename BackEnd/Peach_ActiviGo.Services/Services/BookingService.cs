@@ -41,8 +41,15 @@ public class BookingService : IBookingService
         return _mapper.Map<IEnumerable<BookingDto>>(entities);
     }
 
-    public async Task<BookingDto> AddBookingAsync(BookingCreateDto dto, string userId, CancellationToken ct)
+    public async Task<BookingDto> CreateBookingAsync(BookingCreateDto dto, string userId, CancellationToken ct)
     {
+        bool alreadyBooked = await _unitOfWork.Bookings
+            .UserHasActiveBookingAsync(userId, dto.ActivitySlotId, ct);
+        if (alreadyBooked)
+        {
+            throw new InvalidOperationException("User already has an active booking for this activity slot.");
+        }
+
         var booking = new Booking
         {
             CustomerId = userId,

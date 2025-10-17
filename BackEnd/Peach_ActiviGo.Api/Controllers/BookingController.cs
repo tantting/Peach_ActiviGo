@@ -92,7 +92,7 @@ namespace Peach_ActiviGo.Api.Controllers
             {
                 return Unauthorized(new { errorMessage = "User not authorized." });
             }
-            await _bookingService.AddBookingAsync(dto, userId, ct);
+            await _bookingService.CreateBookingAsync(dto, userId, ct);
             return CreatedAtRoute("GetAllBookings", null);
         }
 

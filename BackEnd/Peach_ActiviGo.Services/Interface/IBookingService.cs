@@ -10,7 +10,7 @@ public interface IBookingService
     Task<BookingDto> GetBookingByIdAsync(int id, CancellationToken ct);
     Task<IEnumerable<BookingDto>> GetAllByMemberIdAndStatusAsync(
         string memberId, BookingStatus? status, CancellationToken ct);
-    Task<BookingDto> AddBookingAsync(BookingCreateDto booking, string userId, CancellationToken ct);
+    Task<BookingDto> CreateBookingAsync(BookingCreateDto booking, string userId, CancellationToken ct);
     Task CancelBookingBeforeCutOffAsync(int id, CancellationToken ct);
     Task DeleteBookingAsync(int id, CancellationToken ct);
 }
