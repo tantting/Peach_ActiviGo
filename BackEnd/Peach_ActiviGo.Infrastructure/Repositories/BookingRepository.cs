@@ -80,4 +80,13 @@ public class BookingRepository : IBookingRepository
     {
         _context.Bookings.Remove(booking);
     }
+    
+    public async Task<bool> UserHasActiveBookingAsync(string userId, int activitySlotId, CancellationToken ct)
+    {
+        return await _context.Bookings
+            .AsNoTracking()
+            .AnyAsync(b => b.CustomerId == userId 
+                           && b.ActivitySlotId == activitySlotId 
+                           && b.Status == BookingStatus.Active, ct);
+    }
 }
