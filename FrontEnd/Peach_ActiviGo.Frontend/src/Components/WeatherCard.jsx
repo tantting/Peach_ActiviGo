@@ -1,6 +1,11 @@
 import "../Styles/WeatherCard.css";
 
-const WeatherCard = ({ weather, weatherLoading, showLocationName = true }) => {
+const WeatherCard = ({
+  weather,
+  weatherLoading,
+  showLocationName = true,
+  locationName,
+}) => {
   if (weatherLoading) {
     return (
       <div className="weather-container">
@@ -21,7 +26,9 @@ const WeatherCard = ({ weather, weatherLoading, showLocationName = true }) => {
     <div className="weather-container">
       <div className="weather-content">
         <div className="weather-text">
-          {showLocationName && <h4>Väder i {weather.name || "Okänd plats"}</h4>}
+          {showLocationName && (
+            <h4>Väder i {locationName || weather.name || "Okänd plats"}</h4>
+          )}
           <p>Temperatur: {Math.round(weather.main.temp)}°C</p>
           <p>Förhållande: {weather.weather[0].description}</p>
           <p>Känns som: {Math.round(weather.main.feels_like)}°C</p>
