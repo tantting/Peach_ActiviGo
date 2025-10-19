@@ -66,6 +66,7 @@ export const getTimedCache = (key, maxAge) => {
           timeSinceTimestamp / 1000 / 60
         )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
       );
+      console.log(data);
       return data;
     } else {
       console.log(
@@ -74,6 +75,7 @@ export const getTimedCache = (key, maxAge) => {
         )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
       );
       console.log(`Hämtar ny data...`);
+      console.log(data);
       return null;
     }
   } catch (error) {

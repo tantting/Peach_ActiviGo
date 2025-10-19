@@ -1,11 +1,9 @@
 import FetchActivityLocations from "../Components/HelperFunctions/FetchActivityLocations";
-import FetchWeather from "../Components/HelperFunctions/FetchWeather";
 import ActivityLocationCard from "../Components/ActivityLocationCard";
 import "../Styles/Activity.css";
 
 export default function Aktiviteter() {
   const { activityLocations, loading, error } = FetchActivityLocations();
-  const { weather, weatherLoading } = FetchWeather();
 
   if (loading) {
     return (
@@ -30,15 +28,13 @@ export default function Aktiviteter() {
 
   return (
     <div className="page-container">
-      <h1>Populära Aktiviteter</h1>
+      <h1>Våra Aktivitetsplatser</h1>
       <div className="activities-grid">
         {activityLocations.length > 0 ? (
           activityLocations.map((activityLocation) => (
             <ActivityLocationCard
               key={activityLocation.id}
               activityLocation={activityLocation}
-              weather={weather}
-              weatherLoading={weatherLoading}
             />
           ))
         ) : (
