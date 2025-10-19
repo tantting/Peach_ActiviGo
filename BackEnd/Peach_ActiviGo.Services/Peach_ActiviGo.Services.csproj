@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Peach_ActiviGo.Infrastructure\Peach_ActiviGo.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\BookingDtos\" />
-  </ItemGroup>
-
 </Project>
