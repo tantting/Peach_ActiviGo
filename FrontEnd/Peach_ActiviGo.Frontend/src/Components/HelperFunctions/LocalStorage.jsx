@@ -17,7 +17,7 @@ export const saveLocalStorage = (key, data) => {
 };
 
 /**
- * Hämtar permanent data från localStorage (ingen tidsvalidering)
+ * Hämtar data från localStorage
  * @param {string} key - Nyckeln för localStorage
  * @returns {any|null} - Returnerar data om den finns, annars null
  */
@@ -32,13 +32,10 @@ export const getLocalStorage = (key) => {
     }
 
     const data = JSON.parse(cached);
-    console.log(`Laddade permanent data för ${key}`);
+    console.log(`Data hämtad för: ${key}`);
     return data;
   } catch (error) {
-    console.error(
-      "Fel vid läsning av permanent data från localStorage:",
-      error
-    );
+    console.error("Fel vid läsning av data från localStorage:", error);
     return null;
   }
 };
@@ -59,13 +56,10 @@ export const getTimedCache = (key, maxAge) => {
       return null;
     }
 
-    // Debugging log
-    // Parsea den cachade strängen
     const { timestamp, data } = JSON.parse(cached);
     const timeSinceTimestamp = Date.now() - timestamp;
     const isFresh = timeSinceTimestamp < maxAge;
 
-    // Logga för debugging
     if (isFresh) {
       console.log(
         `Laddade ${key} från cache (ålder: ${Math.round(
