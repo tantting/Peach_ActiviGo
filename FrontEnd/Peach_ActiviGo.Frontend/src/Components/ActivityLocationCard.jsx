@@ -24,9 +24,11 @@ const ActivityLocationCard = ({ activityLocation }) => {
       />
 
       {/* Detta är bara ett exempel på hur man skulle kunna lägga till en bokningsknapp */}
-      <Link to="/contact" className="booking-button">
-        Boka {activityLocation.activityName} nu!
-      </Link>
+      <button>
+        <Link to="/bookings" className="booking-button">
+          Boka {activityLocation.activityName} nu!
+        </Link>
+      </button>
     </div>
   );
 };

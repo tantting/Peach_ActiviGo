@@ -1,4 +1,27 @@
 /*https://dev.to/papybyte/async-await-vs-fetchthen-20oe*/
+
+/*
+POST, GET, PUT, DELETE requests till Peach API med Axios
+
+POST exempel
+FetchPeachApi({ method: "POST", url: "/api/ActivityLocation/", data: {
+  activityName: "Ny aktivitet",
+  locationName: "Ny plats"
+} })
+
+GET exempel
+FetchPeachApi({ method: "GET", url: "/api/ActivityLocation/" })
+
+PUT exempel
+FetchPeachApi({ method: "PUT", url: "/api/ActivityLocation/1", data: {
+  activityName: "Uppdaterad aktivitet",
+  locationName: "Uppdaterad plats"
+} })
+
+DELETE exempel
+FetchPeachApi({ method: "DELETE", url: "/api/ActivityLocation/1" })
+*/
+
 import axios from "axios";
 
 // Skapa en Axios instans med base URL och default konfiguration
