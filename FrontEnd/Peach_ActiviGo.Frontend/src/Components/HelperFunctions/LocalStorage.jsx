@@ -52,7 +52,6 @@ export const getTimedCache = (key, maxAge) => {
     const cached = localStorage.getItem(key);
 
     if (!cached) {
-      console.log(`Ingen cache hittad för ${key}`);
       return null;
     }
 
@@ -61,21 +60,23 @@ export const getTimedCache = (key, maxAge) => {
     const isFresh = timeSinceTimestamp < maxAge;
 
     if (isFresh) {
-      console.log(
-        `Laddade ${key} från cache (ålder: ${Math.round(
-          timeSinceTimestamp / 1000 / 60
-        )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
-      );
-      console.log(data);
+      // Endast logga i development mode
+      if (import.meta.env.DEV) {
+        console.log(
+          `Laddade ${key} från cache (ålder: ${Math.round(
+            timeSinceTimestamp / 1000 / 60
+          )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+        );
+      }
       return data;
     } else {
-      console.log(
-        `Cache för ${key} är för gammal (ålder: ${Math.round(
-          timeSinceTimestamp / 1000 / 60
-        )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
-      );
-      console.log(`Hämtar ny data...`);
-      console.log(data);
+      if (import.meta.env.DEV) {
+        console.log(
+          `Cache för ${key} är för gammal (ålder: ${Math.round(
+            timeSinceTimestamp / 1000 / 60
+          )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+        );
+      }
       return null;
     }
   } catch (error) {

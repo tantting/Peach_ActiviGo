@@ -23,14 +23,15 @@ FetchPeachApi({ method: "DELETE", url: "/api/ActivityLocation/1" })
 */
 
 import axios from "axios";
+import { API_BASE_URL, REQUEST_TIMEOUT } from "../../utils/constants.js";
 
 // Skapa en Axios instans med base URL och default konfiguration
 const apiClient = axios.create({
-  baseURL: "https://localhost:7242",
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json", // Standard header för JSON
   },
-  timeout: 10000, // om servern inte svarar inom 10 sekunder så skickas ett timeout error.
+  timeout: REQUEST_TIMEOUT, // om servern inte svarar inom 10 sekunder så skickas ett timeout error.
 });
 
 /**

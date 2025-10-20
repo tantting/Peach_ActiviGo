@@ -2,7 +2,7 @@ import FetchActivityLocations from "../Components/HelperFunctions/FetchActivityL
 import ActivityLocationCard from "../Components/ActivityLocationCard";
 import "../Styles/Activity.css";
 
-export default function Aktiviteter() {
+export default function ActivityView() {
   const { activityLocations, loading, error } = FetchActivityLocations();
 
   if (loading) {

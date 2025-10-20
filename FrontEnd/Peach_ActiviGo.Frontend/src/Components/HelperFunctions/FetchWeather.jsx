@@ -1,53 +1,38 @@
 import { useState, useEffect } from "react";
 import { saveLocalStorage, getTimedCache } from "./LocalStorage";
-import axios from "axios";
-
-const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-const WEATHER_CACHE_DURATION = 10 * 60 * 1000; // 10 minuter
+import FetchWeatherApi from "./FetchWeatherApi";
+import {
+  WEATHER_CACHE_DURATION,
+  DEFAULT_COORDINATES,
+  CACHE_KEYS,
+} from "../../utils/constants.js";
 
 const FetchWeather = ({ latitude, longitude, locationName, cacheKey }) => {
   const [weather, setWeather] = useState(null);
   const [weatherLoading, setWeatherLoading] = useState(true);
 
   // Fallback till Varbergs koordinater om inga koordinater anges
-  const lat = latitude || "57.1056";
-  const lon = longitude || "12.2508";
+  const lat = latitude || DEFAULT_COORDINATES.latitude;
+  const lon = longitude || DEFAULT_COORDINATES.longitude;
 
   // Skapa en unik cache-nyckel för denna plats
-  const WEATHER_CACHE_KEY = cacheKey || `weatherData_${lat}_${lon}`;
+  const WEATHER_CACHE_KEY = cacheKey || CACHE_KEYS.weather(lat, lon);
 
   useEffect(() => {
     let isCancelled = false; // För att undvika state-uppdatering om komponenten avmonteras
 
     const fetchWeather = () => {
-      // Bygg URL baserat på vad som finns tillgängligt
-      let url = `https://api.openweathermap.org/data/2.5/weather?appid=${WEATHER_API_KEY}&units=metric&lang=sv`;
-
-      // Om vi har koordinater, använd dem (mer exakt)
-      if (lat && lon) {
-        url += `&lat=${lat}&lon=${lon}`;
-      }
-      // Annars försök med stadsnamn om det finns
-      else if (locationName) {
-        url += `&q=${encodeURIComponent(locationName)}`;
-      }
-      // Fallback till Varberg <3
-      else {
-        url += `&lat=57.1056&lon=12.2508`;
-      }
-
-      axios
-        .get(url)
-        .then((response) => {
+      FetchWeatherApi({
+        latitude: lat,
+        longitude: lon,
+        locationName: locationName,
+      })
+        .then((data) => {
           if (!isCancelled) {
-            console.log(
-              "Weather data received for:",
-              response.data.name,
-              response.data
-            ); // Debug: Visa vad vi får från API:et
-            setWeather(response.data); // Sätt väderdata i setWeather state
+            console.log("Weather data received for:", data.name, data); // Debug: Visa vad vi får från API:et
+            setWeather(data); // Sätt väderdata i setWeather state
             setWeatherLoading(false); // Sätt loading till false när data är hämtad
-            saveLocalStorage(WEATHER_CACHE_KEY, response.data); // Spara i localStorage via LocalStorage.jsx
+            saveLocalStorage(WEATHER_CACHE_KEY, data); // Spara i localStorage via LocalStorage.jsx
           }
         })
         .catch((error) => {
