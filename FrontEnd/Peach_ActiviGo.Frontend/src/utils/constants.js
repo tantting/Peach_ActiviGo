@@ -1,3 +1,5 @@
+// This file contains constant values used throughout the application that can be used throughout the project.
+
 // API Endpoints
 export const API_BASE_URL = "https://localhost:7242";
 
@@ -19,5 +21,5 @@ export const CACHE_KEYS = {
     bookings: "bookings"
 };
 
-// HTTP timeouts
+// Add Timeouts 
 export const REQUEST_TIMEOUT = 10000; // 10 sekunder
