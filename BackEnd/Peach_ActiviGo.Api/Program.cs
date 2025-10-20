@@ -133,6 +133,7 @@ builder.Services.AddScoped<IValidator<UpdateActivityLocationDto>, UpdateActivity
 builder.Services.AddScoped<IValidator<BookingCreateDto>, CreateBookingDtoValidator>();
 
 var app = builder.Build();
+app.UseStaticFiles();
 
 // --- Seed Identity & Dom�ndata ---
 using (var scope = app.Services.CreateScope())
