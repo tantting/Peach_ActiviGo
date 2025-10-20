@@ -1,0 +1,138 @@
+/* Booking.css - Stilar för bokningskomponenten */
+
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.booking-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.booking-card h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.booking-details p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.booking-details strong {
+  color: #333;
+}
+
+.error-message {
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+}
+
+.error-message h3 {
+  color: #f44336;
+  margin-top: 0;
+}
+
+.no-bookings {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  color: #666;
+  grid-column: 1 / -1; /* Spänner över alla kolumner */
+}
+
+.no-bookings h3 {
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* Bokningsknapp styling - Modern flat design */
+.booking-button {
+  display: inline-block;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.booking-button:hover {
+  background-color: #1976D2;
+  text-decoration: none;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.booking-button:active {
+  transform: translateY(0);
+  background-color: #1565C0;
+}
+
+/* Button container styling */
+button:has(.booking-button) {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+  .bookings-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .bookings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .booking-card {
+    padding: 15px;
+  }
+  
+  .booking-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+.booking-overview {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}

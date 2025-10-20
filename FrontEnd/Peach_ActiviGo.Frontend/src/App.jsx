@@ -1,13 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './Components/Navbar.jsx'
-import ActivityView from './Pages/ActivityView.jsx'
-import CategoryView from './Pages/CategoryView.jsx'
-import ContactView from './Pages/ContactView.jsx'
-import LoginView from './Pages/LoginView.jsx'
-import RegisterView from './Pages/RegisterView.jsx'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar.jsx";
+import ActivityView from "./Pages/ActivityView.jsx";
+import BookingsView from "./Pages/BookingsView.jsx";
+import CategoryView from "./Pages/CategoryView.jsx";
+import ContactView from "./Pages/ContactView.jsx";
+import LoginView from "./Pages/LoginView.jsx";
+import RegisterView from "./Pages/RegisterView.jsx";
 // CSS
-import './Styles/App.css'
-import './Styles/Navbar.css'
+import "./Styles/Global.css";
+import "./Styles/Navbar.css";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
         <Route path="/contact" element={<ContactView />} />
         <Route path="/login" element={<LoginView />} />
         <Route path="/signup" element={<RegisterView />} />
+        <Route path="/bookings" element={<BookingsView />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

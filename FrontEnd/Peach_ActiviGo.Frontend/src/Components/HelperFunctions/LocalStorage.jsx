@@ -1,4 +1,3 @@
-
 /***
  * Sparar data i localStorage med en timestamp
  * @param {string} key - Nyckeln för localStorage
@@ -9,16 +8,16 @@ export const saveLocalStorage = (key, data) => {
   try {
     const cacheData = {
       timestamp: Date.now(),
-      data: data
+      data: data,
     };
     localStorage.setItem(key, JSON.stringify(cacheData));
   } catch (error) {
-    console.error('Fel vid sparande till localStorage:', error);
+    console.error("Fel vid sparande till localStorage:", error);
   }
 };
 
 /**
- * Hämtar permanent data från localStorage (ingen tidsvalidering)
+ * Hämtar data från localStorage
  * @param {string} key - Nyckeln för localStorage
  * @returns {any|null} - Returnerar data om den finns, annars null
  */
@@ -26,17 +25,17 @@ export const saveLocalStorage = (key, data) => {
 export const getLocalStorage = (key) => {
   try {
     const cached = localStorage.getItem(key);
-    
+
     if (!cached) {
       console.log(`Ingen permanent data hittad för ${key}`);
       return null;
     }
 
     const data = JSON.parse(cached);
-    console.log(`Laddade permanent data för ${key}`);
+    console.log(`Data hämtad för: ${key}`);
     return data;
   } catch (error) {
-    console.error('Fel vid läsning av permanent data från localStorage:', error);
+    console.error("Fel vid läsning av data från localStorage:", error);
     return null;
   }
 };
@@ -51,29 +50,37 @@ export const getLocalStorage = (key) => {
 export const getTimedCache = (key, maxAge) => {
   try {
     const cached = localStorage.getItem(key);
-    
+
     if (!cached) {
-      console.log(`Ingen cache hittad för ${key}`);
       return null;
     }
 
-    // Debugging log
-    // Parsea den cachade strängen
     const { timestamp, data } = JSON.parse(cached);
     const timeSinceTimestamp = Date.now() - timestamp;
     const isFresh = timeSinceTimestamp < maxAge;
 
-    // Logga för debugging
     if (isFresh) {
-      console.log(`Laddade ${key} från cache (ålder: ${Math.round(timeSinceTimestamp / 1000 / 60)}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`);
+      // Endast logga i development mode
+      if (import.meta.env.DEV) {
+        console.log(
+          `Laddade ${key} från cache (ålder: ${Math.round(
+            timeSinceTimestamp / 1000 / 60
+          )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+        );
+      }
       return data;
     } else {
-      console.log(`Cache för ${key} är för gammal (ålder: ${Math.round(timeSinceTimestamp / 1000 / 60)}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`);
-      console.log(`Hämtar ny data...`);
+      if (import.meta.env.DEV) {
+        console.log(
+          `Cache för ${key} är för gammal (ålder: ${Math.round(
+            timeSinceTimestamp / 1000 / 60
+          )}m ${Math.round((timeSinceTimestamp % (1000 * 60)) / 1000)}s)`
+        );
+      }
       return null;
     }
   } catch (error) {
-    console.error('Fel vid läsning från localStorage:', error);
+    console.error("Fel vid läsning från localStorage:", error);
     return null;
   }
 };
