@@ -27,7 +27,7 @@ const WeatherCard = ({
       <div className="weather-content">
         <div className="weather-text">
           {showLocationName && (
-            <h4>Väder i {locationName || weather.name || "Okänd plats"}</h4>
+            <h4>Väder för {locationName || weather.name || "Okänd plats"}</h4>
           )}
           <p>Temperatur: {Math.round(weather.main.temp)}°C</p>
           <p>Förhållande: {weather.weather[0].description}</p>
