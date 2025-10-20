@@ -17,6 +17,23 @@ const ActivityLocationCard = ({ activityLocation }) => {
       <p>Aktivitet: {activityLocation.activityName}</p>
       <p>Status: {activityLocation.isActive ? "Aktiv" : "Inaktiv"}</p>
 
+      <p>
+        <img
+          className="activity-image"
+          src={
+            activityLocation.imageUrl?.startsWith("https")
+              ? activityLocation.imageUrl
+              : `https://localhost:7242${activityLocation.imageUrl}`
+          }
+          alt={activityLocation.activityName}
+          onError={(event) => {
+            console.error("Bilden kunde inte laddas:", event.target.src);
+            event.target.style.border = "2px solid red";
+            event.target.alt = "Bilden kunde inte laddas";
+          }}
+        />
+      </p>
+
       <WeatherCard
         weather={weather}
         weatherLoading={weatherLoading}

@@ -26,3 +26,13 @@
     margin-top: 20px;
     text-align: center;
 }
+
+.activity-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
