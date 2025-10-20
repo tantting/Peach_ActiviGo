@@ -66,7 +66,7 @@ const FetchWeather = ({ latitude, longitude, locationName, cacheKey }) => {
     return () => {
       isCancelled = true;
     };
-  }, [lat, lon, locationName]); // Lägg till dependencies så att effekten körs igen om koordinater/plats ändras
+  }, []);
 
   // Returnera state som en custom hook
   return { weather, weatherLoading };
