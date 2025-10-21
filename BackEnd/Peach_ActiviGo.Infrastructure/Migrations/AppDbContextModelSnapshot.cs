@@ -262,81 +262,81 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Racketsport i par",
-                            ImageUrl = "/img/padel.jpg",
-                            Name = "Padel",
-                            Price = 120m
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Lär dig surfa i havet",
+                            ImageUrl = "images/surf.jpg",
+                            Name = "Surfkurs",
+                            Price = 899m
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Inomhus pingis",
-                            ImageUrl = "/img/pingis.jpg",
-                            Name = "Pingis",
-                            Price = 80m
+                            CategoryId = 4,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Avkopplande yoga inomhus",
+                            ImageUrl = "images/yoga.jpg",
+                            Name = "Yogapass",
+                            Price = 299m
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Inomhusklättring",
-                            ImageUrl = "/img/climb.jpg",
-                            Name = "Klättring",
-                            Price = 150m
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Klattra på olika nivåer",
+                            ImageUrl = "images/climb.jpg",
+                            Name = "Klattring",
+                            Price = 499m
                         },
                         new
                         {
                             Id = 4,
-                            CategoryId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Träning i utegym",
-                            ImageUrl = "/img/utegym.jpg",
-                            Name = "Utegym",
-                            Price = 0m
+                            CategoryId = 3,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Cykla i skog och mark",
+                            ImageUrl = "images/mtb.jpg",
+                            Name = "Mountainbike",
+                            Price = 699m
                         },
                         new
                         {
                             Id = 5,
-                            CategoryId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Lugn och fokuserad träning",
-                            ImageUrl = "/img/yoga.jpg",
-                            Name = "Yoga",
-                            Price = 100m
+                            CategoryId = 2,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Paddla i lugnt vatten",
+                            ImageUrl = "images/sup.jpg",
+                            Name = "Stand Up Paddle",
+                            Price = 599m
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Högintensiv utomhusträning",
-                            ImageUrl = "/img/bootcamp.jpg",
-                            Name = "Bootcamp",
-                            Price = 120m
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Intensiv cykelträning inomhus",
+                            ImageUrl = "images/spinning.jpg",
+                            Name = "Spinning",
+                            Price = 249m
                         },
                         new
                         {
                             Id = 7,
-                            CategoryId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Gruppträning löpning",
-                            ImageUrl = "/img/run.jpg",
-                            Name = "Löpning",
-                            Price = 60m
+                            CategoryId = 4,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Bastuupplevelse med dofter",
+                            ImageUrl = "images/sauna.jpg",
+                            Name = "Saunagus",
+                            Price = 350m
                         },
                         new
                         {
                             Id = 8,
                             CategoryId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Description = "Kondition och styrka",
-                            ImageUrl = "/img/crossfit.jpg",
-                            Name = "Crossfit",
-                            Price = 140m
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Actionfyllt lagspel utomhus",
+                            ImageUrl = "images/paintball.jpg",
+                            Name = "Paintball",
+                            Price = 550m
                         });
                 });
 
@@ -383,9 +383,9 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         {
                             Id = 1,
                             ActivityId = 1,
-                            Capacity = 4,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            IsIndoor = true,
+                            Capacity = 15,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = false,
                             LocationId = 1,
                             isActive = true
                         },
@@ -393,8 +393,8 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         {
                             Id = 2,
                             ActivityId = 1,
-                            Capacity = 4,
-                            CreatedDate = new DateOnly(2025, 10, 16),
+                            Capacity = 12,
+                            CreatedDate = new DateOnly(2025, 10, 21),
                             IsIndoor = false,
                             LocationId = 2,
                             isActive = true
@@ -403,48 +403,48 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         {
                             Id = 3,
                             ActivityId = 2,
-                            Capacity = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            IsIndoor = true,
-                            LocationId = 1,
-                            isActive = true
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ActivityId = 3,
-                            Capacity = 8,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            IsIndoor = true,
-                            LocationId = 1,
-                            isActive = true
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ActivityId = 4,
                             Capacity = 10,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            IsIndoor = false,
-                            LocationId = 2,
-                            isActive = true
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ActivityId = 5,
-                            Capacity = 12,
-                            CreatedDate = new DateOnly(2025, 10, 16),
+                            CreatedDate = new DateOnly(2025, 10, 21),
                             IsIndoor = true,
                             LocationId = 3,
                             isActive = true
                         },
                         new
                         {
+                            Id = 4,
+                            ActivityId = 2,
+                            Capacity = 8,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = true,
+                            LocationId = 4,
+                            isActive = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ActivityId = 3,
+                            Capacity = 18,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = false,
+                            LocationId = 5,
+                            isActive = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ActivityId = 4,
+                            Capacity = 14,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = false,
+                            LocationId = 1,
+                            isActive = true
+                        },
+                        new
+                        {
                             Id = 7,
-                            ActivityId = 6,
-                            Capacity = 15,
-                            CreatedDate = new DateOnly(2025, 10, 16),
+                            ActivityId = 5,
+                            Capacity = 16,
+                            CreatedDate = new DateOnly(2025, 10, 21),
                             IsIndoor = false,
                             LocationId = 2,
                             isActive = true
@@ -452,11 +452,31 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         new
                         {
                             Id = 8,
+                            ActivityId = 6,
+                            Capacity = 12,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = true,
+                            LocationId = 3,
+                            isActive = true
+                        },
+                        new
+                        {
+                            Id = 9,
                             ActivityId = 7,
+                            Capacity = 10,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            IsIndoor = true,
+                            LocationId = 4,
+                            isActive = true
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ActivityId = 8,
                             Capacity = 20,
-                            CreatedDate = new DateOnly(2025, 10, 16),
+                            CreatedDate = new DateOnly(2025, 10, 21),
                             IsIndoor = false,
-                            LocationId = 2,
+                            LocationId = 5,
                             isActive = true
                         });
                 });
@@ -478,8 +498,11 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCanselled")
+                    b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
+
+                    b.Property<int>("SlotCapacity")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
@@ -498,253 +521,201 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         {
                             Id = 1,
                             ActivityLocationId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 18, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 18, 17, 0, 0, 0, DateTimeKind.Local)
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 25, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             ActivityLocationId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 21, 17, 0, 0, 0, DateTimeKind.Local)
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 25, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            ActivityLocationId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 24, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 24, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 2,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 26, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
                             ActivityLocationId = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 19, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 19, 17, 0, 0, 0, DateTimeKind.Local)
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 26, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
-                            ActivityLocationId = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 22, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 22, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 3,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 27, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
-                            ActivityLocationId = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 25, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 25, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 3,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 27, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
-                            ActivityLocationId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 20, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 4,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 28, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
-                            ActivityLocationId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 23, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 23, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 4,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 28, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 28, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
-                            ActivityLocationId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 26, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 26, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 5,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 29, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 18,
+                            StartTime = new DateTime(2025, 10, 29, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
-                            ActivityLocationId = 4,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 21, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 5,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 29, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 18,
+                            StartTime = new DateTime(2025, 10, 29, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
-                            ActivityLocationId = 4,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 24, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 24, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 6,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 30, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 14,
+                            StartTime = new DateTime(2025, 10, 30, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
-                            ActivityLocationId = 4,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 27, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 27, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 6,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 30, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 14,
+                            StartTime = new DateTime(2025, 10, 30, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
-                            ActivityLocationId = 5,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 22, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 22, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 7,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 31, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 16,
+                            StartTime = new DateTime(2025, 10, 31, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
-                            ActivityLocationId = 5,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 25, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 25, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 7,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 10, 31, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 16,
+                            StartTime = new DateTime(2025, 10, 31, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
-                            ActivityLocationId = 5,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 28, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 28, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 8,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 11, 1, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
-                            ActivityLocationId = 6,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 23, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 23, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 8,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 11, 1, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
-                            ActivityLocationId = 6,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 26, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 26, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 9,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 11, 2, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
-                            ActivityLocationId = 6,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 29, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 29, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 9,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 2, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 11, 2, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
-                            ActivityLocationId = 7,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 24, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 24, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 10,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 3, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 20,
+                            StartTime = new DateTime(2025, 11, 3, 10, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
-                            ActivityLocationId = 7,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 27, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 27, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ActivityLocationId = 7,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 30, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 30, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ActivityLocationId = 8,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 25, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 25, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ActivityLocationId = 8,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 28, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 28, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ActivityLocationId = 8,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 31, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 31, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 25,
-                            ActivityLocationId = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 6, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 6, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 26,
-                            ActivityLocationId = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 9, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 9, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 27,
-                            ActivityLocationId = 5,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 12, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 12, 17, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = 28,
-                            ActivityLocationId = 7,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            EndTime = new DateTime(2025, 10, 14, 18, 0, 0, 0, DateTimeKind.Local),
-                            IsCanselled = false,
-                            StartTime = new DateTime(2025, 10, 14, 17, 0, 0, 0, DateTimeKind.Local)
+                            ActivityLocationId = 10,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            EndTime = new DateTime(2025, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
+                            SlotCapacity = 20,
+                            StartTime = new DateTime(2025, 11, 3, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -816,20 +787,30 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Name = "Träning"
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Spännande utomhusaktiviteter",
+                            Name = "Äventyr"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Name = "Spel"
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Aktiviteter vid havet och sjöar",
+                            Name = "Vatten"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Name = "Kondition"
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Inomhus- och utomhusträning",
+                            Name = "Träning"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Description = "Lugna aktiviteter för kropp och själ",
+                            Name = "Avkoppling"
                         });
                 });
 
@@ -869,29 +850,47 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Huvudgatan 1",
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Latitude = 59.330000m,
-                            Longitude = 18.060000m,
-                            Name = "Sportcenter X"
+                            Address = "Varberg centrum",
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Latitude = 57.1056m,
+                            Longitude = 12.2508m,
+                            Name = "Varberg"
                         },
                         new
                         {
                             Id = 2,
-                            Address = "Parkvägen 5",
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Latitude = 59.320000m,
-                            Longitude = 18.040000m,
-                            Name = "Utomhusarenan"
+                            Address = "Falkenberg centrum",
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Latitude = 56.9055m,
+                            Longitude = 12.4912m,
+                            Name = "Falkenberg"
                         },
                         new
                         {
                             Id = 3,
-                            Address = "Centrumtorget 2",
-                            CreatedDate = new DateOnly(2025, 10, 16),
-                            Latitude = 59.340000m,
-                            Longitude = 18.050000m,
-                            Name = "City Gym"
+                            Address = "Halmstad centrum",
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Latitude = 56.6745m,
+                            Longitude = 12.8570m,
+                            Name = "Halmstad"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "Veddige centrum",
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Latitude = 57.2297m,
+                            Longitude = 12.3836m,
+                            Name = "Veddige"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "Slöinge centrum",
+                            CreatedDate = new DateOnly(2025, 10, 21),
+                            Latitude = 56.8358m,
+                            Longitude = 12.7135m,
+                            Name = "Slöinge"
                         });
                 });
 
