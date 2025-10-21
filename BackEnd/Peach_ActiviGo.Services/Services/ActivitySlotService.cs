@@ -39,7 +39,7 @@ namespace Peach_ActiviGo.Services.Services
                 StartTime = dto.StartTime,
                 EndTime = dto.EndTime,
                 ActivityLocationId = dto.ActivityLocationId,
-                IsCanselled = false
+                IsCancelled = false
             };
 
             await _repo.AddAsync(slot);
@@ -76,7 +76,7 @@ namespace Peach_ActiviGo.Services.Services
                 return false;
             }
 
-            existing.IsCanselled = true;
+            existing.IsCancelled = true;
 
             await _repo.UpdateAsync(existing);
             await _repo.SaveChangesAsync();

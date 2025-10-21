@@ -7,9 +7,11 @@ import ContactView from "./Pages/ContactView.jsx";
 import LoginView from "./Pages/LoginView.jsx";
 import RegisterView from "./Pages/RegisterView.jsx";
 import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
+import Footer from "./Components/Footer.jsx";
 // CSS
 import "./Styles/Global.css";
 import "./Styles/Navbar.css";
+import "./Styles/Footer.css";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/bookings" element={<BookingsView />} />
         <Route path="/activity/:id" element={<ActivityDetailView />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
