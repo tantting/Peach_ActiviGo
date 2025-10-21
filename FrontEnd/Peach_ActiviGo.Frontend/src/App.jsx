@@ -7,6 +7,7 @@ import ContactView from "./Pages/ContactView.jsx";
 import LoginView from "./Pages/LoginView.jsx";
 import RegisterView from "./Pages/RegisterView.jsx";
 import Footer from "./Components/Footer.jsx";
+import { AuthProvider } from "./Components/AuthContext.jsx";
 // CSS
 import "./Styles/Global.css";
 import "./Styles/Navbar.css";
@@ -14,18 +15,20 @@ import "./Styles/Footer.css";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<ActivityView />} />
-        <Route path="/about" element={<CategoryView />} />
-        <Route path="/contact" element={<ContactView />} />
-        <Route path="/login" element={<LoginView />} />
-        <Route path="/signup" element={<RegisterView />} />
-        <Route path="/bookings" element={<BookingsView />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ActivityView />} />
+          <Route path="/about" element={<CategoryView />} />
+          <Route path="/contact" element={<ContactView />} />
+          <Route path="/login" element={<LoginView />} />
+          <Route path="/signup" element={<RegisterView />} />
+          <Route path="/bookings" element={<BookingsView />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthProvider>
   );
 }
 
