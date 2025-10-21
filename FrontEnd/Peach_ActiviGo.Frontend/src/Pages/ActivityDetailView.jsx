@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import FetchPeachApi from "../Components/HelperFunctions/FetchPeachApi";
 import WeatherCard from "../Components/WeatherCard";
 import FetchWeather from "../Components/HelperFunctions/FetchWeather";
+import { buildImageUrl } from "../utils/constants";
 import "../Styles/Activity.css";
 
 export default function ActivityDetailView() {
@@ -110,11 +111,7 @@ export default function ActivityDetailView() {
         {activityLocation.imageUrl && (
           <div className="activity-image-container">
             <img
-              src={
-                activityLocation.imageUrl.startsWith("https")
-                  ? activityLocation.imageUrl
-                  : `https://localhost:7242${activityLocation.imageUrl}`
-              }
+              src={buildImageUrl(activityLocation.imageUrl)}
               alt={activityLocation.activityName}
               className="activity-detail-image"
             />

@@ -23,3 +23,39 @@ export const CACHE_KEYS = {
 
 // Add Timeouts 
 export const REQUEST_TIMEOUT = 10000; // 10 sekunder
+
+// Helper function to build correct image URLs
+export const buildImageUrl = (imageUrl) => {
+    if (!imageUrl) return null;
+
+    // If it's already a full URL, return as is
+    if (imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+        return imageUrl;
+    }
+
+    // Remove any existing path segments and ensure we use /images/
+    let cleanImageUrl = imageUrl;
+
+    // Remove leading slash if present
+    if (cleanImageUrl.startsWith("/")) {
+        cleanImageUrl = cleanImageUrl.substring(1);
+    }
+
+    // Remove wwwroot if present in the path
+    if (cleanImageUrl.includes("wwwroot/")) {
+        cleanImageUrl = cleanImageUrl.split("wwwroot/")[1];
+    }
+
+    // Remove old folder name and use images
+    // This handles cases where the backend still returns old paths
+    const pathSegments = cleanImageUrl.split("/");
+    if (pathSegments.length > 1) {
+        // Keep only the filename, replace folder with 'images'
+        cleanImageUrl = `images/${pathSegments[pathSegments.length - 1]}`;
+    } else {
+        // If it's just a filename, add images folder
+        cleanImageUrl = `images/${cleanImageUrl}`;
+    }
+
+    return `${API_BASE_URL}/${cleanImageUrl}`;
+};

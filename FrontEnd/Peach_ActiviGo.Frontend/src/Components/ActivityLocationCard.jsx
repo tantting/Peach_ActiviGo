@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 import WeatherCard from "./WeatherCard";
 import FetchWeather from "./HelperFunctions/FetchWeather";
+import { buildImageUrl } from "../utils/constants";
 
 const ActivityLocationCard = ({ activityLocation }) => {
+
   // Hämta väderdata endast för utomhusaktiviteter
   const { weather, weatherLoading } = activityLocation.isIndoor
     ? { weather: null, weatherLoading: false }
     : FetchWeather({
-        latitude: activityLocation.latitude,
-        longitude: activityLocation.longitude,
-        locationName: activityLocation.locationName,
+        latitude:
+          activityLocation.location?.latitude || activityLocation.latitude,
+        longitude:
+          activityLocation.location?.longitude || activityLocation.longitude,
+        locationName:
+          activityLocation.location?.name || activityLocation.locationName,
         cacheKey: `weather_${activityLocation.id}`, // Unik cache för varje aktivitet
       });
 
@@ -22,11 +27,7 @@ const ActivityLocationCard = ({ activityLocation }) => {
       <p>
         <img
           className="activity-image"
-          src={
-            activityLocation.imageUrl?.startsWith("https")
-              ? activityLocation.imageUrl
-              : `https://localhost:7242${activityLocation.imageUrl}`
-          }
+          src={buildImageUrl(activityLocation.imageUrl)}
           alt={activityLocation.activityName}
           onError={(event) => {
             console.error("Bilden kunde inte laddas:", event.target.src);

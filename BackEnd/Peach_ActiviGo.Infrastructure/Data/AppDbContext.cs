@@ -66,12 +66,6 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             .HasIndex(al => new { al.ActivityId, al.LocationId, al.IsIndoor })
             .IsUnique();
 
-        //modelBuilder.Entity<Booking>()
-        //    .HasOne<IdentityUser>()
-        //    .WithMany()
-        //    .HasForeignKey(b => b.CustomerId)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
         // KNYT navigationen 'Customer' till FK 'CustomerId' så EF inte skapar CustomerId1
         modelBuilder.Entity<Booking>()
             .HasOne(b => b.Customer)
@@ -79,7 +73,6 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(b => b.CustomerId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
-
 
         modelBuilder.Entity<ActivitySlot>()
             .HasOne(s => s.ActivityLocation)
@@ -102,9 +95,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             new Location
                 { Id = 1, Name = "Varberg", Address = "Varberg centrum", Latitude = 57.1056m, Longitude = 12.2508m },
             new Location
-            {
-                Id = 2, Name = "Falkenberg", Address = "Falkenberg centrum", Latitude = 56.9055m, Longitude = 12.4912m
-            },
+                { Id = 2, Name = "Falkenberg", Address = "Falkenberg centrum", Latitude = 56.9055m, Longitude = 12.4912m },
             new Location
                 { Id = 3, Name = "Halmstad", Address = "Halmstad centrum", Latitude = 56.6745m, Longitude = 12.8570m },
             new Location
