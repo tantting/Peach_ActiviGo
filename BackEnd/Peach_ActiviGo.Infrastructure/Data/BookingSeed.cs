@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Models;
 
 namespace Peach_ActiviGo.Infrastructure.Data;
@@ -14,36 +15,49 @@ public class BookingSeed
         if (context.Bookings.Any()) return;
 
         // Hämta existerande användare (från IdentitySeed)
-        var user1 = await context.Users.FirstOrDefaultAsync(u => u.Email == "user1@example.com");
-        var user2 = await context.Users.FirstOrDefaultAsync(u => u.Email == "user2@example.com");
-        var user3 = await context.Users.FirstOrDefaultAsync(u => u.Email == "user3@example.com");
+        var users = await context.Users
+            .Where(u => u.Email.StartsWith("user"))
+            .ToListAsync();
 
-        if (user1 == null || user2 == null || user3 == null)
+        if (!users.Any())
         {
-            Console.WriteLine("⚠️ Användare saknas – kan inte seeda bokningar ännu.");
+            Console.WriteLine("⚠️ Inga användare hittades – kör IdentitySeed först.");
             return;
         }
 
-        // Hämta några ActivitySlots
-        var slots = await context.ActivitySlots.Take(3).ToListAsync();
+        // Hämta ActivitySlots
+        var slots = await context.ActivitySlots.ToListAsync();
 
         if (!slots.Any())
         {
-            Console.WriteLine("⚠️ Inga ActivitySlots hittades – kontrollera att du har seedat dem.");
+            Console.WriteLine("⚠️ Inga ActivitySlots hittades – kontrollera att du seedat dem.");
             return;
         }
 
-        // Lägg till några bokningar
-        var bookings = new List<Booking>
+        var random = new Random();
+        var bookings = new List<Booking>();
+
+        for (int i = 0; i < 20; i++)
         {
-            new Booking { CustomerId = user1.Id, ActivitySlotId = slots[0].Id, BookingDate = DateTime.Now.AddDays(-2) },
-            new Booking { CustomerId = user2.Id, ActivitySlotId = slots[1].Id, BookingDate = DateTime.Now.AddDays(-1) },
-            new Booking { CustomerId = user3.Id, ActivitySlotId = slots[2].Id, BookingDate = DateTime.Now }
-        };
+            var user = users[random.Next(users.Count)];
+            var slot = slots[random.Next(slots.Count)];
+
+            // Slumpa status: 80% Active, 20% Cancelled
+            var status = random.NextDouble() < 0.8 ? BookingStatus.Active : BookingStatus.Cancelled;
+
+            bookings.Add(new Booking
+            {
+                CustomerId = user.Id,
+                ActivitySlotId = slot.Id,
+                BookingDate = DateTime.Now.AddDays(-random.Next(0, 14)), // Bokningsdatum inom senaste 2 veckor
+                Status = status,
+                CancelledAt = status == BookingStatus.Cancelled ? DateTime.Now.AddDays(-random.Next(0, 7)) : null
+            });
+        }
 
         await context.Bookings.AddRangeAsync(bookings);
         await context.SaveChangesAsync();
 
-        Console.WriteLine("✅ Bokningar seedade!");
+        Console.WriteLine("✅ 20 bokningar seedade!");
     }
 }

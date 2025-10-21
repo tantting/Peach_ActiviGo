@@ -42,7 +42,7 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
         {
             var query = _context.ActivitySlots.Where(s =>
                 s.ActivityLocationId == activityLocationId &&
-                !s.IsCanselled &&
+                !s.IsCancelled &&
                 start < s.EndTime &&
                 end > s.StartTime);
 

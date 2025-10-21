@@ -89,139 +89,219 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
 
         // -------- SEED DATA --------
 
-        // 🏷️ Kategorier
+        // Categories
         modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1, Name = "Träning" },
-            new Category { Id = 2, Name = "Spel" },
-            new Category { Id = 3, Name = "Kondition" }
+            new Category { Id = 1, Name = "Äventyr", Description = "Spännande utomhusaktiviteter" },
+            new Category { Id = 2, Name = "Vatten", Description = "Aktiviteter vid havet och sjöar" },
+            new Category { Id = 3, Name = "Träning", Description = "Inomhus- och utomhusträning" },
+            new Category { Id = 4, Name = "Avkoppling", Description = "Lugna aktiviteter för kropp och själ" }
         );
 
-        // 📍 Platser
+        // Locations
         modelBuilder.Entity<Location>().HasData(
             new Location
-            {
-                Id = 1,
-                Name = "Sportcenter X",
-                Address = "Huvudgatan 1",
-                Latitude = 59.330000m,
-                Longitude = 18.060000m
-            },
+                { Id = 1, Name = "Varberg", Address = "Varberg centrum", Latitude = 57.1056m, Longitude = 12.2508m },
             new Location
             {
-                Id = 2,
-                Name = "Utomhusarenan",
-                Address = "Parkvägen 5",
-                Latitude = 59.320000m,
-                Longitude = 18.040000m
+                Id = 2, Name = "Falkenberg", Address = "Falkenberg centrum", Latitude = 56.9055m, Longitude = 12.4912m
             },
             new Location
-            {
-                Id = 3,
-                Name = "City Gym",
-                Address = "Centrumtorget 2",
-                Latitude = 59.340000m,
-                Longitude = 18.050000m
-            }
+                { Id = 3, Name = "Halmstad", Address = "Halmstad centrum", Latitude = 56.6745m, Longitude = 12.8570m },
+            new Location
+                { Id = 4, Name = "Veddige", Address = "Veddige centrum", Latitude = 57.2297m, Longitude = 12.3836m },
+            new Location
+                { Id = 5, Name = "Slöinge", Address = "Slöinge centrum", Latitude = 56.8358m, Longitude = 12.7135m }
         );
 
-        // 🏐 Aktiviteter
+        // Activities
         modelBuilder.Entity<Activity>().HasData(
-            new Activity { Id = 1, Name = "Padel", Description = "Racketsport i par", Price = 120, ImageUrl = "/img/padel.jpg", CategoryId = 2 },
-            new Activity { Id = 2, Name = "Pingis", Description = "Inomhus pingis", Price = 80, ImageUrl = "/img/pingis.jpg", CategoryId = 2 },
-            new Activity { Id = 3, Name = "Klättring", Description = "Inomhusklättring", Price = 150, ImageUrl = "/img/climb.jpg", CategoryId = 1 },
-            new Activity { Id = 4, Name = "Utegym", Description = "Träning i utegym", Price = 0, ImageUrl = "/img/utegym.jpg", CategoryId = 1 },
-            new Activity { Id = 5, Name = "Yoga", Description = "Lugn och fokuserad träning", Price = 100, ImageUrl = "/img/yoga.jpg", CategoryId = 1 },
-            new Activity { Id = 6, Name = "Bootcamp", Description = "Högintensiv utomhusträning", Price = 120, ImageUrl = "/img/bootcamp.jpg", CategoryId = 3 },
-            new Activity { Id = 7, Name = "Löpning", Description = "Gruppträning löpning", Price = 60, ImageUrl = "/img/run.jpg", CategoryId = 3 },
-            new Activity { Id = 8, Name = "Crossfit", Description = "Kondition och styrka", Price = 140, ImageUrl = "/img/crossfit.jpg", CategoryId = 1 }
-        );
-
-        // 📍 ActivityLocations (koppling aktivitet-plats)
-        modelBuilder.Entity<ActivityLocation>().HasData(
-            new ActivityLocation { Id = 1, ActivityId = 1, LocationId = 1, Capacity = 4, IsIndoor = true },
-            new ActivityLocation { Id = 2, ActivityId = 1, LocationId = 2, Capacity = 4, IsIndoor = false },
-            new ActivityLocation { Id = 3, ActivityId = 2, LocationId = 1, Capacity = 2, IsIndoor = true },
-            new ActivityLocation { Id = 4, ActivityId = 3, LocationId = 1, Capacity = 8, IsIndoor = true },
-            new ActivityLocation { Id = 5, ActivityId = 4, LocationId = 2, Capacity = 10, IsIndoor = false },
-            new ActivityLocation { Id = 6, ActivityId = 5, LocationId = 3, Capacity = 12, IsIndoor = true },
-            new ActivityLocation { Id = 7, ActivityId = 6, LocationId = 2, Capacity = 15, IsIndoor = false },
-            new ActivityLocation { Id = 8, ActivityId = 7, LocationId = 2, Capacity = 20, IsIndoor = false }
-        );
-
-        // 🕒 ActivitySlots (20+ tillfällen kommande veckor)
-        var slots = new List<ActivitySlot>();
-        var idCounter = 1;
-        var startDate = DateTime.Today.AddDays(1);
-        var rand = new Random();
-
-        for (int locId = 1; locId <= 8; locId++)
-        {
-            for (int i = 0; i < 3; i++)
+            new Activity
             {
-                var day = startDate.AddDays(i * 3 + locId);
-                slots.Add(new ActivitySlot
-                {
-                    Id = idCounter++,
-                    ActivityLocationId = locId,
-                    StartTime = day.AddHours(17),
-                    EndTime = day.AddHours(18),
-                });
+                Id = 1, Name = "Surfkurs", Description = "Lär dig surfa i havet", Price = 899,
+                ImageUrl = "images/surf.jpg", CategoryId = 2
+            },
+            new Activity
+            {
+                Id = 2, Name = "Yogapass", Description = "Avkopplande yoga inomhus", Price = 299,
+                ImageUrl = "images/yoga.jpg", CategoryId = 4
+            },
+            new Activity
+            {
+                Id = 3, Name = "Klattring", Description = "Klattra på olika nivåer", Price = 499,
+                ImageUrl = "images/climb.jpg", CategoryId = 1
+            },
+            new Activity
+            {
+                Id = 4, Name = "Mountainbike", Description = "Cykla i skog och mark", Price = 699,
+                ImageUrl = "images/mtb.jpg", CategoryId = 3
+            },
+            new Activity
+            {
+                Id = 5, Name = "Stand Up Paddle", Description = "Paddla i lugnt vatten", Price = 599,
+                ImageUrl = "images/sup.jpg", CategoryId = 2
+            },
+            new Activity
+            {
+                Id = 6, Name = "Spinning", Description = "Intensiv cykelträning inomhus", Price = 249,
+                ImageUrl = "images/spinning.jpg", CategoryId = 3
+            },
+            new Activity
+            {
+                Id = 7, Name = "Saunagus", Description = "Bastuupplevelse med dofter", Price = 350,
+                ImageUrl = "images/sauna.jpg", CategoryId = 4
+            },
+            new Activity
+            {
+                Id = 8, Name = "Paintball", Description = "Actionfyllt lagspel utomhus", Price = 550,
+                ImageUrl = "images/paintball.jpg", CategoryId = 1
             }
-        }
+        );
 
-        // HISTORISKA slots (i dåtid)
-        var histDates = new[]
-        {
-            DateTime.Today.AddDays(-10),
-            DateTime.Today.AddDays(-7),
-            DateTime.Today.AddDays(-4),
-            DateTime.Today.AddDays(-2)
-        };
-        var histLocs = new[] { 1, 3, 5, 7 }; 
-        var histIds = new List<int>();
+        // --- ActivityLocations (Hårdkodad) ---
+        modelBuilder.Entity<ActivityLocation>().HasData(
+            new ActivityLocation
+                { Id = 1, ActivityId = 1, LocationId = 1, Capacity = 15, IsIndoor = false, isActive = true },
+            new ActivityLocation
+                { Id = 2, ActivityId = 1, LocationId = 2, Capacity = 12, IsIndoor = false, isActive = true },
+            new ActivityLocation
+                { Id = 3, ActivityId = 2, LocationId = 3, Capacity = 10, IsIndoor = true, isActive = true },
+            new ActivityLocation
+                { Id = 4, ActivityId = 2, LocationId = 4, Capacity = 8, IsIndoor = true, isActive = true },
+            new ActivityLocation
+                { Id = 5, ActivityId = 3, LocationId = 5, Capacity = 18, IsIndoor = false, isActive = true },
+            new ActivityLocation
+                { Id = 6, ActivityId = 4, LocationId = 1, Capacity = 14, IsIndoor = false, isActive = true },
+            new ActivityLocation
+                { Id = 7, ActivityId = 5, LocationId = 2, Capacity = 16, IsIndoor = false, isActive = true },
+            new ActivityLocation
+                { Id = 8, ActivityId = 6, LocationId = 3, Capacity = 12, IsIndoor = true, isActive = true },
+            new ActivityLocation
+                { Id = 9, ActivityId = 7, LocationId = 4, Capacity = 10, IsIndoor = true, isActive = true },
+            new ActivityLocation
+                { Id = 10, ActivityId = 8, LocationId = 5, Capacity = 20, IsIndoor = false, isActive = true }
+        );
 
-        for (int i = 0; i < histDates.Length; i++)
-        {
-            slots.Add(new ActivitySlot
+        // --- ActivitySlots (2 per ActivityLocation) ---
+        modelBuilder.Entity<ActivitySlot>().HasData(
+            // ActivityLocationId = 1
+            new ActivitySlot
             {
-                Id = idCounter,
-                ActivityLocationId = histLocs[i],
-                StartTime = histDates[i].AddHours(17),
-                EndTime = histDates[i].AddHours(18),
-            });
-            histIds.Add(idCounter++);
-        }
+                Id = 1, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 25, 12, 0, 0), SlotCapacity = 12, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 2, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 25, 16, 0, 0), SlotCapacity = 12, IsCancelled = false
+            },
 
-        modelBuilder.Entity<ActivitySlot>().HasData(slots);
+            // ActivityLocationId = 2
+            new ActivitySlot
+            {
+                Id = 3, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 26, 12, 0, 0), SlotCapacity = 10, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 4, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 26, 16, 0, 0), SlotCapacity = 10, IsCancelled = false
+            },
 
-        // ===== ADD : BOOKINGS för DINA BEFINTLIGA ANVÄNDARE =====
-        
-//
-//         var USER3_ID = "1f9ede01-aff8-4803-910c-24e78bc7fb8a";  // user3@example.com 
-//         var ADMIN_ID = "2786eacf-fda5-4772-9336-5cb72ccce08b";   // exempel@live.com
-//         var USER4_ID = "3217607b-81cc-4fdd-a16f-00e186e2d74f";   // user4@example.com
-//         var TEST_ID = "8a54eb5f-01bc-4055-a6bf-be2048462451";   // test@mail.com
-//         var USER2_ID = "aa2c47dc-15f2-4e15-b409-7f94b48e554c";   // user2@example.com
-//         var USER1_ID = "cce4e116-f149-4d7a-9094-e3cfc2a62229";   // user1@example.com
-//
-//         // 2) Skapa bokningar.
-//         var bookingSeed = new List<Booking>
-// {
-//     // —— Historiska bokningar (kräver ADD 1) ——
-//     new Booking { Id = 1001, CustomerId = USER1_ID, ActivitySlotId = histIds[0], BookingDate = histDates[0].AddDays(-1) },
-//     new Booking { Id = 1002, CustomerId = USER2_ID, ActivitySlotId = histIds[1], BookingDate = histDates[1].AddDays(-1) },
-//     new Booking { Id = 1003, CustomerId = USER3_ID, ActivitySlotId = histIds[2], BookingDate = histDates[2].AddDays(-1) },
-//     new Booking { Id = 1004, CustomerId = TEST_ID,  ActivitySlotId = histIds[3], BookingDate = histDates[3].AddDays(-1) },
-//
-//     // —— Kommande bokningar ——
-//     new Booking { Id = 1005, CustomerId = USER1_ID, ActivitySlotId = 1, BookingDate = new DateTime(2025, 01, 10, 12, 00, 00) },
-//     new Booking { Id = 1006, CustomerId = USER2_ID, ActivitySlotId = 2, BookingDate = new DateTime(2025, 01, 11, 12, 00, 00) },
-//     new Booking { Id = 1007, CustomerId = USER3_ID, ActivitySlotId = 3, BookingDate = new DateTime(2025, 01, 12, 12, 00, 00) },
-//     new Booking { Id = 1008, CustomerId = USER4_ID, ActivitySlotId = 4, BookingDate = new DateTime(2025, 01, 13, 12, 00, 00) },
-//     new Booking { Id = 1009, CustomerId = ADMIN_ID, ActivitySlotId = 5, BookingDate = new DateTime(2025, 01, 14, 12, 00, 00) }
-// };
+            // ActivityLocationId = 3
+            new ActivitySlot
+            {
+                Id = 5, ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 09, 0, 0),
+                EndTime = new DateTime(2025, 10, 27, 11, 0, 0), SlotCapacity = 8, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 6, ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 12, 0, 0),
+                EndTime = new DateTime(2025, 10, 27, 14, 0, 0), SlotCapacity = 8, IsCancelled = false
+            },
 
-        // modelBuilder.Entity<Booking>().HasData(bookingSeed);
+            // ActivityLocationId = 4
+            new ActivitySlot
+            {
+                Id = 7, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 28, 12, 0, 0), SlotCapacity = 8, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 8, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 28, 16, 0, 0), SlotCapacity = 8, IsCancelled = false
+            },
 
+            // ActivityLocationId = 5
+            new ActivitySlot
+            {
+                Id = 9, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 29, 12, 0, 0), SlotCapacity = 18, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 10, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 29, 16, 0, 0), SlotCapacity = 18, IsCancelled = false
+            },
+
+            // ActivityLocationId = 6
+            new ActivitySlot
+            {
+                Id = 11, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 30, 12, 0, 0), SlotCapacity = 14, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 12, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 30, 16, 0, 0), SlotCapacity = 14, IsCancelled = false
+            },
+
+            // ActivityLocationId = 7
+            new ActivitySlot
+            {
+                Id = 13, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 10, 0, 0),
+                EndTime = new DateTime(2025, 10, 31, 12, 0, 0), SlotCapacity = 16, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 14, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 14, 0, 0),
+                EndTime = new DateTime(2025, 10, 31, 16, 0, 0), SlotCapacity = 16, IsCancelled = false
+            },
+
+            // ActivityLocationId = 8
+            new ActivitySlot
+            {
+                Id = 15, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 10, 0, 0),
+                EndTime = new DateTime(2025, 11, 1, 12, 0, 0), SlotCapacity = 12, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 16, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 14, 0, 0),
+                EndTime = new DateTime(2025, 11, 1, 16, 0, 0), SlotCapacity = 12, IsCancelled = false
+            },
+
+            // ActivityLocationId = 9
+            new ActivitySlot
+            {
+                Id = 17, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 10, 0, 0),
+                EndTime = new DateTime(2025, 11, 2, 12, 0, 0), SlotCapacity = 10, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 18, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 14, 0, 0),
+                EndTime = new DateTime(2025, 11, 2, 16, 0, 0), SlotCapacity = 10, IsCancelled = false
+            },
+
+            // ActivityLocationId = 10
+            new ActivitySlot
+            {
+                Id = 19, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 10, 0, 0),
+                EndTime = new DateTime(2025, 11, 3, 12, 0, 0), SlotCapacity = 20, IsCancelled = false
+            },
+            new ActivitySlot
+            {
+                Id = 20, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 14, 0, 0),
+                EndTime = new DateTime(2025, 11, 3, 16, 0, 0), SlotCapacity = 20, IsCancelled = false
+            }
+        );
     }
 }
