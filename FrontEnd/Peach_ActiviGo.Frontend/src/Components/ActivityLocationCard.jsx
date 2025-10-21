@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import { buildImageUrl } from "../utils/constants";
 
 const ActivityLocationCard = ({ activityLocation }) => {
@@ -15,9 +14,8 @@ const ActivityLocationCard = ({ activityLocation }) => {
           src={buildImageUrl(activityLocation.imageUrl)}
           alt={activityLocation.activityName}
           onError={(event) => {
-            console.error("Bilden kunde inte laddas:", event.target.src);
-            event.target.style.border = "2px solid red";
-            event.target.alt = "Bilden kunde inte laddas";
+            console.warn("Image failed to load:", event.target.src);
+            event.target.src = "/images/placeholder-activity.jpg"; // Fallback image
           }}
         />
       </p>
