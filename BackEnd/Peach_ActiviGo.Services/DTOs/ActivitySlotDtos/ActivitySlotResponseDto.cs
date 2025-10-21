@@ -7,5 +7,6 @@
         public DateTime EndTime { get; set; }
         public int ActivityLocationId { get; set; }
         public bool IsCanselled { get; set; }
+        public int SlotCapacity { get; set; }
     }
 }
