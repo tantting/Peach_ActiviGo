@@ -7,5 +7,6 @@
         public string? ActivityName { get; set; }
         public string? LocationName { get; set; }
         public string? ImageUrl { get; set; }
+        public bool IsIndoor { get; set; }
     }
 }
