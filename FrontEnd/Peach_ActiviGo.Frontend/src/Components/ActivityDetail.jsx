@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import WeatherCard from "./WeatherCard";
 import FetchWeather from "./HelperFunctions/FetchWeather";
+import FetchActivitySlots from "./HelperFunctions/FetchActivitySlots";
 import { buildImageUrl } from "../utils/constants";
+import ActivitySlots from "./ActivitySlots";
 
 export default function ActivityDetail({ activityLocation, loading, error }) {
   const navigate = useNavigate();
@@ -16,6 +18,13 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
           cacheKey: `weather_detail_${activityLocation.id}`,
         })
       : { weather: null, weatherLoading: false };
+
+  // Hämta aktivitetsslots
+  const {
+    ActivitySlots: activitySlots,
+    loading: slotsLoading,
+    error: slotsError,
+  } = FetchActivitySlots(activityLocation?.id);
 
   if (loading) {
     return <p>Laddar aktivitet...</p>;
@@ -76,6 +85,13 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
         </div>
       )}
 
+      {/* Back button placerad under bilden */}
+      <div className="back-button-container">
+        <button onClick={() => navigate("/")} className="back-button">
+          ← Tillbaka till aktiviteter
+        </button>
+      </div>
+
       {/* Visa väder endast för utomhusaktiviteter */}
       {!activityLocation.isIndoor && (
         <div className="weather-section">
@@ -88,14 +104,14 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
         </div>
       )}
 
-      <div className="action-buttons">
-        <button onClick={() => navigate("/")} className="back-button">
-          ← Tillbaka till aktiviteter
-        </button>
-
-        <button className="book-button">
-          📅 Boka {activityLocation.activityName}
-        </button>
+      {/* Visa aktivitetsslots */}
+      <div className="activity-slots-section">
+        <h3>📅 Lediga tider</h3>
+        <ActivitySlots
+          ActivitySlots={activitySlots}
+          loading={slotsLoading}
+          error={slotsError}
+        />
       </div>
     </div>
   );
