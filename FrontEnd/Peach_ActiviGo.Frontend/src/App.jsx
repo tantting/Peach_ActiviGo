@@ -6,9 +6,11 @@ import CategoryView from "./Pages/CategoryView.jsx";
 import ContactView from "./Pages/ContactView.jsx";
 import LoginView from "./Pages/LoginView.jsx";
 import RegisterView from "./Pages/RegisterView.jsx";
+import Footer from "./Components/Footer.jsx";
 // CSS
 import "./Styles/Global.css";
 import "./Styles/Navbar.css";
+import "./Styles/Footer.css";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/signup" element={<RegisterView />} />
         <Route path="/bookings" element={<BookingsView />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
