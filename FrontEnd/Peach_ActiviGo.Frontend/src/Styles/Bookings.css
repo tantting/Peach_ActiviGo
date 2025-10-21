@@ -67,7 +67,7 @@
 /* Bokningsknapp styling - Modern flat design */
 .booking-button {
   display: inline-block;
-  background-color: #2196F3;
+  background-color: #e79a6e;
   color: white;
   text-decoration: none;
   padding: 14px 28px;
@@ -85,16 +85,16 @@
 }
 
 .booking-button:hover {
-  background-color: #1976D2;
+  background-color: #d68555;
   text-decoration: none;
   color: white;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  box-shadow: 0 4px 12px rgba(231, 154, 110, 0.3);
 }
 
 .booking-button:active {
   transform: translateY(0);
-  background-color: #1565C0;
+  background-color: #c77a49;
 }
 
 /* Button container styling */
