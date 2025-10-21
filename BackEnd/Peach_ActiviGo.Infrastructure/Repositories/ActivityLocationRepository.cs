@@ -57,7 +57,7 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
 
                 query = query.Where(activityLocation => _context.ActivitySlots.Any(slot =>
                     slot.ActivityLocationId == activityLocation.Id &&
-                    !slot.IsCanselled &&
+                    !slot.IsCancelled &&
                     slot.EndTime.Date >= start &&
                     slot.StartTime.Date <= end));
             }
@@ -66,7 +66,7 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
             {
                 // Consider slots that are not cancelled and (if date range provided) overlap the range.
                 var slotsQuery = _context.ActivitySlots
-                    .Where(slot => !slot.IsCanselled)
+                    .Where(slot => !slot.IsCancelled)
                     .AsQueryable();
 
                 if (filter.StartDate.HasValue && filter.EndDate.HasValue)
