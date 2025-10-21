@@ -1,23 +1,8 @@
 import { Link } from "react-router-dom";
-import WeatherCard from "./WeatherCard";
-import FetchWeather from "./HelperFunctions/FetchWeather";
+
 import { buildImageUrl } from "../utils/constants";
 
 const ActivityLocationCard = ({ activityLocation }) => {
-
-  // Hämta väderdata endast för utomhusaktiviteter
-  const { weather, weatherLoading } = activityLocation.isIndoor
-    ? { weather: null, weatherLoading: false }
-    : FetchWeather({
-        latitude:
-          activityLocation.location?.latitude || activityLocation.latitude,
-        longitude:
-          activityLocation.location?.longitude || activityLocation.longitude,
-        locationName:
-          activityLocation.location?.name || activityLocation.locationName,
-        cacheKey: `weather_${activityLocation.id}`, // Unik cache för varje aktivitet
-      });
-
   return (
     <div className="activity-card">
       <h2>Plats: {activityLocation.locationName}</h2>

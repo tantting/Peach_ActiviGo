@@ -29,7 +29,6 @@ const FetchWeather = ({ latitude, longitude, locationName, cacheKey }) => {
       })
         .then((data) => {
           if (!isCancelled) {
-            console.log("Weather data received for:", data.name, data); // Debug: Visa vad vi får från API:et
             setWeather(data); // Sätt väderdata i setWeather state
             setWeatherLoading(false); // Sätt loading till false när data är hämtad
             saveLocalStorage(WEATHER_CACHE_KEY, data); // Spara i localStorage via LocalStorage.jsx
