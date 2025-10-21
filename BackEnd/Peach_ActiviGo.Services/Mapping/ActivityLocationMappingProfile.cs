@@ -13,7 +13,8 @@ namespace Peach_ActiviGo.Services.Mapping
             CreateMap<ActivityLocation, ReadActivityLocationDto>()
                 .ForMember(dest => dest.ActivityName, opt => opt.MapFrom(src => src.Activity.Name))
                 .ForMember(dest => dest.LocationName, opt => opt.MapFrom(src => src.Location.Name))
-                .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Activity.ImageUrl));
+                .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Activity.ImageUrl))
+                .ForMember(dest => dest.IsIndoor, opt => opt.MapFrom(src => src.IsIndoor));
 
 
             CreateMap<ActivityLocation, UpdateActivityLocationDto>();
