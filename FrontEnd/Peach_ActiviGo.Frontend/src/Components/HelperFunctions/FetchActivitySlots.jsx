@@ -11,12 +11,11 @@ const FetchActivitySlots = (activityLocationId = null) => {
       setLoading(true);
       FetchPeachApi("/api/ActivitySlots")
         .then((data) => {
-            const filteredData = activityLocationId
+          const filteredData = activityLocationId
             ? data.filter(
                 (slot) => slot.activityLocationId === activityLocationId
-            )
+              )
             : data;
-            console.log("Fetched Activity Slots:", data);
 
           setActivitySlots(filteredData);
         })
