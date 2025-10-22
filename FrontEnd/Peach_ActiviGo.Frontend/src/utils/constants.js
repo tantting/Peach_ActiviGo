@@ -3,6 +3,17 @@
 // API Endpoints
 export const API_BASE_URL = "https://localhost:7242";
 
+// API Endpoint paths
+export const API_ENDPOINTS = {
+    authentication: {
+        login: "/api/Authentication/login",
+        register: "/api/Authentication/CreateAccount"
+    },
+    booking: "/api/Booking",
+    activityLocation: "/api/ActivityLocation",
+    activitySlots: "/api/ActivitySlot"
+};
+
 // Weather API
 export const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5";
 export const WEATHER_CACHE_DURATION = 10 * 60 * 1000; // 10 minuter
