@@ -98,7 +98,7 @@ export default function RegisterView() {
               autoComplete="on"
             />
           </div>
-
+ 
           <button type="submit" className="auth-button">
             Registrera
           </button>
