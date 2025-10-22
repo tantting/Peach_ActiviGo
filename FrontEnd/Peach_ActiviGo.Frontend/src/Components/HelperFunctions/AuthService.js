@@ -40,43 +40,7 @@ export const getToken = () => {
   return stored?.data || null;
 };
 
-// Dekoda och inspektera JWT token
-export const inspectToken = () => {
-  const token = getToken();
-  if (!token) {
-    return null;
-  }
-
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload;
-  } catch (error) {
-    console.error("Fel vid dekodning av token:", error);
-    return null;
-  }
-};
-
-// Kontrollera om token är giltig (enkel kontroll av format och expiration)
-export const isTokenValid = () => {
-  const token = getToken();
-  if (!token) {
-    return false;
-  }
-
-  try {
-    // Dekoda JWT token för att kontrollera expiration
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const currentTime = Date.now() / 1000;
-
-    // Kontrollera om token har gått ut
-    const isValid = payload.exp > currentTime;
-
-    return isValid;
-  } catch (error) {
-    console.error("Fel vid validering av token:", error);
-    return false;
-  }
-};// Logga ut
+// Logga ut
 export const logoutUser = () => {
   localStorage.removeItem("authToken");
 };

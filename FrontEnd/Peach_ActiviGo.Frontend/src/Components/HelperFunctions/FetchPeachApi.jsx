@@ -24,7 +24,6 @@ FetchPeachApi({ method: "DELETE", url: "/api/ActivityLocation/1" })
 
 import axios from "axios";
 import { API_BASE_URL, REQUEST_TIMEOUT } from "../../utils/constants.js";
-import { getToken } from "./AuthService.js";
 
 // Skapa en Axios instans med base URL och default konfiguration
 const apiClient = axios.create({
@@ -33,16 +32,6 @@ const apiClient = axios.create({
     "Content-Type": "application/json", // Standard header för JSON
   },
   timeout: REQUEST_TIMEOUT, // om servern inte svarar inom 10 sekunder så skickas ett timeout error.
-});
-
-// Lägg till request interceptor för authorization
-apiClient.interceptors.request.use((config) => {
-  // Lägg till token automatiskt
-  const token = getToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
 });
 
 /**
