@@ -61,7 +61,6 @@ export default function LoginView() {
               value={formData.password}
               onChange={handleChange}
               required
-              autoComplete="on"
             />
           </div>
 

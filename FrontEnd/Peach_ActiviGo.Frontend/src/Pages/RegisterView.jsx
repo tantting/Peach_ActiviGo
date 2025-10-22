@@ -82,7 +82,6 @@ export default function RegisterView() {
               value={formData.password}
               onChange={handleChange}
               required
-              autoComplete="on"
             />
           </div>
 
@@ -95,7 +94,6 @@ export default function RegisterView() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
-              autoComplete="on"
             />
           </div>
 
