@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import createBooking from "./HelperFunctions/CreateBooking.jsx";
 import { isTokenValid } from "./HelperFunctions/AuthService.js";
 
-const ActivitySlots = ({ ActivitySlots, loading, error }) => {
+const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   const [bookingStates, setBookingStates] = useState({});
@@ -57,6 +57,11 @@ const ActivitySlots = ({ ActivitySlots, loading, error }) => {
         ...prev,
         [index]: successState,
       }));
+      
+      // Ta bort sloten från listan efter lyckad bokning
+      if (onSlotBooked) {
+        onSlotBooked(slot.id);
+      }
       
       // Ändra string till den plats som bokningarna ska hamna på för en user
       alert(
