@@ -57,12 +57,12 @@ const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
         ...prev,
         [index]: successState,
       }));
-      
+
       // Ta bort sloten från listan efter lyckad bokning
       if (onSlotBooked) {
         onSlotBooked(slot.id);
       }
-      
+
       // Ändra string till den plats som bokningarna ska hamna på för en user
       alert(
         "Bokning lyckades! Du kan se dina bokningar under 'Mina bokningar'."
