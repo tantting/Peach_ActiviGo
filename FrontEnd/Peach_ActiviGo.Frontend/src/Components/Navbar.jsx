@@ -7,8 +7,8 @@ export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-   const toggleMenu = () => {
+
+  const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -27,28 +27,6 @@ export default function Navbar() {
         <Link to="/" className="logo-link">
           <h1>ActiviGo</h1>
         </Link>
-
-        <div className="nav-links">
-          <Link to="/">Aktiviteter</Link>
-          <Link to="/about">Kategorier</Link>
-          <Link to="/contact">Kontakt</Link>
-        </div>
-
-        <div className="auth-buttons">
-          {isAuthenticated ? (
-            // Användare är inloggad, visa Logga ut
-            <button onClick={handleLogout}>Logga ut</button>
-          ) : (
-            // Användare är inte inloggad, visa Logga in och Registrera
-            <>
-              <button>
-                <Link to="/login">Logga in</Link>
-              </button>
-              <button>
-                <Link to="/signup">Registrera</Link>
-              </button>
-            </>
-          )}
         {/* Hamburger Menu Button */}
         <button
           className={`hamburger ${isMenuOpen ? "active" : ""}`}
@@ -73,16 +51,24 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="auth-buttons">
-            <button>
-              <Link to="/login" onClick={closeMenu}>
-                Logga in
-              </Link>
-            </button>
-            <button>
-              <Link to="/signup" onClick={closeMenu}>
-                Registrera
-              </Link>
-            </button>
+            {isAuthenticated ? (
+              // Användare är inloggad, visa Logga ut
+              <button onClick={handleLogout}>Logga ut</button>
+            ) : (
+              // Användare är inte inloggad, visa Logga in och Registrera
+              <>
+                <button>
+                  <Link to="/login" onClick={closeMenu}>
+                    Logga in
+                  </Link>
+                </button>
+                <button>
+                  <Link to="/signup" onClick={closeMenu}>
+                    Registrera
+                  </Link>
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
