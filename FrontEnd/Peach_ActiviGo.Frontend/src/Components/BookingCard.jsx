@@ -2,10 +2,7 @@ const BookingCard = ({ booking }) => {
   return (
     <div className="booking-card">
       <h3>Bokning #{booking.id}</h3>
-      <div className="booking-details">
-        {/* Visar all bokningsdata som JSON för felsökning */}
-        <p>{JSON.stringify(booking, null, 2)}</p>
-      </div>
+      {/* <div className="booking-details"></div> */}
       <div className="booking-overview">
         <h2>Översikt</h2>
         <p>Boknings-ID: {booking.id}</p>
