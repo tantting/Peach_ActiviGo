@@ -34,7 +34,7 @@ const FetchActivitySlots = (activityLocationId = null) => {
           // Filtrera bort lokalt sparade bokade slots
           const bookedSlots = getBookedSlots();
           const availableSlots = filteredData.filter(
-            slot => !bookedSlots.has(slot.id)
+            (slot) => !bookedSlots.has(slot.id)
           );
 
           setActivitySlots(availableSlots);
@@ -55,9 +55,9 @@ const FetchActivitySlots = (activityLocationId = null) => {
   const removeSlot = (slotId) => {
     // Markera som bokad i localStorage
     markSlotAsBooked(slotId);
-    
+
     // Ta bort från aktuell lista
-    setActivitySlots((prevSlots) => 
+    setActivitySlots((prevSlots) =>
       prevSlots.filter((slot) => slot.id !== slotId)
     );
   };
