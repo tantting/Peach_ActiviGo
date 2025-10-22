@@ -1,6 +1,7 @@
 import FetchActivityLocations from "../Components/HelperFunctions/FetchActivityLocations";
 import ActivityLocationCard from "../Components/ActivityLocationCard";
 import "../Styles/Activity.css";
+import FilterSearchForm from "../Components/FilterSearchForm";
 
 export default function ActivityView() {
   const { activityLocations, loading, error } = FetchActivityLocations();
@@ -29,6 +30,7 @@ export default function ActivityView() {
   return (
     <div className="page-container">
       <h1>Våra Aktivitetsplatser</h1>
+      <FilterSearchForm />
       <div className="activities-grid">
         {activityLocations.length > 0 ? (
           activityLocations.map((activityLocation) => (

@@ -1,0 +1,23 @@
+.filterSearch{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.filterSearch label{
+    font-size: 0.9rem;
+    
+}
+
+.filterSearch p {
+    color: red;
+    font-size: 0.9rem;
+}
+
+.filterSearch button {
+    background-color: #e79a6e;
+    color: white;
+}
+
+
+    
