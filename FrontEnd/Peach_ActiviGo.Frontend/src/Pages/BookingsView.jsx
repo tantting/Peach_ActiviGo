@@ -5,6 +5,9 @@ import "../Styles/Bookings.css";
 export default function BookingsView() {
   const { bookings, loading, error } = FetchBookings();
 
+  // Sortera bokningar efter booking.id (lägsta ID först)
+  const sortedBookings = bookings.sort((a, b) => a.id - b.id);
+
   if (loading) {
     return (
       <div className="page-container">
@@ -30,8 +33,8 @@ export default function BookingsView() {
     <div className="page-container">
       <h1>Bokningar</h1>
       <div className="bookings-grid">
-        {bookings.length > 0 ? (
-          bookings.map((booking) => (
+        {sortedBookings.length > 0 ? (
+          sortedBookings.map((booking) => (
             <BookingCard key={booking.id} booking={booking} />
           ))
         ) : (
