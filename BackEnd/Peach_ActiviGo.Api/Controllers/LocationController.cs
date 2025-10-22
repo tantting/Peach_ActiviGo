@@ -9,7 +9,7 @@ namespace Peach_ActiviGo.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Tags("Admin")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
