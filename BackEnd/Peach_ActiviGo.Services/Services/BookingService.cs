@@ -101,7 +101,6 @@ public class BookingService : IBookingService
         _unitOfWork.Bookings.UpdateBooking(existingBooking);
         await _unitOfWork.SaveChangesAsync(ct);
     }
-    
 
     public async Task DeleteBookingAsync(int id, CancellationToken ct)
     {
@@ -112,4 +111,9 @@ public class BookingService : IBookingService
         await _unitOfWork.SaveChangesAsync(ct);
     }
 
-}   
+    public async Task<BookingStatisticsDto> GetBookingStatisticsAsync(CancellationToken ct)
+    {
+        var stats = await _unitOfWork.Bookings.GetBookingStatisticsAsync(ct);
+        return _mapper.Map<BookingStatisticsDto>(stats);
+    }
+}
