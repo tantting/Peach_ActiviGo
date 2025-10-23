@@ -1,23 +1,63 @@
 .filterSearch{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
 }
 
+.filterSearch>div {
+    display: flex;
+    flex-direction: column;
+    /* staplar label, input, error vertikalt */
+    margin-bottom: 1rem;
+    /* lite mellanrum mellan fälten */
+}
+
+
 .filterSearch label{
     font-size: 0.9rem;
-    
 }
 
 .filterSearch p {
     color: red;
     font-size: 0.9rem;
+    width: 100%;
+    margin: 0.25rem 0 0 0;
 }
 
 .filterSearch button {
+    display: inline-flex;
+        /* flexbox på knappen */
+        justify-content: center;
+        /* horisontellt centrerat */
+        align-items: center;
     background-color: #e79a6e;
     color: white;
+    margin: 0.25rem 0 0 0;
+    padding: 0.25rem 1rem;
+    height: 1.2rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    font-size: 0.9rem;
 }
 
-
+.filterSearch input,
+.filterSearch select {
+    width: 120px;
+    /* samma som max-width på div */
+}
     
+/* .SearchReset {
+    display: flex;
+        flex-direction: column;
+        /* staplar knapparna vertikalt */
+        align-items: center;
+        /* horisontellt centrerat */
+        justify-content: center;
+        /* vertikalt centrerat i div */
+} */
