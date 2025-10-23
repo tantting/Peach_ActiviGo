@@ -13,4 +13,5 @@ public interface IBookingService
     Task<BookingDto> CreateBookingAsync(BookingCreateDto booking, string userId, CancellationToken ct);
     Task CancelBookingBeforeCutOffAsync(int id, CancellationToken ct);
     Task DeleteBookingAsync(int id, CancellationToken ct);
+    Task<BookingStatisticsDto> GetBookingStatisticsAsync(CancellationToken ct);
 }
