@@ -3,7 +3,7 @@ import FetchPeachApi from "./FetchPeachApi.jsx";
 import { getLocalStorage, saveLocalStorage } from "./LocalStorage.jsx";
 
 const FetchActivitySlots = (activityLocationId = null) => {
-  const [ActivitySlots, setActivitySlots] = useState([]);
+  const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -37,11 +37,11 @@ const FetchActivitySlots = (activityLocationId = null) => {
             (slot) => !bookedSlots.has(slot.id)
           );
 
-          setActivitySlots(availableSlots);
+          setSlots(availableSlots);
         })
         .catch((error) => {
           setError(error.message);
-          setActivitySlots([]);
+          setSlots([]);
         })
         .finally(() => {
           setLoading(false);
@@ -57,13 +57,11 @@ const FetchActivitySlots = (activityLocationId = null) => {
     markSlotAsBooked(slotId);
 
     // Ta bort från aktuell lista
-    setActivitySlots((prevSlots) =>
-      prevSlots.filter((slot) => slot.id !== slotId)
-    );
+    setSlots((prevSlots) => prevSlots.filter((slot) => slot.id !== slotId));
   };
 
   // Returnera data som en custom hook
-  return { ActivitySlots, loading, error, removeSlot };
+  return { slots, loading, error, removeSlot };
 };
 
 export default FetchActivitySlots;

@@ -6,15 +6,25 @@ import { useNavigate } from "react-router-dom";
 import createBooking from "./HelperFunctions/CreateBooking.jsx";
 import { isTokenValid } from "./HelperFunctions/AuthService.js";
 
-const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
+/**
+ *
+ *
+ * @param {slot} { Array avslots }
+ * @param {loading} { Bool som indikerar om data laddas }
+ * @param {error} { Eventuell felinformation vid laddning av slots }
+ * @param {onSlotBooked} { Callback-funktion som anropas vid lyckad bokning av slot }
+ * @return {*}
+ */
+const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [bookingStates, setBookingStates] = useState({});
+  const navigate = useNavigate();
 
   const handleBooking = async (slot, index) => {
     // Kontrollera om användaren är inloggad
     const tokenValid = isTokenValid();
 
+    // Om inte inloggad, omdirigera till login-sidan
     if (!isAuthenticated) {
       alert("Du måste logga in för att boka en aktivitet.");
       navigate("/login");
@@ -35,12 +45,9 @@ const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
     }
 
     // Sätt loading state för denna specifika slot
-    const oldState = bookingStates[index] || {};
-    const newState = { loading: true, error: null };
-
     setBookingStates((prev) => ({
       ...prev,
-      [index]: newState,
+      [index]: { loading: true, error: null },
     }));
 
     try {
@@ -48,14 +55,12 @@ const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
         activitySlotId: slot.id,
       };
 
-      const response = await createBooking(bookingData);
+      await createBooking(bookingData);
 
       // Sätt success state
-      const successState = { loading: false, success: true, error: null };
-
       setBookingStates((prev) => ({
         ...prev,
-        [index]: successState,
+        [index]: { loading: false, success: true, error: null },
       }));
 
       // Ta bort sloten från listan efter lyckad bokning
@@ -69,11 +74,9 @@ const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
       );
     } catch (error) {
       // Sätt error state
-      const errorState = { loading: false, error: error.message };
-
       setBookingStates((prev) => ({
         ...prev,
-        [index]: errorState,
+        [index]: { loading: false, error: error.message },
       }));
 
       alert(`Fel vid bokning: ${error.message}`);
@@ -82,13 +85,13 @@ const ActivitySlots = ({ ActivitySlots, loading, error, onSlotBooked }) => {
   if (loading) return <div>Laddar lediga tider...</div>;
   if (error) return <div>Fel vid laddning av tider: {error}</div>;
 
-  if (!ActivitySlots || ActivitySlots.length === 0) {
+  if (!slots || slots.length === 0) {
     return <div>Inga lediga tider tillgängliga för tillfället.</div>;
   }
 
   return (
     <div className="activity-slots">
-      {ActivitySlots.map((slot, index) => {
+      {slots.map((slot, index) => {
         const slotState = bookingStates[index] || {};
         const isLoading = slotState.loading;
         const hasError = slotState.error;
