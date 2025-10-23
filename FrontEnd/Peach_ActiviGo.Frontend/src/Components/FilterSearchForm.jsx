@@ -5,32 +5,40 @@ import { API_BASE_URL } from "../utils/constants";
 import FetchContent from "./HelperFunctions/FetchContent";
 
 const TranslatePayload = (formdata) => {
-  const startDate = formdata.date
-    ? new Date(
-        `${formdata.date}T${formdata.startTime || "00:00"}:00`
-      ).toISOString()
-    : null;
+  const payload = {};
 
-  const endDate = formdata.date
-    ? new Date(
-        `${formdata.date}T${formdata.endTime || "23:59"}:00`
-      ).toISOString()
-    : null;
+  if (formdata.date) {
+    payload.StartDate = new Date(
+      `${formdata.date}T${formdata.startTime || "00:00"}:00`
+    ).toISOString();
 
-  const payload = {
-    StartDate: startDate,
-    EndDate: endDate,
-    CategoryId: formdata.category ? Number(formdata.category) : null,
-    IsIndoor: formdata.inOutDoor === "indoor" ? true : false,
-    LocationId: null,
-    OnlyAvailableSlots: formdata.availableSpotsOnly
-      ? formdata.availableSpotsOnly === "true"
-      : null,
-  };
+    payload.EndDate = new Date(
+      `${formdata.date}T${formdata.endTime || "23:59"}:00`
+    ).toISOString();
+  }
+
+  if (formdata.category) {
+    payload.CategoryId = Number(formdata.category);
+  }
+
+  if (formdata.inOutDoor === "indoor") {
+    payload.IsIndoor = true;
+  } else if (formdata.inOutDoor === "outdoor") {
+    payload.IsIndoor = false;
+  }
+
+  if (formdata.availableSpotsOnly === "true") {
+    payload.OnlyAvailableSlots = true;
+  }
+
+  if (formdata.numberSpots && Number(formdata.numberSpots) > 0) {
+    payload.NumberOfSpots = Number(formdata.numberSpots);
+  }
+
   return payload;
 };
 
-const FilterSearchForm = () => {
+const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
   const {
     register,
     watch,
@@ -40,12 +48,19 @@ const FilterSearchForm = () => {
   } = useForm({ mode: "onChange" });
 
   const onSearch = async (formdata) => {
-    const payload = TranslatePayload(formdata);
-    console.log("Payload till API:", payload);
+    setLoading(true);
+    setError(null);
 
-    const UrlAddOn = "/api/ActivityLocation/FilterActivityLocations";
-    const activityLocations = await FetchContent(payload, UrlAddOn);
-    console.log("Hämtade activityLocations", activityLocations);
+    try {
+      const payload = TranslatePayload(formdata);
+      const UrlAddOn = "/api/ActivityLocation/FilterActivityLocations";
+      const data = await FetchContent(payload, UrlAddOn);
+      setActivityLocations(data || []);
+    } catch (err) {
+      setError("Kunde inte hämta aktiviteter");
+    } finally {
+      setLoading(false);
+    }
   };
   const handleReset = () => {
     reset({
@@ -94,7 +109,6 @@ const FilterSearchForm = () => {
     },
     endTime: {
       validate: (value) => {
-        console.log("startTime:", startTime, "date:", date, "value:", value);
         if (!value) return true;
         if (!startTime || startTime.trim() === "")
           return "Du måste ange en starttid först";
