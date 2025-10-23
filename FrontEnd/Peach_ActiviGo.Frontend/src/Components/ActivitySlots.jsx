@@ -9,7 +9,7 @@ import { isTokenValid } from "./HelperFunctions/AuthService.js";
 /**
  *
  *
- * @param {slot} { Array of slots, loading, error, onSlotBooked }
+ * @param {slot} { Array avslots }
  * @param {loading} { Bool som indikerar om data laddas }
  * @param {error} { Eventuell felinformation vid laddning av slots }
  * @param {onSlotBooked} { Callback-funktion som anropas vid lyckad bokning av slot }
