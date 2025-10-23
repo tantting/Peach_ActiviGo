@@ -21,9 +21,10 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
 
   // Hämta aktivitetsslots
   const {
-    ActivitySlots: activitySlots,
+    slots: activitySlots,
     loading: slotsLoading,
     error: slotsError,
+    removeSlot,
   } = FetchActivitySlots(activityLocation?.id);
 
   if (loading) {
@@ -108,9 +109,10 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
       <div className="activity-slots-section">
         <h3>📅 Lediga tider</h3>
         <ActivitySlots
-          ActivitySlots={activitySlots}
+          slots={activitySlots}
           loading={slotsLoading}
           error={slotsError}
+          onSlotBooked={removeSlot}
         />
       </div>
     </div>
