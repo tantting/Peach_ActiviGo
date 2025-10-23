@@ -51,13 +51,3 @@
     width: 120px;
     /* samma som max-width på div */
 }
-    
-/* .SearchReset {
-    display: flex;
-        flex-direction: column;
-        /* staplar knapparna vertikalt */
-        align-items: center;
-        /* horisontellt centrerat */
-        justify-content: center;
-        /* vertikalt centrerat i div */
-} */
