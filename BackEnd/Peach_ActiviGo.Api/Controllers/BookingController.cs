@@ -123,6 +123,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Statistics
+        //[Authorize(Policy = "AdminOnly")]
         [HttpGet("statistics", Name = "GetBookingStatistics")]
         [ProducesResponseType(typeof(BookingStatisticsDto), StatusCodes.Status200OK)]
         public async Task<ActionResult<BookingStatisticsDto>> GetBookingStatistics(CancellationToken ct)
