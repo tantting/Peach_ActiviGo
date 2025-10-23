@@ -1,4 +1,5 @@
 using Peach_ActiviGo.Core.Enums;
+using Peach_ActiviGo.Core.Filter;
 using Peach_ActiviGo.Core.Models;
 
 namespace Peach_ActiviGo.Core.Interface;
@@ -12,4 +13,5 @@ public interface IBookingRepository
     void UpdateBooking(Booking booking);
     void DeleteBooking(Booking booking);
     Task<bool> UserHasActiveBookingAsync(string userId, int activitySlotId, CancellationToken ct);
+    Task<StatisticFilter> GetBookingStatisticsAsync(CancellationToken ct);
 }
