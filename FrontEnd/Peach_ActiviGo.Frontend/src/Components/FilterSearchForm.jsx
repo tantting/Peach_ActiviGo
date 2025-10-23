@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/FilterSearchForm.css";
-import { useForm } from "react-hook-form";
+import { useForm, useState, useEffect } from "react-hook-form";
+import { API_BASE_URL } from "../utils/constants";
 
 const FilterSearchForm = () => {
   const {
@@ -38,6 +39,18 @@ const FilterSearchForm = () => {
       },
     },
   };
+
+  const [initCategories, setInitCategories] = useState([]);
+  const categoryURL = `${API_BASE_URL}/api/Categories`;
+
+  useEffect(() => {
+    async function getInitialCategory() {
+      const response = await fetch(categoryURL);
+      const fetchedCategories = await response.json();
+      setInitCategories(fetchedCategories);
+    }
+    getInitialCategory();
+  }, []);
 
   return (
     <form
