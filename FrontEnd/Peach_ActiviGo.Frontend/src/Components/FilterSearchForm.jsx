@@ -220,7 +220,7 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
         )}
       </div>
       <div className="SearchReset">
-        <button type="submit">Search</button>
+        <button type="submit">Sök</button>
         <button type="button" onClick={handleReset}>
           Rensa filter
         </button>
