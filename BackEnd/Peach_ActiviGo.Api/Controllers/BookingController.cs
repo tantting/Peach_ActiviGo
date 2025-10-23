@@ -122,5 +122,13 @@ namespace Peach_ActiviGo.Api.Controllers
             return NoContent();
         }
 
+        // Statistics
+        [HttpGet("statistics", Name = "GetBookingStatistics")]
+        [ProducesResponseType(typeof(BookingStatisticsDto), StatusCodes.Status200OK)]
+        public async Task<ActionResult<BookingStatisticsDto>> GetBookingStatistics(CancellationToken ct)
+        {
+            var statistics = await _bookingService.GetBookingStatisticsAsync(ct);
+            return Ok(statistics);
+        }
     }
 }
