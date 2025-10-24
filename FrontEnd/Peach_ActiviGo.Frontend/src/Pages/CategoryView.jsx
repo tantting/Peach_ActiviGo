@@ -1,31 +1,44 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import FetchContent from "../Components/HelperFunctions/FetchContent";
+import "../Styles/Global.css";
 
 export default function CategoryView() {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchCategories = async () => {
+    setLoading(true);
+    try {
+      const data = await FetchContent("/api/Categories");
+      setCategories(data || []);
+    } catch (err) {
+      setError("Kunde inte hämta kategorier");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  if (loading) return <p>Laddar kategorier…</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div className="page-container">
       <h1>Kategorier</h1>
       <p>Utforska olika kategorier av aktiviteter</p>
 
       <div className="categories-list">
-        <div className="category-item">
-          {/* Lägg in data ifrån Kategorier här */}
-          {/* Nedan divvar är bara exempeldata */}
-
-          <h3>🏃‍♂️ Kondition</h3>
-          <p>Löpning, cykling, simning och andra konditionsaktiviteter</p>
-        </div>
-        <div className="category-item">
-          <h3>⚽ Lagsporter</h3>
-          <p>Fotboll, basket, volleyboll och andra lagsporter</p>
-        </div>
-        <div className="category-item">
-          <h3>🧘‍♀️ Välmående</h3>
-          <p>Yoga, pilates, meditation och avslappning</p>
-        </div>
-        <div className="category-item">
-          <h3>🏋️‍♂️ Styrketräning</h3>
-          <p>Gym, crossfit och viktlyftning</p>
-        </div>
+        {categories.map((category) => (
+          <div className="category-item" key={category.name}>
+            <h3>{category.name}</h3>
+            <p>{category.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
