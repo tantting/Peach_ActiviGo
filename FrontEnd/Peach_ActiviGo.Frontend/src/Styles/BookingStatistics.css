@@ -27,22 +27,32 @@ button{
         cursor: pointer;
         transition: background-color 0.2s, transform 0.2s;
 }
-
 .stat-table-container {
-    margin: 2rem auto;
-    width: 80%;
+    margin-bottom: 2rem;
 }
 
 .stat-table {
-    width: 100%;
+    width: 80%;
+    margin: 1rem auto;
     border-collapse: collapse;
+    table-layout: fixed; /* Viktigt: gör kolumner lika breda */
     text-align: left;
     font-family: Arial, sans-serif;
 }
 
-.stat-table td,
-.stat-table th {
+.stat-table th, .stat-table td {
     padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.stat-table th {
+    background-color: #f4a261; /* ljus färg för header */
+    color: white;
+    font-weight: 600;
+}
+
+.stat-table td {
+    color: #333;
 }
 
 .stat-table tr:nth-child(even) {
@@ -54,11 +64,9 @@ button{
 }
 
 .stat-heading {
-    font-weight: 600;
-    color: #333;
+    text-align: left;
 }
 
 .stat-value {
-    font-weight: 500;
-    color: #555;
+    text-align: right; /* Värdena hamnar snyggt till höger */
 }

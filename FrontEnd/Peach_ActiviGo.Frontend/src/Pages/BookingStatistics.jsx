@@ -24,7 +24,15 @@ export default function BookingStatistics() {
     fetchStat();
   }, []);
 
-  const headingsNew = [];
+  const headingsMap = {
+    totalBookingsThisMonth: "Totalt bokningar denna månad",
+    totalBookingsThisWeek: "Totalt bokningar denna vecka",
+    mostPopularActivity: "Mest populära aktivitet",
+    topCustomer: "Toppkund",
+    totalRevenue: "Total intäkt",
+    activeBookings: "Aktiva bokningar",
+    canceledBookings: "Avbokade bokningar",
+  };
 
   return (
     <div className="page-container">
@@ -34,10 +42,12 @@ export default function BookingStatistics() {
         <table className="stat-table">
           <tbody>
             {Object.entries(adminStats || {})
-              .filter(([key, value]) => key !== "totalBookingsPerActivity") // filtrera bort nested objektet
+              .filter(([key]) => key !== "totalBookingsPerActivity")
               .map(([heading, value]) => (
                 <tr key={heading}>
-                  <td className="stat-heading">{heading}</td>
+                  <td className="stat-heading">
+                    {headingsMap[heading] || heading}
+                  </td>
                   <td className="stat-value">{value}</td>
                 </tr>
               ))}
