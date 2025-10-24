@@ -33,9 +33,6 @@ export default function CategoryView() {
       <p>Utforska olika kategorier av aktiviteter</p>
 
       <div className="categories-list">
-        {/* Lägg in data ifrån Kategorier här */}
-        {/* Nedan divvar är bara exempeldata */}
-
         {categories.map((category) => (
           <div className="category-item" key={category.name}>
             <h3>{category.name}</h3>
