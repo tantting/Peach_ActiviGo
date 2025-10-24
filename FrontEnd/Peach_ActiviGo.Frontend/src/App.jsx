@@ -9,6 +9,7 @@ import RegisterView from "./Pages/RegisterView.jsx";
 import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
 import Footer from "./Components/Footer.jsx";
 import UserBookingsView from "./Pages/UserBookingsView.jsx";
+import AdminView from "./Pages/AdminView.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
 import BookingStatistics from "./Pages/BookingStatistics.jsx";
 
@@ -24,6 +25,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ActivityView />} />
+          <Route path="/admin" element={<AdminView />} />
           <Route path="/about" element={<CategoryView />} />
           <Route path="/contact" element={<ContactView />} />
           <Route path="/login" element={<LoginView />} />
