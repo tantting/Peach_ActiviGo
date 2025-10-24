@@ -26,11 +26,11 @@ export default function BookingStatistics() {
 
   return (
     <div className="page-container">
-      <h1>Statistik</h1>
+      <h2>Bokningsstatistik</h2>
       <div className="div-container">
         {/* Översikt */}
         <div className="statDiv">
-          <h2>Översikt</h2>
+          <h3>Översikt</h3>
           <ul>
             {Object.entries(adminStats || {})
               .filter(([key, value]) => key !== "totalBookingsPerActivity") // filtrera bort nested objektet
@@ -43,7 +43,7 @@ export default function BookingStatistics() {
         </div>
 
         <div className="statDiv">
-          <h2>Totalt antal bokningar per aktivitet</h2>
+          <h3>Totalt antal bokningar per aktivitet</h3>
           <ul>
             {Object.entries(adminStats.totalBookingsPerActivity || {}).map(
               ([activity, count]) => (

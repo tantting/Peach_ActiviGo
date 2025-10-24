@@ -4,7 +4,7 @@ import { AuthContext } from "../Components/AuthContext.jsx";
 import "../Styles/Navbar.css";
 
 export default function Navbar() {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, isAdmin, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -40,9 +40,6 @@ export default function Navbar() {
         {/* Navigation Menu */}
         <div className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
           <div className="nav-links">
-            <Link to="/bookingStatistics" onClick={closeMenu}>
-              Statistik
-            </Link>
             <Link to="/" onClick={closeMenu}>
               Aktiviteter
             </Link>
@@ -53,6 +50,11 @@ export default function Navbar() {
               Kontakt
             </Link>
             {isAuthenticated && <Link to="/mybookings">Mina bokningar</Link>}
+            {isAdmin && (
+              <Link to="/admin" onClick={closeMenu}>
+                AdminVy
+              </Link>
+            )}
           </div>
           <div className="auth-buttons">
             {isAuthenticated ? (

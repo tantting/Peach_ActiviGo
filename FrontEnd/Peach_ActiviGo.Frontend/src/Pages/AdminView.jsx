@@ -3,6 +3,7 @@ import "../Styles/AdminView.css";
 import FetchPeachApi from "../Components/HelperFunctions/FetchPeachApi.jsx";
 import FetchCreateActivity from "../Components/HelperFunctions/FetchCreateActivity.jsx";
 import FetchUpdateActivity from "../Components/HelperFunctions/FetchUpdateActivity.jsx";
+import BookingStatistics from "../Pages/BookingStatistics.jsx";
 
 const ACTIVITY_ENDPOINT = "/api/activities";
 
@@ -55,6 +56,7 @@ export default function AdminView() {
   // Öppnare
   const openCreate = () => setSelectedAction("create");
   const openUpdate = () => setSelectedAction("update");
+  const openStatistics = () => setSelectedAction("statistics");
   const goBack = () => setSelectedAction(null);
 
   // onChange handlers
@@ -108,22 +110,20 @@ export default function AdminView() {
 
   return (
     <div className="admin-container">
-      <button className="admin-button" onClick={() => setShowCards((v) => !v)}>
-        Admin Vy
-      </button>
-
       {/* KORTEN */}
-      {showCards && !selectedAction && (
-        <div className="card-container">
-          <button className="card green-card" onClick={openCreate}>
-            <span className="card-title">Lägg till aktivitet</span>
-          </button>
+      <div className="card-container">
+        <button className="card green-card" onClick={openCreate}>
+          <span className="card-title">Lägg till aktivitet</span>
+        </button>
 
-          <button className="card yellow-card" onClick={openUpdate}>
-            <span className="card-title">Uppdatera aktivitet</span>
-          </button>
-        </div>
-      )}
+        <button className="card yellow-card" onClick={openUpdate}>
+          <span className="card-title">Uppdatera aktivitet</span>
+        </button>
+
+        <button className="card yellow-card" onClick={openStatistics}>
+          <span className="card-title">Statistik</span>
+        </button>
+      </div>
 
       {/* CREATE-PANEL */}
       {selectedAction === "create" && (
@@ -245,7 +245,11 @@ export default function AdminView() {
               <button type="button" className="btn ghost" onClick={goBack}>
                 Tillbaka
               </button>
-              <button type="submit" className="btn primary" disabled={createLoading}>
+              <button
+                type="submit"
+                className="btn primary"
+                disabled={createLoading}
+              >
                 {createLoading ? "Sparar…" : "Spara"}
               </button>
             </div>
@@ -281,7 +285,11 @@ export default function AdminView() {
                 />
               </div>
               <div className="panel-actions compact">
-                <button type="submit" className="btn primary" disabled={updateLoading}>
+                <button
+                  type="submit"
+                  className="btn primary"
+                  disabled={updateLoading}
+                >
                   {updateLoading ? "Hämtar…" : "Hämta"}
                 </button>
                 <button type="button" className="btn ghost" onClick={goBack}>
@@ -371,12 +379,33 @@ export default function AdminView() {
                 <button type="button" className="btn ghost" onClick={goBack}>
                   Avbryt
                 </button>
-                <button type="submit" className="btn primary" disabled={updateLoading}>
+                <button
+                  type="submit"
+                  className="btn primary"
+                  disabled={updateLoading}
+                >
                   {updateLoading ? "Sparar…" : "Spara ändringar"}
                 </button>
               </div>
             </form>
           )}
+        </section>
+      )}
+      {selectedAction === "statistics" && (
+        <section className="action-panel">
+          <div className="panel-header">
+            <h2>Statistik</h2>
+            <p>Visa statistik for bokningar.</p>
+          </div>
+          <BookingStatistics
+            showTitle={false}
+            containerClassName="statistics-embedded"
+          />
+          <div className="panel-actions">
+            <button type="button" className="btn ghost" onClick={goBack}>
+              Tillbaka
+            </button>
+          </div>
         </section>
       )}
     </div>
