@@ -54,7 +54,6 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
     try {
       const payload = TranslatePayload(formdata);
       const UrlAddOn = "/api/ActivityLocation/FilterActivityLocations";
-      console.log("payload: ", payload);
       const data = await FetchContent(UrlAddOn, payload);
       setActivityLocations(data || []);
     } catch (err) {
@@ -82,7 +81,6 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
   const registerOption = {
     date: {
       validate: (value) => {
-        console.log("startTime:", startTime, "date:", date, "value:", value);
         if (!value) return true; // fältet är frivilligt
         const today = new Date();
         const selectedDate = new Date(value);
@@ -95,7 +93,6 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
     },
     startTime: {
       validate: (value) => {
-        console.log("startTime:", startTime, "date:", date, "value:", value);
         if (!value) return true; //frivillig
         if (!date) return "Du måste ange datum först";
         const now = new Date();
