@@ -24,37 +24,43 @@ export default function BookingStatistics() {
     fetchStat();
   }, []);
 
+  const headingsNew = [];
+
   return (
     <div className="page-container">
       <h1>Statistik</h1>
-      <div className="div-container">
-        {/* Översikt */}
-        <div className="statDiv">
-          <h2>Översikt</h2>
-          <ul>
+      <div className="stat-table-container">
+        <h2>Översikt</h2>
+        <table className="stat-table">
+          <tbody>
             {Object.entries(adminStats || {})
               .filter(([key, value]) => key !== "totalBookingsPerActivity") // filtrera bort nested objektet
               .map(([heading, value]) => (
-                <li key={heading}>
-                  {heading}: {value}
-                </li>
+                <tr key={heading}>
+                  <td className="stat-heading">{heading}</td>
+                  <td className="stat-value">{value}</td>
+                </tr>
               ))}
-          </ul>
-        </div>
+          </tbody>
+        </table>
+      </div>
 
-        <div className="statDiv">
-          <h2>Totalt antal bokningar per aktivitet</h2>
-          <ul>
+      <div className="stat-table-container">
+        <h2>Totalt antal bokningar per aktivitet</h2>
+        <table className="stat-table">
+          <tbody>
             {Object.entries(adminStats.totalBookingsPerActivity || {}).map(
               ([activity, count]) => (
-                <li key={activity}>
-                  {activity}: {count}
-                </li>
+                <tr key={activity}>
+                  <td className="stat-heading">{activity}</td>
+                  <td className="stat-value">{count}</td>
+                </tr>
               )
             )}
-          </ul>
-        </div>
+          </tbody>
+        </table>
       </div>
+
       <div className="button-container">
         <button onClick={fetchStat} disabled={loading}>
           {loading ? "Uppdaterar..." : "Uppdatera statistik"}

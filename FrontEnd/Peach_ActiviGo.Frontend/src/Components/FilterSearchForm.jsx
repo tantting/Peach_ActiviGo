@@ -32,7 +32,7 @@ const TranslatePayload = (formdata) => {
   }
 
   if (formdata.numberSpots && Number(formdata.numberSpots) > 0) {
-    payload.NumberOfSpots = Number(formdata.numberSpots);
+    payload.requiredPersons = Number(formdata.numberSpots);
   }
 
   return payload;
@@ -54,6 +54,7 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
     try {
       const payload = TranslatePayload(formdata);
       const UrlAddOn = "/api/ActivityLocation/FilterActivityLocations";
+      console.log("payload: ", payload);
       const data = await FetchContent(UrlAddOn, payload);
       setActivityLocations(data || []);
     } catch (err) {
