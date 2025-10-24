@@ -54,7 +54,7 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
     try {
       const payload = TranslatePayload(formdata);
       const UrlAddOn = "/api/ActivityLocation/FilterActivityLocations";
-      const data = await FetchContent(payload, UrlAddOn);
+      const data = await FetchContent(UrlAddOn, payload);
       setActivityLocations(data || []);
     } catch (err) {
       setError("Kunde inte hämta aktiviteter");
