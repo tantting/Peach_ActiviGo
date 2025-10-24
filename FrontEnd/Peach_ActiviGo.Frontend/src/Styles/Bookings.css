@@ -56,7 +56,8 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   color: #666;
-  grid-column: 1 / -1; /* Spänner över alla kolumner */
+  grid-column: 1 / -1;
+  /* Spänner över alla kolumner */
 }
 
 .no-bookings h3 {
@@ -113,15 +114,15 @@ button:has(.booking-button) {
     gap: 15px;
     text-align: center;
   }
-  
+
   .bookings-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .booking-card {
     padding: 15px;
   }
-  
+
   .booking-button {
     padding: 10px 20px;
     font-size: 14px;
@@ -135,4 +136,139 @@ button:has(.booking-button) {
   border: 1px solid #eee;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* --- Mina bokningar (user view) --- */
+.user-bookings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.user-bookings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.user-bookings-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  justify-items: center;
+}
+
+@media (max-width: 1024px) {
+  .user-bookings-grid {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 700px) {
+  .user-bookings-grid {
+    grid-template-columns: minmax(320px, 1fr);
+    max-width: 500px;
+  }
+}
+
+.user-booking-detail {
+  max-width: 340px;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #a1f0b5 0%, #9de8a7 100%);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-booking-detail:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.user-booking-detail.is-cancelled {
+  background: linear-gradient(135deg, #f3b6b6 0%, #f59393 100%);
+}
+
+.user-booking-image {
+  margin-top: 0.75rem;
+}
+
+.user-booking-slot {
+  margin-top: 1rem;
+}
+
+.user-booking-slot-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.user-booking-slot-card p {
+  margin: 0;
+  color: #2f2f2f;
+  font-size: 0.95rem;
+}
+
+.user-booking-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cancel-booking-button {
+  background: #ff8768;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cancel-booking-button:hover {
+  background: #f36945;
+  transform: translateY(-1px);
+}
+
+.cancel-booking-button:active {
+  transform: scale(0.98);
+}
+
+.user-booking-cancelled-at {
+  text-align: center;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(44, 85, 48, 0.85);
+}
+
+@media (max-width: 768px) {
+  .user-bookings-page {
+    gap: 2rem;
+  }
+
+  .user-booking-detail {
+    max-width: 100%;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-bookings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cancel-booking-button {
+    width: 100%;
+  }
 }

@@ -5,10 +5,13 @@ import { API_ENDPOINTS } from "../../utils/constants.js";
 // Registrera användare
 export const registerUser = async (userData) => {
   try {
-    const response = await FetchPeachApi(API_ENDPOINTS.authentication.register, {
-      method: "PUT",
-      data: userData,
-    });
+    const response = await FetchPeachApi(
+      API_ENDPOINTS.authentication.register,
+      {
+        method: "PUT",
+        data: userData,
+      }
+    );
     return response;
   } catch (error) {
     console.error("Fel vid registrering:", error.message);
@@ -21,7 +24,10 @@ export const loginUser = async (credentials) => {
   try {
     const response = await FetchPeachApi(API_ENDPOINTS.authentication.login, {
       method: "POST",
-      data: credentials,
+      data: {
+        Email: credentials.email,
+        Password: credentials.password,
+      },
     });
 
     const token = response?.token;
@@ -50,8 +56,13 @@ export const inspectToken = () => {
   }
 
   try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload;
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    const userId =
+      payload["userId"] ||
+      payload[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ];
+    return { ...payload, userId };
   } catch (error) {
     console.error("Fel vid dekodning av token:", error);
     return null;
@@ -67,7 +78,7 @@ export const isTokenValid = () => {
 
   try {
     // Dekoda JWT token för att kontrollera expiration
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    const payload = JSON.parse(atob(token.split(".")[1]));
     const currentTime = Date.now() / 1000;
 
     // Kontrollera om token har gått ut

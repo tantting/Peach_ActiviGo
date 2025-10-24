@@ -2,6 +2,27 @@ import { useState, useEffect } from "react";
 import FetchPeachApi from "./FetchPeachApi.jsx";
 import { getLocalStorage, saveLocalStorage } from "./LocalStorage.jsx";
 
+const BOOKED_SLOTS_KEY = "bookedSlots";
+
+const getBookedSlotsSet = () => {
+  const bookedSlots = getLocalStorage(BOOKED_SLOTS_KEY);
+  return new Set(bookedSlots?.data || []);
+};
+
+const persistBookedSlotsSet = (bookedSlots) => {
+  saveLocalStorage(BOOKED_SLOTS_KEY, Array.from(bookedSlots));
+};
+
+export const releaseBookedSlot = (slotId) => {
+  if (slotId === undefined || slotId === null) {
+    return;
+  }
+  const bookedSlots = getBookedSlotsSet();
+  if (bookedSlots.delete(slotId)) {
+    persistBookedSlotsSet(bookedSlots);
+  }
+};
+
 const FetchActivitySlots = (activityLocationId = null) => {
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,15 +30,14 @@ const FetchActivitySlots = (activityLocationId = null) => {
 
   // Hämta lokalt sparade bokade slots
   const getBookedSlots = () => {
-    const bookedSlots = getLocalStorage("bookedSlots");
-    return new Set(bookedSlots?.data || []);
+    return getBookedSlotsSet();
   };
 
   // Spara en slot som bokad lokalt
   const markSlotAsBooked = (slotId) => {
-    const bookedSlots = getBookedSlots();
+    const bookedSlots = getBookedSlotsSet();
     bookedSlots.add(slotId);
-    saveLocalStorage("bookedSlots", Array.from(bookedSlots));
+    persistBookedSlotsSet(bookedSlots);
   };
 
   useEffect(() => {
