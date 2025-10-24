@@ -1,0 +1,145 @@
+.admin-container {
+  background-color: #dff0d8; /* ljusgrön bakgrund */
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.admin-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: default;
+  font-weight: bold;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 240px));
+  justify-content: center;   /* centrera gridens innehåll */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Bas för kort */
+.card {
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Färg på respektive kort */
+.green-card {
+  background-color: #d68958;
+}
+
+.yellow-card {
+  background-color: #d68958;
+  color: #fffefe;
+}
+
+.action-panel {
+  max-width: 720px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.16);
+  padding: 20px;
+}
+
+.panel-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+
+.panel-header p {
+  margin: 0 0 16px;
+  color: #555;
+}
+
+/* Formlayout */
+.panel-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  gap: 6px;
+}
+
+.form-row label {
+  font-weight: 600;
+}
+
+.form-row input {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  background: #fafafa;
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: #f46b4d; /* samma orange som knapparna i navbaren */
+  background: #fff;
+}
+
+/* Panelknappar */
+.panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #d68958; 
+  color: #fff;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn:hover {
+  filter: brightness(0.98);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

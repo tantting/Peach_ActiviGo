@@ -8,6 +8,7 @@ import LoginView from "./Pages/LoginView.jsx";
 import RegisterView from "./Pages/RegisterView.jsx";
 import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
 import Footer from "./Components/Footer.jsx";
+import AdminView from "./Pages/AdminView.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
 // CSS
 import "./Styles/Global.css";
@@ -21,6 +22,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ActivityView />} />
+          <Route path="/admin" element={<AdminView />} />
           <Route path="/about" element={<CategoryView />} />
           <Route path="/contact" element={<ContactView />} />
           <Route path="/login" element={<LoginView />} />
