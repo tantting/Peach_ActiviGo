@@ -42,7 +42,7 @@ namespace Peach_ActiviGo.Services.Services
 
         public async Task<IEnumerable<ReadActivityLocationDto>> FilterActivityLocationsAsync(ActivityLocationFilterDto filter, CancellationToken ct)
         {
-            // Mappa DTO till filter-objektet
+            // Map DTO to core filter
             var coreFilter = new ActivityLocationFilter
             {
                 StartDate = filter.StartDate,
@@ -50,7 +50,8 @@ namespace Peach_ActiviGo.Services.Services
                 CategoryId = filter.CategoryId,
                 IsIndoor = filter.IsIndoor,
                 LocationId = filter.LocationId,
-                OnlyAvailableSlots = filter.OnlyAvailableSlots
+                OnlyAvailableSlots = filter.OnlyAvailableSlots,
+                RequiredPersons = filter.RequiredPersons
             };
 
             var activityLocations = await _unitOfWork.ActivityLocations

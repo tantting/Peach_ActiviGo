@@ -49,7 +49,6 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
                 query = query.Where(activityLocation => activityLocation.LocationId == filter.LocationId.Value);
             }
 
-            // Returns activity locations that have at least one slot overlapping the date range.
             if (filter.StartDate.HasValue && filter.EndDate.HasValue)
             {
                 var start = filter.StartDate.Value.Date;
@@ -62,9 +61,9 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
                     slot.StartTime.Date <= end));
             }
 
-            if (filter.OnlyAvailableSlots == true)
+            // NOTE: run availability filtering when OnlyAvailableSlots==true OR RequiredPersons supplied
+            if (filter.OnlyAvailableSlots == true || filter.RequiredPersons.HasValue)
             {
-                // Consider slots that are not cancelled and (if date range provided) overlap the range.
                 var slotsQuery = _context.ActivitySlots
                     .Where(slot => !slot.IsCancelled)
                     .AsQueryable();
@@ -74,33 +73,35 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
                     var start = filter.StartDate.Value.Date;
                     var end = filter.EndDate.Value.Date;
 
-                    // Use overlap logic so slots that partially overlap the range are considered.
                     slotsQuery = slotsQuery.Where(slot =>
                         slot.EndTime.Date >= start &&
                         slot.StartTime.Date <= end);
                 }
 
-                // project capacity along with slot so we can determine availability without extra DB lookups
                 var slots = await slotsQuery
                     .Select(slot => new {
                         slot.Id,
                         slot.ActivityLocationId,
+                        SlotCapacity = slot.SlotCapacity,
                         ActivityLocationCapacity = slot.ActivityLocation.Capacity
                     })
                     .ToListAsync(ct);
 
-                // count bookings per slot, excluding cancelled bookings
                 var bookingsPerSlot = await _context.Bookings
                     .Where(b => b.CancelledAt == null)
                     .GroupBy(booking => booking.ActivitySlotId)
                     .Select(bookings => new { ActivitySlotId = bookings.Key, Count = bookings.Count() })
                     .ToListAsync(ct);
 
+                var required = filter.RequiredPersons ?? 1;
+
                 var availableLocationIds = slots
                     .Where(slot =>
-                        slot.ActivityLocationId != 0 &&
-                        slot.ActivityLocationCapacity >
-                            (bookingsPerSlot.FirstOrDefault(b => b.ActivitySlotId == slot.Id)?.Count ?? 0))
+                    {
+                        var booked = bookingsPerSlot.FirstOrDefault(b => b.ActivitySlotId == slot.Id)?.Count ?? 0;
+                        var effectiveCapacity = Math.Min(slot.SlotCapacity, slot.ActivityLocationCapacity);
+                        return effectiveCapacity - booked >= required;
+                    })
                     .Select(slot => slot.ActivityLocationId)
                     .Distinct()
                     .ToList();
