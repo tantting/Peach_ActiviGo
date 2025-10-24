@@ -49,6 +49,7 @@ export default function Navbar() {
             <Link to="/contact" onClick={closeMenu}>
               Kontakt
             </Link>
+            {isAuthenticated && <Link to="/mybookings">Mina bokningar</Link>}
           </div>
           <div className="auth-buttons">
             {isAuthenticated ? (
