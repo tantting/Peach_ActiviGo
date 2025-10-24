@@ -11,6 +11,8 @@ import Footer from "./Components/Footer.jsx";
 import UserBookingsView from "./Pages/UserBookingsView.jsx";
 import AdminView from "./Pages/AdminView.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
+import BookingStatistics from "./Pages/BookingStatistics.jsx";
+
 // CSS
 import "./Styles/Global.css";
 import "./Styles/Navbar.css";
@@ -31,6 +33,7 @@ function App() {
           <Route path="/bookings" element={<BookingsView />} />
           <Route path="/activity/:id" element={<ActivityDetailView />} />
           <Route path="/mybookings" element={<UserBookingsView />} />
+          <Route path="/bookingStatistics" element={<BookingStatistics />} />
         </Routes>
         <Footer />
       </Router>

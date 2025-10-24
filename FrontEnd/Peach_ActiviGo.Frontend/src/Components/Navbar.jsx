@@ -40,6 +40,9 @@ export default function Navbar() {
         {/* Navigation Menu */}
         <div className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
           <div className="nav-links">
+            <Link to="/bookingStatistics" onClick={closeMenu}>
+              Statistik
+            </Link>
             <Link to="/" onClick={closeMenu}>
               Aktiviteter
             </Link>

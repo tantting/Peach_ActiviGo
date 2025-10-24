@@ -1,20 +1,15 @@
-import React from 'react'
+import React from "react";
 
 export default function CategoryView() {
   return (
     <div className="page-container">
       <h1>Kategorier</h1>
       <p>Utforska olika kategorier av aktiviteter</p>
-      
+
       <div className="categories-list">
         <div className="category-item">
-
-        {/* Lägg in data ifrån Kategorier här */}
-        {/* Nedan divvar är bara exempeldata */}
-        
-
-
-
+          {/* Lägg in data ifrån Kategorier här */}
+          {/* Nedan divvar är bara exempeldata */}
 
           <h3>🏃‍♂️ Kondition</h3>
           <p>Löpning, cykling, simning och andra konditionsaktiviteter</p>
@@ -33,5 +28,5 @@ export default function CategoryView() {
         </div>
       </div>
     </div>
-  )
+  );
 }

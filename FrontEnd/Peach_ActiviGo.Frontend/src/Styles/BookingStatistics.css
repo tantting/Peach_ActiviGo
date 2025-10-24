@@ -1,0 +1,43 @@
+.page-container{
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    margin-top: 3rem;
+}
+
+.div-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 4rem;
+}
+
+.statDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+button{
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: #e79a6e;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
+}
+

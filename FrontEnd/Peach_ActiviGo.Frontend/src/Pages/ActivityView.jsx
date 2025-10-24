@@ -15,8 +15,8 @@ export default function ActivityView() {
       setLoading(true);
       try {
         const data = await FetchContent(
-          {},
-          "/api/ActivityLocation/FilterActivityLocations"
+          "/api/ActivityLocation/FilterActivityLocations",
+          {}
         );
         setActivityLocations(data || []);
       } catch (err) {
