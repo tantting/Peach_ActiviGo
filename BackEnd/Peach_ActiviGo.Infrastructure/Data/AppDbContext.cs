@@ -118,7 +118,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
             },
             new Activity
             {
-                Id = 3, Name = "Klättring", Description = "Klättra på olika nivåer", Price = 499,
+                Id = 3, Name = "Klattring", Description = "Klattra på olika nivåer", Price = 499,
                 ImageUrl = "images/climb.jpg", CategoryId = 1
             },
             new Activity
