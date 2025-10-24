@@ -32,7 +32,7 @@ const TranslatePayload = (formdata) => {
   }
 
   if (formdata.numberSpots && Number(formdata.numberSpots) > 0) {
-    payload.NumberOfSpots = Number(formdata.numberSpots);
+    payload.requiredPersons = Number(formdata.numberSpots);
   }
 
   return payload;
@@ -81,7 +81,6 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
   const registerOption = {
     date: {
       validate: (value) => {
-        console.log("startTime:", startTime, "date:", date, "value:", value);
         if (!value) return true; // fältet är frivilligt
         const today = new Date();
         const selectedDate = new Date(value);
@@ -94,7 +93,6 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
     },
     startTime: {
       validate: (value) => {
-        console.log("startTime:", startTime, "date:", date, "value:", value);
         if (!value) return true; //frivillig
         if (!date) return "Du måste ange datum först";
         const now = new Date();
