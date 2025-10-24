@@ -1,4 +1,5 @@
 using AutoMapper;
+using Peach_ActiviGo.Core.Filter;
 using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.BookingDtos;
 
@@ -16,15 +17,18 @@ public class BookingMappingProfile : Profile
             .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.ActivitySlot.ActivityLocation.Location.Name))
             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.ActivitySlot.StartTime))
             .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.ActivitySlot.EndTime))   
-            .ForMember(dest => dest.IsUpcoming, opt => opt.MapFrom(src => src.ActivitySlot.StartTime > DateTime.Now));
+            .ForMember(dest => dest.IsUpcoming, opt => opt.MapFrom(src => src.ActivitySlot.StartTime > DateTime.Now))
+            .ForMember(dest => dest.ActivitySlotId, opt => opt.MapFrom(src => src.ActivitySlotId));
         CreateMap<BookingCreateDto, Booking>();
         CreateMap<BookingUpdateDto, Booking>();
-        
-      //  CreateMap<Booking, BookingDto>()
+
+        CreateMap<StatisticFilter, BookingStatisticsDto>();
+
+        //  CreateMap<Booking, BookingDto>()
         //    .ForMember(d => d.Activity, o => o.MapFrom(s => s.ActivitySlot.ActivityLocation.Activity.Name))
-          //  .ForMember(d => d.Location, o => o.MapFrom(s => s.ActivitySlot.ActivityLocation.Location.Name))
-           // .ForMember(d => d.StartTime, o => o.MapFrom(s => s.ActivitySlot.StartTime))
-            //.ForMember(d => d.EndTime, o => o.MapFrom(s => s.ActivitySlot.EndTime))
-            //.ForMember(d => d.IsUpcoming, o => o.MapFrom(s => s.ActivitySlot.StartTime >= DateTime.UtcNow));
+        //  .ForMember(d => d.Location, o => o.MapFrom(s => s.ActivitySlot.ActivityLocation.Location.Name))
+        // .ForMember(d => d.StartTime, o => o.MapFrom(s => s.ActivitySlot.StartTime))
+        //.ForMember(d => d.EndTime, o => o.MapFrom(s => s.ActivitySlot.EndTime))
+        //.ForMember(d => d.IsUpcoming, o => o.MapFrom(s => s.ActivitySlot.StartTime >= DateTime.UtcNow));
     }
 }

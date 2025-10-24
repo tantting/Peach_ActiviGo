@@ -8,6 +8,7 @@ import LoginView from "./Pages/LoginView.jsx";
 import RegisterView from "./Pages/RegisterView.jsx";
 import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
 import Footer from "./Components/Footer.jsx";
+import UserBookingsView from "./Pages/UserBookingsView.jsx";
 import AdminView from "./Pages/AdminView.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
 // CSS
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup" element={<RegisterView />} />
           <Route path="/bookings" element={<BookingsView />} />
           <Route path="/activity/:id" element={<ActivityDetailView />} />
+          <Route path="/mybookings" element={<UserBookingsView />} />
         </Routes>
         <Footer />
       </Router>
