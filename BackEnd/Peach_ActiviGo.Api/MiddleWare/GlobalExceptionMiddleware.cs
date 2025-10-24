@@ -113,22 +113,24 @@ namespace Peach_ActiviGo.Api.MiddleWare
                     context.Response.StatusCode = (int)HttpStatusCode.Conflict;
                     break;
 
-                // Generic SQL exceptions (provider-specific) — detect by type name to avoid hard dependency
                 case Exception sqlEx when sqlEx.GetType().Name.Equals("SqlException", StringComparison.OrdinalIgnoreCase):
                     response.Message = "Database error";
                     response.Details.Add(sqlEx.Message);
                     context.Response.StatusCode = (int)HttpStatusCode.ServiceUnavailable;
                     break;
 
-                // HTTP/remote call failures (e.g., HttpClient)
                 case HttpRequestException httpReqEx:
                     response.Message = "External service error";
                     response.Details.Add(httpReqEx.Message);
                     context.Response.StatusCode = (int)HttpStatusCode.ServiceUnavailable;
                     break;
 
-                // Cancellation / timeouts (CancellationToken triggered or http client timeout)
-               
+                case OperationCanceledException opCanceledEx:
+                    response.Message = "Operation canceled or timed out";
+                    response.Details.Add(opCanceledEx.Message);
+                    context.Response.StatusCode = (int)HttpStatusCode.RequestTimeout;
+                    break;
+
 
                 case InvalidOperationException invalidOperationEx:
                     response.Message = "Invalid operation";
