@@ -8,5 +8,8 @@
         public bool? IsIndoor { get; set; }
         public int? LocationId { get; set; }
         public bool? OnlyAvailableSlots { get; set; }
+
+        // Added: requested number of persons for a slot
+        public int? RequiredPersons { get; set; }
     }
 }
