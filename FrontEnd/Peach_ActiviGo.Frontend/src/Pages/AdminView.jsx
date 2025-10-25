@@ -171,8 +171,12 @@ export default function AdminView() {
             }}
           >
             {createLoading && <p>Skapar aktivitet…</p>}
-            {createError && <p style={{ color: "#c0392b" }}>{createError}</p>}
-            {createOk && <p style={{ color: "#2e7d32" }}>{createOk}</p>}
+            {createError && (
+              <p style={{ color: "var(--peach-royal)" }}>{createError}</p>
+            )}
+            {createOk && (
+              <p style={{ color: "var(--peach-passion)" }}>{createOk}</p>
+            )}
 
             <div className="form-row">
               <label>Namn</label>
@@ -260,8 +264,12 @@ export default function AdminView() {
 
           {/* Status för update */}
           {updateLoading && <p>Jobbar…</p>}
-          {updateError && <p style={{ color: "#c0392b" }}>{updateError}</p>}
-          {updateOk && <p style={{ color: "#2e7d32" }}>{updateOk}</p>}
+          {updateError && (
+            <p style={{ color: "var(--peach-royal)" }}>{updateError}</p>
+          )}
+          {updateOk && (
+            <p style={{ color: "var(--peach-passion)" }}>{updateOk}</p>
+          )}
 
           {/* 1) Sökdel (ID + Hämta) */}
           <form className="panel-form" onSubmit={handleFetchById}>
@@ -401,10 +409,6 @@ export default function AdminView() {
       {/* STATISTICS-PANEL */}
       {selectedAction === "statistics" && (
         <section className="action-panel">
-          <div className="panel-header">
-            <h2>Statistik</h2>
-            <p>Visa statistik for bokningar.</p>
-          </div>
           <BookingStatistics
             showTitle={false}
             containerClassName="statistics-embedded"
