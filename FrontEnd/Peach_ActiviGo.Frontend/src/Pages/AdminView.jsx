@@ -223,15 +223,6 @@ export default function AdminView() {
             </div>
 
             <div className="form-row grid-2">
-              {/* <div>
-                <label>Kategori-namn</label>
-                <input
-                  type="text"
-                  name="categoryName"
-                  value={createForm.categoryName}
-                  onChange={onCreateChange}
-                />
-              </div> */}
               <div>
                 <label>Bild-URL</label>
                 <input
@@ -242,16 +233,6 @@ export default function AdminView() {
                 />
               </div>
             </div>
-
-            {/* <div className="form-row">
-              <label>Plats (locationName)</label>
-              <input
-                type="text"
-                name="locationName"
-                value={createForm.locationName}
-                onChange={onCreateChange}
-              />
-            </div> */}
 
             <div className="panel-actions">
               <button type="button" className="btn ghost" onClick={goBack}>
