@@ -4,12 +4,13 @@ import FetchPeachApi from "../Components/HelperFunctions/FetchPeachApi.jsx";
 import FetchCreateActivity from "../Components/HelperFunctions/FetchCreateActivity.jsx";
 import FetchUpdateActivity from "../Components/HelperFunctions/FetchUpdateActivity.jsx";
 import BookingStatistics from "../Pages/BookingStatistics.jsx";
+import AllActivities from "../Pages/AllActivities.jsx";
 
 const ACTIVITY_ENDPOINT = "/api/activities";
 
 export default function AdminView() {
   const [showCards, setShowCards] = useState(false);
-  const [selectedAction, setSelectedAction] = useState(null); // "create" | "update" | null
+  const [selectedAction, setSelectedAction] = useState(null); // "create" | "update" | "statistics" | "list" | null  
 
   // --- CREATE: formulär-state ---
   const [createForm, setCreateForm] = useState({
@@ -57,6 +58,7 @@ export default function AdminView() {
   const openCreate = () => setSelectedAction("create");
   const openUpdate = () => setSelectedAction("update");
   const openStatistics = () => setSelectedAction("statistics");
+  const openList = () => setSelectedAction("list"); 
   const goBack = () => setSelectedAction(null);
 
   // onChange handlers
@@ -122,6 +124,10 @@ export default function AdminView() {
 
         <button className="card yellow-card" onClick={openStatistics}>
           <span className="card-title">Statistik</span>
+        </button>
+
+        <button className="card yellow-card" onClick={openList}>
+          <span className="card-title">Hämta alla aktiviteter</span>
         </button>
       </div>
 
@@ -391,6 +397,29 @@ export default function AdminView() {
           )}
         </section>
       )}
+
+      {/* LIST-PANEL */}
+      {selectedAction === "list" && (
+        <section className="action-panel">
+          <div className="panel-header">
+            <h2>Alla aktiviteter</h2>
+            <p>Visar hela listan från API:t.</p>
+          </div>
+
+          <AllActivities
+            showTitle={false}
+            containerClassName="statistics-embedded"
+          />
+
+          <div className="panel-actions">
+            <button type="button" className="btn ghost" onClick={goBack}>
+              Tillbaka
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* STATISTICS-PANEL */}
       {selectedAction === "statistics" && (
         <section className="action-panel">
           <div className="panel-header">
