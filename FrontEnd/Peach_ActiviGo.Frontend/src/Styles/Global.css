@@ -305,13 +305,13 @@ button:focus-visible {
 
 .contact-section {
   background: linear-gradient(135deg, 
-    rgba(248, 212, 101, 0.2), 
-    rgba(86, 188, 210, 0.2));
+    rgba(252, 228, 240, 0.3), 
+    rgba(249, 201, 212, 0.2));
   padding: 2rem;
   border-radius: 20px;
-  border: 2px solid var(--peach-sky);
+  border: 2px solid var(--peach-dream);
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(86, 188, 210, 0.3);
+  box-shadow: 0 10px 30px rgba(246, 177, 208, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -323,7 +323,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--peach-sun), var(--peach-sky));
+  background: linear-gradient(90deg, var(--peach-dream), var(--peach-blush));
   border-radius: 20px 20px 0 0;
 }
 
@@ -351,10 +351,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, 
-    var(--peach-dream), 
-    var(--peach-sky), 
-    var(--peach-sun));
+  background: var(--peach-dream);
   border-radius: 30px 30px 0 0;
 }
 
@@ -385,7 +382,7 @@ button:focus-visible {
 }
 
 .contact-form button {
-  background: linear-gradient(135deg, var(--peach-sky), var(--peach-sun));
+  background: linear-gradient(135deg, var(--peach-blush), var(--peach-dream));
   color: white;
   padding: 1rem 2.5rem;
   border: none;
@@ -395,7 +392,7 @@ button:focus-visible {
   font-weight: 700;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 
-    0 8px 25px rgba(86, 188, 210, 0.4),
+    0 8px 25px rgba(241, 146, 189, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -417,11 +414,11 @@ button:focus-visible {
 }
 
 .contact-form button:hover {
-  background: linear-gradient(135deg, var(--peach-sun), var(--peach-sky));
+  background: linear-gradient(135deg, var(--peach-passion), var(--peach-blush));
   transform: translateY(-3px);
   box-shadow: 
-    0 12px 35px rgba(248, 212, 101, 0.5),
-    0 0 0 3px rgba(86, 188, 210, 0.3);
+    0 12px 35px rgba(230, 54, 116, 0.5),
+    0 0 0 3px rgba(248, 212, 101, 0.3);
 }
 
 .contact-form button:hover::before {

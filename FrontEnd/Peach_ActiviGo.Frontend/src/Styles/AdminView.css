@@ -1,18 +1,22 @@
 .admin-container {
-  background: linear-gradient(135deg, rgba(246, 177, 208, 0.2), rgba(86, 188, 210, 0.2), rgba(248, 212, 101, 0.2));
-  background-color: #dff0d8; /* ljusgrön bakgrund */
+  background: 
+  radial-gradient(circle at 70% 80%, var(--peach-whisper) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, var(--peach-breeze) 0%, transparent 50%),
+  radial-gradient(circle at 40% 40%, var(--peach-cream) 0%, transparent 50%),
+  linear-gradient(135deg, var(--peach-whisper) 0%, #ffffff 100%);
   min-height: 100vh;
   padding: 10px;
 }
 
 .admin-button {
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, var(--peach-blush), var(--peach-dream));
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: default;
   font-weight: bold;
+  box-shadow: 0 2px 10px rgba(241, 146, 189, 0.3);
 }
 
 .card-container {
@@ -36,12 +40,14 @@
 
 /* Färg på respektive kort */
 .green-card {
-  background-color: #d68958;
+  background: linear-gradient(135deg, var(--peach-passion), var(--peach-blush));
+  box-shadow: 0 4px 20px rgba(230, 54, 116, 0.4);
 }
 
 .yellow-card {
-  background-color: #d68958;
-  color: #fffefe;
+  background: linear-gradient(135deg, var(--peach-blush), var(--peach-dream));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(241, 146, 189, 0.4);
 }
 
 .action-panel {
@@ -88,8 +94,9 @@
 
 .form-row input:focus {
   outline: none;
-  border-color: #f46b4d; /* samma orange som knapparna i navbaren */
+  border-color: var(--peach-passion);
   background: #fff;
+  box-shadow: 0 0 0 3px rgba(230, 54, 116, 0.2);
 }
 
 /* Panelknappar */
@@ -109,8 +116,9 @@
 }
 
 .btn.primary {
-  background: #d68958; 
+  background: linear-gradient(135deg, var(--peach-blush), var(--peach-dream));
   color: #fff;
+  box-shadow: 0 4px 20px rgba(241, 146, 189, 0.4);
 }
 
 .btn.ghost {
@@ -121,6 +129,12 @@
 
 .btn:hover {
   filter: brightness(0.98);
+}
+
+.btn.primary:hover {
+  background: linear-gradient(135deg, var(--peach-passion), var(--peach-blush));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(230, 54, 116, 0.5);
 }
 
 
