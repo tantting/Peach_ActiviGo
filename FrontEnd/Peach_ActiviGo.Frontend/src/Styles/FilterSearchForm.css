@@ -3,6 +3,18 @@
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
+    background: linear-gradient(145deg, 
+        rgba(246, 177, 208, 0.7), 
+        rgba(86, 188, 210, 0.1), 
+        rgba(248, 212, 101, 0.2));
+    border: 2px solid rgba(246, 177, 208, 0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        0 15px 40px rgba(246, 177, 208, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    margin: 1rem 0;
 }
 
 .filterSearch>div {
@@ -11,46 +23,360 @@
     /* staplar label, input, error vertikalt */
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    /* lite mellanrum mellan fälten */
+    border-radius: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+
 
 
 .filterSearch label{
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e63674;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .filterSearch p {
-    color: red;
-    font-size: 0.9rem;
+    color: #e63674;
+    font-size: 0.85rem;
+    font-weight: 500;
     width: 100%;
     margin: 0.25rem 0 0 0;
+    background: rgba(230, 54, 116, 0.1);
+    border-radius: 8px;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid rgba(230, 54, 116, 0.3);
 }
 
-.filterSearch input,
+.filterSearch input:not([type="radio"]),
 .filterSearch select {
-    width: 120px;
-    /* samma som max-width på div */
-    height: 1.3rem;
+    width: 140px;
+    height: 2.2rem;
+    border: 2px solid rgba(246, 177, 208, 0.4);
+    border-radius: 12px;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2d1b2e;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(230, 54, 116, 0.1);
+}
+
+.filterSearch input:not([type="radio"]):focus,
+.filterSearch select:focus {
+    outline: none;
+    border-color: #e63674;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 
+        0 4px 15px rgba(230, 54, 116, 0.3),
+        0 0 0 3px rgba(230, 54, 116, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Checkbox container styling */
+.filterSearch div:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: auto !important;
+    flex-wrap: nowrap;
+}
+
+/* Checkbox specific styling */
+.filterSearch input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    backdrop-filter: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 4px;
+    border: 2px solid #f192bd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.filterSearch input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #f6b1d0, #f192bd);
+    border-color: #e63674;
+    box-shadow: 0 2px 8px rgba(230, 54, 116, 0.3);
+}
+
+.filterSearch input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.filterSearch input[type="checkbox"]:focus {
+    outline: none;
+    border-color: #e63674;
+    box-shadow: 0 0 0 3px rgba(230, 54, 116, 0.2);
+}
+
+/* Radio button specific styling (för framtida användning) */
+.filterSearch input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    backdrop-filter: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 50%;
+    border: 2px solid #f192bd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.filterSearch input[type="radio"]:checked {
+    background: linear-gradient(135deg, #f6b1d0, #f192bd);
+    border-color: #e63674;
+    box-shadow: 0 2px 8px rgba(230, 54, 116, 0.3);
+}
+
+.filterSearch input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.filterSearch input[type="radio"]:focus {
+    outline: none;
+    border-color: #e63674;
+    box-shadow: 0 0 0 3px rgba(230, 54, 116, 0.2);
+}
+
+.filterSearch input::placeholder {
+    color: rgba(45, 27, 46, 0.6);
+    font-style: italic;
 }
 .filterSearch button {
     display: inline-flex;
-    /* flexbox på knappen */
     justify-content: center;
-    /* horisontellt centrerat */
     align-items: center;
-    background-color: #e79a6e;
+    background: linear-gradient(135deg, #f6b1d0, #f192bd);
     color: white;
-    margin: 0.25rem 0 0 0;
-    padding: 0.25rem 1rem;
-    height: 1.2rem;
+    margin: 0.75rem 0 0 0;
+    padding: 0.8rem 1.5rem;
+    height: auto;
+    min-height: 2.5rem;
     text-align: center;
-    justify-content: center;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    font-size: 0.9rem;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    font-weight: 600;
     width: 100%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(230, 54, 116, 0.3);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.filterSearch button:hover {
+    background: linear-gradient(135deg, #f192bd, #e63674);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(230, 54, 116, 0.5),
+        0 0 0 3px rgba(248, 212, 101, 0.3);
+}
+
+.filterSearch button:active {
+    transform: translateY(-1px);
+}
+
+/* Button container styling */
+.SearchReset {
+    display: flex;
+    flex-direction: row; /* Explicit horisontell layout */
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    flex-basis: 100%; /* Tar hela bredden i flexbox */
+}
+
+.SearchReset button {
+    width: auto;
+    min-width: 120px;
+    max-width: 200px;
+    flex: 0 0 auto; /* Buttons tar inte upp all tillgänglig plats */
+    margin: 0; /* Ta bort margin från individuella knappar */
+}
+
+/* Responsive Design för olika skärmstorlekar */
+@media (max-width: 1024px) {
+    .filterSearch {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .filterSearch>div {
+        margin-bottom: 0.8rem;
+    }
+    
+    .filterSearch input:not([type="radio"]),
+    .filterSearch select {
+        width: 130px;
+        height: 2rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+    
+    .filterSearch label {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .filterSearch {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .filterSearch>div {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(246, 177, 208, 0.3);
+    }
+    
+    .filterSearch input:not([type="radio"]),
+    .filterSearch select {
+        width: 100%;
+        max-width: 250px;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+    
+    .filterSearch label {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .SearchReset {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .SearchReset button {
+        width: 100%;
+        max-width: 250px;
+        min-width: unset;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .filterSearch {
+        padding: 0.8rem;
+        border-radius: 15px;
+        margin: 1rem 0.5rem;
+    }
+    
+    .filterSearch>div {
+        max-width: none;
+        width: 100%;
+        padding: 0.6rem;
+    }
+    
+    .filterSearch input:not([type="radio"]),
+    .filterSearch select {
+        width: 100%;
+        height: 2.8rem;
+        font-size: 1.1rem;
+        padding: 0.8rem 1rem;
+    }
+    
+    .filterSearch label {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    
+    .SearchReset button {
+        width: 100%;
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
+        min-height: 3rem;
+    }
+    
+    .filterSearch input[type="checkbox"] {
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px;
+        max-width: 22px;
+        min-height: 22px;
+        max-height: 22px;
+        flex-shrink: 0;
+    }
+    
+    .filterSearch input[type="checkbox"]:checked::after {
+        font-size: 14px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .filterSearch {
+        margin: 0.5rem 0.25rem;
+        padding: 0.6rem;
+    }
+    
+    .filterSearch>div {
+        padding: 0.4rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .SearchReset {
+        gap: 0.6rem;
+    }
+    
+    .SearchReset button {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+        min-height: 2.8rem;
+    }
 }

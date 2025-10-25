@@ -1,5 +1,9 @@
 .footer {
-  background: #f5f9ff;           
+  background: 
+    radial-gradient(circle at 70% 80%, var(--peach-whisper) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--peach-breeze) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--peach-cream) 0%, transparent 50%),
+    linear-gradient(135deg, var(--peach-whisper) 0%, #ffffff 100%);          
   border-top: 1px solid #e5eef7;  
   margin-top: 2rem;
 }

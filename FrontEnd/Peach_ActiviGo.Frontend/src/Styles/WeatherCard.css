@@ -1,45 +1,109 @@
-/*----Weather Styles----*/
+/*----Princess Peach Weather Styles----*/
 .weather-container {
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95), 
+        rgba(246, 177, 208, 0.1));
+    margin-top: 20px;
+    padding: 1.5rem;
+    border: 2px solid rgba(246, 177, 208, 0.3);
+    border-radius: 25px;
+    box-shadow: 
+        0 12px 40px rgba(246, 177, 208, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .weather-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
-}
-
-.weather-text {
-    flex: 1;
+    gap: 20px;
 }
 
 .weather-image {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
-    padding: 5px;
+    padding: 8px;
     display: block;
+    border-radius: 20px;
 }
 
 /*----Error Message Styles----*/
 .weather-container p {
     margin: 0;
-    color: #555;
+    color: #e63674;
+    font-weight: 600;
 }
 
 .weather-text h4 {
-    margin: 0 0 8px 0;
-    color: #333;
-    font-size: 1.1em;
+    margin: 0 0 12px 0;
+    color: #e63674;
+    font-size: 1.3em;
+    font-weight: 700;
+    background: #e63674;
+    background-clip: text;
 }
 
 .weather-text p {
-    margin: 4px 0;
+    margin: 6px 0;
     color: #666;
-    font-size: 0.9em;
+    font-size: 1.05em;
+    font-weight: 500;
+}
+
+.weather-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #66666651;
+}
+
+/* Responsive Weather Card */
+@media (max-width: 768px) {
+    .weather-container {
+        margin-top: 15px;
+        padding: 1.2rem;
+    }
+    
+    .weather-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .weather-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .weather-text h4 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+    
+    .weather-text p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .weather-container {
+        padding: 1rem;
+        margin-top: 10px;
+    }
+    
+    .weather-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .weather-text h4 {
+        font-size: 1.1em;
+    }
+    
+    .weather-text p {
+        font-size: 0.95em;
+        margin: 4px 0;
+    }
 }

@@ -27,7 +27,7 @@ const TranslatePayload = (formdata) => {
     payload.IsIndoor = false;
   }
 
-  if (formdata.availableSpotsOnly === "true") {
+  if (formdata.availableSpotsOnly === true) {
     payload.OnlyAvailableSlots = true;
   }
 
@@ -69,7 +69,7 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
       endTime: "",
       category: "",
       inOutDoor: "",
-      availableSpotsOnly: null,
+      availableSpotsOnly: false,
       numberSpots: 0,
     });
   };
@@ -197,9 +197,7 @@ const FilterSearchForm = ({ setActivityLocations, setLoading, setError }) => {
       <div>
         <label>Enbart tillgängliga tider: </label>
         <input
-          type="radio"
-          name="availableSpotsOnly"
-          value="true"
+          type="checkbox"
           {...register("availableSpotsOnly", registerOption.availableSpotsOnly)}
         />
         {errors.availableSpotsOnly && (

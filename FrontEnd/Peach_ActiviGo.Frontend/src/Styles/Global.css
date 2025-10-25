@@ -25,7 +25,7 @@
   
   /* Magisk gradient bakgrund */
   background: 
-    radial-gradient(circle at 20% 80%, var(--peach-whisper) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, var(--peach-whisper) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, var(--peach-breeze) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, var(--peach-cream) 0%, transparent 50%),
     linear-gradient(135deg, var(--peach-whisper) 0%, #ffffff 100%);
@@ -66,20 +66,6 @@ body::before {
   animation: floatingBubbles 20s ease-in-out infinite;
 }
 
-@keyframes floatingBubbles {
-  0%, 100% { 
-    transform: translate(0, 0) scale(1); 
-    opacity: 0.7;
-  }
-  33% { 
-    transform: translate(20px, -20px) scale(1.1); 
-    opacity: 0.9;
-  }
-  66% { 
-    transform: translate(-20px, 20px) scale(0.9); 
-    opacity: 0.8;
-  }
-}
 
 h1 {
   font-size: 3.2em;
@@ -90,20 +76,8 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 3s ease-in-out infinite;
   text-shadow: 2px 2px 8px rgba(230, 54, 116, 0.3);
   position: relative;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes sparkle {
-  0% { transform: translateX(-100%); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
 }
 
 /* 🌸 Magiska Princess Peach Knappar 🌸 */
@@ -192,9 +166,64 @@ button:focus-visible {
 }
 
 /* Responsive padding for smaller screens */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 2.8em;
+  }
+}
+
 @media (max-width: 768px) {
   .page-container {
     padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.4em;
+    line-height: 1.2;
+  }
+  
+  .page-container h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .page-container > p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 0.8rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+  
+  .page-container h1 {
+    margin-bottom: 1rem;
+  }
+  
+  .page-container > p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  
+  .categories-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .category-item {
+    padding: 1.5rem;
+    margin: 0 0.5rem;
   }
 }
 
