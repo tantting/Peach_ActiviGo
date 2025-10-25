@@ -1,29 +1,12 @@
+import React from "react";
+import FetchAllActivity from "../../../../Components/HelperFunctions/Admin/CRUDS/Activity/FetchAllActivity.jsx";
+import "../../../../Styles/BookingStatistics.css"; // återanvänd enkel tabell-stil om du vill
 
-import React, { useEffect, useState } from "react";
-import FetchContent from "../Components/HelperFunctions/FetchContent";
-import "../Styles/BookingStatistics.css"; // återanvänd enkel tabell-stil om du vill
-
-export default function AllActivities({ showTitle = true, containerClassName = "" }) {
-  const [activities, setActivities] = useState([]);
-  const [loading, setLoading]       = useState(false);
-  const [error, setError]           = useState(null);
-
-  const loadAll = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await FetchContent("/api/activities");
-      setActivities(Array.isArray(data) ? data : []);
-    } catch (e) {
-      setError("Kunde inte hämta aktiviteter");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadAll();
-  }, []);
+export default function GetAllActivitiesView({
+  showTitle = true,
+  containerClassName = "",
+}) {
+  const { activity: activities, loading, error, loadAll } = FetchAllActivity();
 
   return (
     <div className={`page-container ${containerClassName}`}>

@@ -65,8 +65,12 @@ const FetchPeachApi = (endpoint, options = {}) => {
       return response.data;
     })
     .catch((error) => {
-      const errorMessage = error.response?.message || error.message;
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.statusText ||
+        error.message;
       console.error("API Error:", errorMessage);
+      console.error("Full error:", error);
       throw new Error(errorMessage);
     });
 };

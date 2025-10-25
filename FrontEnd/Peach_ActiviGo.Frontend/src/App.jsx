@@ -9,9 +9,9 @@ import RegisterView from "./Pages/RegisterView.jsx";
 import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
 import Footer from "./Components/Footer.jsx";
 import UserBookingsView from "./Pages/UserBookingsView.jsx";
-import AdminView from "./Pages/AdminView.jsx";
+import AdminView from "./Pages/AdminView/AdminView.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
-import BookingStatistics from "./Pages/BookingStatistics.jsx";
+import BookingStatisticsView from "./Pages/AdminView/BookingStatisticsView.jsx";
 
 // CSS
 import "./Styles/Global.css";
@@ -33,7 +33,10 @@ function App() {
           <Route path="/bookings" element={<BookingsView />} />
           <Route path="/activity/:id" element={<ActivityDetailView />} />
           <Route path="/mybookings" element={<UserBookingsView />} />
-          <Route path="/bookingStatistics" element={<BookingStatistics />} />
+          <Route
+            path="/bookingStatistics"
+            element={<BookingStatisticsView />}
+          />
         </Routes>
         <Footer />
       </Router>
