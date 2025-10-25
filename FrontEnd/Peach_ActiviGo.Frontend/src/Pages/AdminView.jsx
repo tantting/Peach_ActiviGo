@@ -4,12 +4,14 @@ import FetchPeachApi from "../Components/HelperFunctions/FetchPeachApi.jsx";
 import FetchCreateActivity from "../Components/HelperFunctions/FetchCreateActivity.jsx";
 import FetchUpdateActivity from "../Components/HelperFunctions/FetchUpdateActivity.jsx";
 import BookingStatistics from "../Pages/BookingStatistics.jsx";
+import AllActivities from "./AllActivites.jsx";
+import DeleteActivity from "./DeleteActivity.jsx";
 
 const ACTIVITY_ENDPOINT = "/api/activities";
 
 export default function AdminView() {
   const [showCards, setShowCards] = useState(false);
-  const [selectedAction, setSelectedAction] = useState(null); // "create" | "update" | null
+  const [selectedAction, setSelectedAction] = useState(null); // "create" | "update" | "statistics" | "list" | null  
 
   // --- CREATE: formulär-state ---
   const [createForm, setCreateForm] = useState({
@@ -18,8 +20,8 @@ export default function AdminView() {
     price: "",
     imageUrl: "",
     categoryId: "",
-    categoryName: "",
-    locationName: "",
+    // categoryName: "",
+    // locationName: "",
   });
 
   // Koppla in CREATE-hooken
@@ -38,8 +40,8 @@ export default function AdminView() {
     description: "",
     price: "",
     imageUrl: "",
-    categoryId: "",
-    categoryName: "",
+    // categoryId: "",
+    // categoryName: "",
   });
 
   // ⬅️ UPDATE via hook
@@ -57,6 +59,8 @@ export default function AdminView() {
   const openCreate = () => setSelectedAction("create");
   const openUpdate = () => setSelectedAction("update");
   const openStatistics = () => setSelectedAction("statistics");
+  const openList = () => setSelectedAction("list");
+  const openDelete = () => setSelectedAction("delete");
   const goBack = () => setSelectedAction(null);
 
   // onChange handlers
@@ -81,8 +85,8 @@ export default function AdminView() {
         description: data.description ?? "",
         price: data.price ?? 0,
         imageUrl: data.imageUrl ?? "",
-        categoryId: data.categoryId ?? "",
-        categoryName: data.categoryName ?? "",
+        // categoryId: data.categoryId ?? "",
+        // categoryName: data.categoryName ?? "",
       });
     } catch {
       // felmeddelande visas via updateError från hooken
@@ -123,6 +127,14 @@ export default function AdminView() {
         <button className="card yellow-card" onClick={openStatistics}>
           <span className="card-title">Statistik</span>
         </button>
+
+        <button className="card yellow-card" onClick={openList}>
+          <span className="card-title">Hämta alla aktiviteter</span>
+        </button>
+
+        <button className="card yellow-card" onClick={openDelete}>
+         <span className="card-title">Radera aktivitet</span>
+        </button>
       </div>
 
       {/* CREATE-PANEL */}
@@ -143,8 +155,8 @@ export default function AdminView() {
                 price: Number(createForm.price),
                 imageUrl: createForm.imageUrl,
                 categoryId: Number(createForm.categoryId),
-                categoryName: createForm.categoryName,
-                locationName: createForm.locationName,
+                // categoryName: createForm.categoryName,
+                // locationName: createForm.locationName,
               };
               await createActivity(payload);
               setCreateForm({
@@ -153,8 +165,8 @@ export default function AdminView() {
                 price: "",
                 imageUrl: "",
                 categoryId: "",
-                categoryName: "",
-                locationName: "",
+                // categoryName: "",
+                // locationName: "",
               });
             }}
           >
@@ -216,15 +228,6 @@ export default function AdminView() {
 
             <div className="form-row grid-2">
               <div>
-                <label>Kategori-namn</label>
-                <input
-                  type="text"
-                  name="categoryName"
-                  value={createForm.categoryName}
-                  onChange={onCreateChange}
-                />
-              </div>
-              <div>
                 <label>Bild-URL</label>
                 <input
                   type="text"
@@ -233,16 +236,6 @@ export default function AdminView() {
                   onChange={onCreateChange}
                 />
               </div>
-            </div>
-
-            <div className="form-row">
-              <label>Plats (locationName)</label>
-              <input
-                type="text"
-                name="locationName"
-                value={createForm.locationName}
-                onChange={onCreateChange}
-              />
             </div>
 
             <div className="panel-actions">
@@ -372,15 +365,7 @@ export default function AdminView() {
                     min="1"
                   />
                 </div>
-                <div>
-                  <label>Kategorinamn</label>
-                  <input
-                    type="text"
-                    name="categoryName"
-                    value={updateForm.categoryName}
-                    onChange={onUpdateChange}
-                  />
-                </div>
+
               </div>
 
               <div className="panel-actions">
@@ -399,6 +384,29 @@ export default function AdminView() {
           )}
         </section>
       )}
+
+      {/* LIST-PANEL */}
+      {selectedAction === "list" && (
+        <section className="action-panel">
+          <div className="panel-header">
+            <h2>Alla aktiviteter</h2>
+            <p>Visar hela listan från API:t.</p>
+          </div>
+
+          <AllActivities
+            showTitle={false}
+            containerClassName="statistics-embedded"
+          />
+
+          <div className="panel-actions">
+            <button type="button" className="btn ghost" onClick={goBack}>
+              Tillbaka
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* STATISTICS-PANEL */}
       {selectedAction === "statistics" && (
         <section className="action-panel">
           <BookingStatistics
@@ -412,6 +420,24 @@ export default function AdminView() {
           </div>
         </section>
       )}
+
+      {selectedAction === "delete" && (
+  <section className="action-panel">
+    <div className="panel-header">
+      <h2>Radera aktivitet</h2>
+      <p>Ange ID och radera aktiviteten.</p>
+    </div>
+
+    <DeleteActivity showTitle={false} containerClassName="statistics-embedded" />
+
+    <div className="panel-actions">
+      <button type="button" className="btn danger" onClick={goBack}>
+        Tillbaka
+      </button>
+    </div>
+  </section>
+)}
+
     </div>
   );
 }
