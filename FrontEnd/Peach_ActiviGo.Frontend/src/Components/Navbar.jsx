@@ -21,6 +21,16 @@ export default function Navbar() {
     navigate("/"); // Navigera till startsidan efter logout
   };
 
+  const handleLogin = () => {
+    closeMenu();
+    navigate("/login");
+  };
+
+  const handleSignup = () => {
+    closeMenu();
+    navigate("/signup");
+  };
+
   return (
     <header className="navbar">
       <div className="navbar-content">
@@ -67,16 +77,8 @@ export default function Navbar() {
             ) : (
               // Användare är inte inloggad, visa Logga in och Registrera
               <>
-                <button>
-                  <Link to="/login" onClick={closeMenu}>
-                    Logga in
-                  </Link>
-                </button>
-                <button>
-                  <Link to="/signup" onClick={closeMenu}>
-                    Registrera
-                  </Link>
-                </button>
+                <button onClick={handleLogin}>Logga in</button>
+                <button onClick={handleSignup}>Registrera</button>
               </>
             )}
           </div>
