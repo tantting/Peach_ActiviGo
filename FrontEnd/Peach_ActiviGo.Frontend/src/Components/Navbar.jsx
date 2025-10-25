@@ -49,7 +49,11 @@ export default function Navbar() {
             <Link to="/contact" onClick={closeMenu}>
               Kontakt
             </Link>
-            {isAuthenticated && <Link to="/mybookings">Mina bokningar</Link>}
+            {isAuthenticated && (
+              <Link to="/mybookings" onClick={closeMenu}>
+                Mina bokningar
+              </Link>
+            )}
             {isAdmin && (
               <Link to="/admin" onClick={closeMenu}>
                 AdminVy
