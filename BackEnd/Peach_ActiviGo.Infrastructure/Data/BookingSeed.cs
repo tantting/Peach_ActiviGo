@@ -25,12 +25,10 @@ public class BookingSeed
             return;
         }
 
-        // Hämta ActivitySlots
         var slots = await context.ActivitySlots.ToListAsync();
-
         if (!slots.Any())
         {
-            Console.WriteLine("⚠️ Inga ActivitySlots hittades – kontrollera att du seedat dem.");
+            Console.WriteLine("⚠️ Inga ActivitySlots hittades – kör AppDbContext-seed först.");
             return;
         }
 
@@ -42,22 +40,25 @@ public class BookingSeed
             var user = users[random.Next(users.Count)];
             var slot = slots[random.Next(slots.Count)];
 
-            // Slumpa status: 80% Active, 20% Cancelled
             var status = random.NextDouble() < 0.8 ? BookingStatus.Active : BookingStatus.Cancelled;
+
+            var bookingDate = (i == 0)
+                ? new DateTime(2025, 10, 28, 15, 0, 0) // Bokning 1: tisdag 28 okt kl 15–17
+                : new DateTime(2025, 10, 31).AddDays(random.Next(0, 7)).AddHours(random.Next(9, 18));
 
             bookings.Add(new Booking
             {
                 CustomerId = user.Id,
                 ActivitySlotId = slot.Id,
-                BookingDate = DateTime.Now.AddDays(-random.Next(0, 14)), // Bokningsdatum inom senaste 2 veckor
+                BookingDate = bookingDate,
                 Status = status,
-                CancelledAt = status == BookingStatus.Cancelled ? DateTime.Now.AddDays(-random.Next(0, 7)) : null
+                CancelledAt = status == BookingStatus.Cancelled ? bookingDate.AddDays(random.Next(0, 2)) : null
             });
         }
 
         await context.Bookings.AddRangeAsync(bookings);
         await context.SaveChangesAsync();
 
-        Console.WriteLine("✅ 20 bokningar seedade!");
+        Console.WriteLine("✅ 20 bokningar seedade! (inkl. 1 specialbokning 28 okt)");
     }
 }
