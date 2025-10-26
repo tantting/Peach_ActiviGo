@@ -10,6 +10,7 @@ import ActivityDetailView from "./Pages/ActivityDetailView.jsx";
 import Footer from "./Components/Footer.jsx";
 import UserBookingsView from "./Pages/UserBookingsView.jsx";
 import AdminView from "./Pages/AdminView/AdminView.jsx";
+import AdminGuardRoute from "./Components/AdminGuardRoute.jsx";
 import { AuthProvider } from "./Components/AuthContext.jsx";
 import BookingStatisticsView from "./Pages/AdminView/BookingStatisticsView.jsx";
 
@@ -25,7 +26,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ActivityView />} />
-          <Route path="/admin" element={<AdminView />} />
+          <Route path="/admin" element={<AdminGuardRoute><AdminView /></AdminGuardRoute>} />
           <Route path="/about" element={<CategoryView />} />
           <Route path="/contact" element={<ContactView />} />
           <Route path="/login" element={<LoginView />} />
@@ -33,10 +34,7 @@ function App() {
           <Route path="/bookings" element={<BookingsView />} />
           <Route path="/activity/:id" element={<ActivityDetailView />} />
           <Route path="/mybookings" element={<UserBookingsView />} />
-          <Route
-            path="/bookingStatistics"
-            element={<BookingStatisticsView />}
-          />
+          <Route path="/bookingStatistics" element={<AdminGuardRoute><BookingStatisticsView /></AdminGuardRoute>} />
         </Routes>
         <Footer />
       </Router>
