@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom";
 import Navbar from "./Components/Navbar.jsx";
 import ActivityView from "./Pages/ActivityView.jsx";
 import BookingsView from "./Pages/BookingsView.jsx";
@@ -35,6 +35,8 @@ function App() {
           <Route path="/activity/:id" element={<ActivityDetailView />} />
           <Route path="/mybookings" element={<UserBookingsView />} />
           <Route path="/bookingStatistics" element={<AdminGuardRoute><BookingStatisticsView /></AdminGuardRoute>} />
+          {/* Catch-all: redirect unknown routes to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </Router>
