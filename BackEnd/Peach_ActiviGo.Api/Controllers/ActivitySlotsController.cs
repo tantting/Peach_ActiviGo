@@ -11,8 +11,6 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin")]
-    [Tags("Admin")]
     public class ActivitySlotsController : ControllerBase
     {
         private readonly IActivitySlotService _service;
@@ -44,6 +42,7 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok(_mapper.Map<ActivitySlotResponseDto>(slot));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ActivitySlotRequestDto dto)
         {
@@ -52,6 +51,7 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok(_mapper.Map<ActivitySlotResponseDto>(created));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ActivitySlotRequestDto dto)
         {
@@ -61,6 +61,7 @@ namespace Peach_ActiviGo.Api.Controllers
             return Ok(_mapper.Map<ActivitySlotResponseDto>(updated));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

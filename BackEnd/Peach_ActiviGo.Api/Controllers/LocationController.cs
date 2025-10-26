@@ -8,8 +8,6 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Tags("Admin")]
-    //[Authorize(Roles = "Admin")]
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
@@ -41,6 +39,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // POST: api/Location
+        [Authorize(Roles = "Admin")]
         [HttpPost(Name = "CreateLocation")]
         public async Task<IActionResult> CreateLocation([FromBody] CreateLocationDto dto, CancellationToken ct, IValidator<CreateLocationDto> validator)
         {
@@ -55,6 +54,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // DELETE: api/Location/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}", Name = "DeleteLocation")]
         public async Task<IActionResult> DeleteLocation(int id, CancellationToken ct)
         {
@@ -68,6 +68,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         //PUT: api/Location/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}", Name = "UpdateLocation")]
         public async Task<IActionResult> UpdateLocation([FromRoute] int id, [FromBody] UpdateLocationDto dto, CancellationToken ct,IValidator<UpdateLocationDto> validator)
         {
