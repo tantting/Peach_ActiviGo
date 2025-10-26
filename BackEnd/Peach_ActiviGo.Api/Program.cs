@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Peach_ActiviGo.Api.MiddleWare;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Interfaces;
 using Peach_ActiviGo.Infrastructure.Data;
@@ -21,6 +22,7 @@ using Peach_ActiviGo.Services.Mapping;
 using Peach_ActiviGo.Services.Services;
 using Peach_ActiviGo.Services.Validators;
 using System.Text;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -113,6 +115,33 @@ builder.Services.AddAuthentication(opt =>
         ValidAudience = jwt["Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
+
+    opt.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+            var result = JsonSerializer.Serialize(new
+            {
+                message = "You must be logged in to access this resource.",
+                timestamp = DateTime.UtcNow
+            });
+            return context.Response.WriteAsync(result);
+        },
+        OnForbidden = context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+            context.Response.ContentType = "application/json";
+            var result = JsonSerializer.Serialize(new
+            {
+                message = "You are not permitted for this action.",
+                timestamp = DateTime.UtcNow
+            });
+            return context.Response.WriteAsync(result);
+        }
+    };
 });
 
 // --- Authorization ---
@@ -162,5 +191,6 @@ app.UseHttpsRedirection();
 app.UseCors(policyName: "AllowAll"); //<---- Vi behöver lägga till detta för att nå våra API:er
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 app.MapControllers();
 app.Run();

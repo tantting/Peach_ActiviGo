@@ -7,8 +7,6 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin")]
-    [Tags("Admin")]
     public class ActivitiesController : ControllerBase
     {
         private readonly IActivityService _activityService;
@@ -19,6 +17,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Get all activities
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -27,6 +26,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Get activity by ID
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -40,6 +40,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Create new activity
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ActivityRequestDto dto)
         {
@@ -48,6 +49,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Update existing activity
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ActivityRequestDto dto)
         {
@@ -61,6 +63,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Delete activity
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
