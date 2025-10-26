@@ -8,8 +8,6 @@ namespace Peach_ActiviGo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin")]
-    [Tags("Admin")]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _service;
@@ -26,6 +24,7 @@ namespace Peach_ActiviGo.Api.Controllers
             => (await _service.GetByIdAsync(id, ct)) is { } dto ? Ok(dto) : NotFound();
 
         // POST: /api/admin/categories
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<CategoryDto>> Create([FromBody] CategoryCreateDto dto, CancellationToken ct)
         {
@@ -41,6 +40,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // PUT: /api/admin/categories/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id:int}")]
         public async Task<ActionResult<CategoryDto>> Update(int id, [FromBody] CategoryUpdateDto dto, CancellationToken ct)
         {
@@ -56,6 +56,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // DELETE: /api/admin/categories/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id, CancellationToken ct)
         {

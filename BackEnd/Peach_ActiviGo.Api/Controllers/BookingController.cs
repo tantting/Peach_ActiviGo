@@ -47,7 +47,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // GetAll By MemberId and status
-
+        [Authorize]
         [HttpGet("member/{memberId}/status/{status}")]
         [ProducesResponseType(typeof(IEnumerable<BookingDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,7 +61,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // CreateBooking
-        //[Authorize (Roles = "Member")]
+        [Authorize]
         [HttpPost(Name = "CreateBooking")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto dto, CancellationToken ct, IValidator<BookingCreateDto> validator)
@@ -97,6 +97,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Avboka före Cut-off)
+        [Authorize]
         [HttpPut("{id:int}", Name = "CancelBooking")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -106,8 +107,9 @@ namespace Peach_ActiviGo.Api.Controllers
             return NoContent();
         }
 
-        
+
         // DELETE by id
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}", Name = "DeleteBooking")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -123,7 +125,7 @@ namespace Peach_ActiviGo.Api.Controllers
         }
 
         // Statistics
-        //[Authorize(Policy = "AdminOnly")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("statistics", Name = "GetBookingStatistics")]
         [ProducesResponseType(typeof(BookingStatisticsDto), StatusCodes.Status200OK)]
         public async Task<ActionResult<BookingStatisticsDto>> GetBookingStatistics(CancellationToken ct)

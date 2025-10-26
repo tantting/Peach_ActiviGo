@@ -8,16 +8,26 @@
 }
 
 .booking-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95), 
+    rgba(252, 228, 240, 0.8));
+  border: 2px solid rgba(246, 177, 208, 0.3);
+  border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 12px 40px rgba(246, 177, 208, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .booking-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--peach-blush);
+  box-shadow: 
+    0 20px 50px rgba(230, 54, 116, 0.4),
+    0 0 0 3px rgba(248, 212, 101, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .booking-card h3 {
@@ -65,46 +75,49 @@
   margin-bottom: 10px;
 }
 
-/* Bokningsknapp styling - Modern flat design */
-.booking-button {
+/* Bokningsknapp styling - Princess Peach Magical Design */
+button:has(.booking-button) {
   display: inline-block;
-  background-color: #e79a6e;
+  background: linear-gradient(135deg, var(--peach-dream), var(--peach-blush));
   color: white;
   text-decoration: none;
   padding: 14px 28px;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
   font-size: 15px;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   width: 100%;
   margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(230, 54, 116, 0.3);
+  backdrop-filter: blur(8px);
 }
 
-.booking-button:hover {
-  background-color: #d68555;
-  text-decoration: none;
-  color: white;
+button:has(.booking-button):hover {
+  background: linear-gradient(135deg, var(--peach-blush), var(--peach-passion));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 54, 116, 0.4);
+}
+
+button:has(.booking-button):active {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(231, 154, 110, 0.3);
 }
 
-.booking-button:active {
-  transform: translateY(0);
-  background-color: #c77a49;
-}
-
-/* Button container styling */
-button:has(.booking-button) {
+.booking-button {
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
   background: none;
   border: none;
   padding: 0;
-  margin: 0;
-  width: 100%;
+  font: inherit;
+  cursor: inherit;
 }
 
 /* Responsiv design */
@@ -179,15 +192,20 @@ button:has(.booking-button) {
   max-width: 340px;
   width: 100%;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #a1f0b5 0%, #9de8a7 100%);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-  border-radius: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, var(--peach-dream) 0%, var(--peach-cotton) 100%);
+  box-shadow: 0 12px 28px rgba(246, 177, 208, 0.3);
+  border-radius: 20px;
+  border: 2px solid rgba(246, 177, 208, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .user-booking-detail:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(230, 54, 116, 0.4),
+    0 0 0 3px rgba(248, 212, 101, 0.3);
+  border-color: var(--peach-blush);
 }
 
 .user-booking-detail.is-cancelled {
@@ -225,20 +243,22 @@ button:has(.booking-button) {
 }
 
 .cancel-booking-button {
-  background: #ff8768;
+  background: linear-gradient(135deg, var(--peach-royal), var(--peach-passion));
   color: #fff;
   border: none;
-  border-radius: 999px;
+  border-radius: 25px;
   padding: 0.55rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(209, 44, 90, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cancel-booking-button:hover {
-  background: #f36945;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--peach-passion), var(--peach-royal));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(209, 44, 90, 0.5);
 }
 
 .cancel-booking-button:active {

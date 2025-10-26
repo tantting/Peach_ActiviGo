@@ -1,19 +1,17 @@
 /* Keyframe animations för ActivitySlots */
 @keyframes pulse {
     0% { 
-        box-shadow: 0 4px 15px rgba(231, 154, 110, 0.3), 0 0 0 0, rgba(231, 154, 110, 0.7);
-        filter: brightness(1);
-        transform: scale(1);
+        box-shadow: 0 4px 25px rgba(230, 54, 116, 0.3);
+        opacity: 1;
     }
     50% { 
-        box-shadow: 0 6px 25px rgba(231, 154, 110, 0.6), 0 0 0 10px rgba(231, 154, 110, 0);
-        filter: brightness(1.15);
+        box-shadow: 0 6px 30px rgba(230, 54, 116, 0.4);
+        opacity: 0.85;
         transform: scale(1.02);
     }
     100% { 
-        box-shadow: 0 4px 15px rgba(231, 154, 110, 0.3), 0 0 0 0 rgba(231, 154, 110, 0.7);
-        filter: brightness(1);
-        transform: scale(1);
+        box-shadow: 0 4px 25px rgba(230, 54, 116, 0.3);
+        opacity: 1;
     }
 }
 
@@ -47,6 +45,8 @@
     gap: 1rem;
 }
 
+
+
 /* Individual slot styling */
 .slot-item {
     border: 1px solid #ccc;
@@ -59,7 +59,7 @@
 
 /* Book slot button styling */
 .book-slot-button {
-    background: #e79a6e;
+    background: linear-gradient(135deg, var(--peach-dream), var(--peach-blush));
     color: white;
     border: none;
     padding: 0.8rem 2rem;
@@ -67,12 +67,21 @@
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(231, 154, 110, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(230, 54, 116, 0.3);
     animation: pulse 2s infinite ease-in-out;
     position: relative;
     width: 100%;
     margin-top: 1rem;
+    backdrop-filter: blur(8px);
+}
+
+.book-slot-button:hover {
+    background: linear-gradient(135deg, var(--peach-blush), var(--peach-passion));
+    animation-play-state: paused;
+    filter: brightness(1.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(241, 146, 189, 0.5), 0 0 0 3px rgba(248, 212, 101, 0.3);
 }
 
 /* Tooltip för book-slot-button */
@@ -82,14 +91,14 @@
     bottom: 100%;
     left: 50%;
     transform: translate(-50%, -100%);
-    background: linear-gradient(135deg, #ff6b47 0%, #ff8c69 100%);
+    background: linear-gradient(135deg, var(--peach-blush), var(--peach-passion));
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 12px;
     font-size: 5rem;
     font-weight: 600;
     white-space: nowrap;
-    box-shadow: 0 8px 25px rgba(255, 107, 71, 0.4);
+    box-shadow: 0 8px 25px rgba(230, 54, 116, 0.4);
     opacity: 0;
     pointer-events: none;
     z-index: 1000;
@@ -107,28 +116,13 @@
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #ff6b47;
+    border-top: 8px solid var(--peach-passion);
     opacity: 0;
     pointer-events: none;
     z-index: 1001;
 }
 
-/* Visa tooltip efter 2 sekunder hover */
-.book-slot-button:hover::before {
-    animation: tooltipFadeIn 0.4s ease-out 5s forwards, bounce 0.8s ease-out 2s forwards;
-}
 
-.book-slot-button:hover::after {
-    animation: tooltipFadeIn 0.4s ease-out 5s forwards;
-}
-
-.book-slot-button:hover {
-    background: #d68555;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(231, 154, 110, 0.4), 0 0 0 4px rgba(214, 133, 85, 0.3);
-    animation-play-state: paused;
-    filter: brightness(1.15);
-}
 
 /* Responsive design för book-slot-button */
 @media (max-width: 768px) {

@@ -19,6 +19,15 @@ namespace Peach_ActiviGo.Api.MiddleWare
             try
             {
                 await _next(context);
+
+                if (context.Response.StatusCode == (int)HttpStatusCode.Forbidden)
+                {
+                    await WriteCustomErrorAsync(context, "You are not permitted for this action.", HttpStatusCode.Forbidden);
+                }
+                else if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+                {
+                    await WriteCustomErrorAsync(context, "You must be logged in to access this resource.", HttpStatusCode.Unauthorized);
+                }
             }
             catch (Exception ex)
             {
@@ -150,6 +159,28 @@ namespace Peach_ActiviGo.Api.MiddleWare
 
             await context.Response.WriteAsync(jsonResponse);
         }
+
+        private static async Task WriteCustomErrorAsync(HttpContext context, string message, HttpStatusCode statusCode)
+        {
+            if (context.Response.HasStarted) return;
+
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)statusCode;
+
+            var error = new ErrorResponse
+            {
+                Message = message,
+                Timestamp = DateTime.UtcNow
+            };
+
+            var json = JsonSerializer.Serialize(error, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+            await context.Response.WriteAsync(json);
+        }
+
     }
 
     public class ErrorResponse
