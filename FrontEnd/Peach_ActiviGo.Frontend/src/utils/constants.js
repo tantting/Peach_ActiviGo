@@ -5,14 +5,17 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // API Endpoint paths
 export const API_ENDPOINTS = {
-    authentication: {
-        login: "/api/Authentication/login",
-        register: "/api/Authentication/CreateAccount"
-    },
-    booking: "/api/Booking",
-    activityLocation: "/api/ActivityLocation",
-    activitySlots: "/api/ActivitySlot"
+  authentication: {
+    login: "/api/Authentication/login",
+    register: "/api/Authentication/CreateAccount"
+  },
+  booking: "/api/Booking",
+  activityLocation: "/api/ActivityLocation",
+  activitySlots: "/api/ActivitySlots",
+  activities: "/api/activities",
+  locations: "/api/Location",
 };
+
 
 // Weather API
 export const WEATHER_API_BASE_URL = "https://api.openweathermap.org/data/2.5";

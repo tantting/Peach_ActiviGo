@@ -1,31 +1,28 @@
 import React, { useState } from "react";
-import FetchContent from "../Components/HelperFunctions/FetchContent";
-import "../Styles/BookingStatistics.css";
+import FetchDeleteActivity from "../../../../Components/HelperFunctions/Admin/CRUDS/Activity/FetchDeleteActivity";
+import "../../../../Styles/BookingStatistics.css";
 
-export default function DeleteActivity({ showTitle = true, containerClassName = "" }) {
+export default function DeleteActivityView({
+  showTitle = true,
+  containerClassName = "",
+}) {
   const [id, setId] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [ok, setOk] = useState("");
-  const [error, setError] = useState("");
+  const { deleteActivity, loading, error, okMessage } = FetchDeleteActivity();
 
   const onDelete = async (e) => {
     e.preventDefault();
-    setOk("");
-    setError("");
     if (!id) return;
 
-    const confirmed = window.confirm(`Är du säker på att du vill radera aktivitet med ID ${id}?`);
+    const confirmed = window.confirm(
+      `Är du säker på att du vill radera aktivitet med ID ${id}?`
+    );
     if (!confirmed) return;
 
     try {
-      setLoading(true);
-      await FetchContent(`/api/activities/${Number(id)}`, null, "DELETE");
-      setOk("Aktivitet raderad!");
+      await deleteActivity(id);
       setId("");
     } catch (err) {
-      setError("Kunde inte radera aktiviteten.");
-    } finally {
-      setLoading(false);
+      // Error handling är redan hanterat av hooken
     }
   };
 
@@ -35,7 +32,7 @@ export default function DeleteActivity({ showTitle = true, containerClassName = 
 
       {loading && <p>Raderar…</p>}
       {error && <p className="error-message">{error}</p>}
-      {ok && <p style={{ color: "#2e7d32" }}>{ok}</p>}
+      {okMessage && <p style={{ color: "#2e7d32" }}>{okMessage}</p>}
 
       <form className="panel-form" onSubmit={onDelete}>
         <div className="form-row inline">

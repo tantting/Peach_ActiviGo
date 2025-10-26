@@ -31,23 +31,25 @@
 
 
 .filterSearch label{
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #e63674;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #d12d5a;
     margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.3px;
 }
 
 .filterSearch p {
-    color: #e63674;
-    font-size: 0.85rem;
-    font-weight: 500;
+    color: #d12d5a;
+    font-size: 0.9rem;
+    font-weight: 600;
     width: 100%;
     margin: 0.25rem 0 0 0;
-    background: rgba(230, 54, 116, 0.1);
+    background: rgba(209, 45, 90, 0.15);
     border-radius: 8px;
-    padding: 0.3rem 0.5rem;
-    border: 1px solid rgba(230, 54, 116, 0.3);
+    padding: 0.4rem 0.6rem;
+    border: 1px solid rgba(209, 45, 90, 0.4);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .filterSearch input:not([type="radio"]),
@@ -57,10 +59,10 @@
     border: 2px solid rgba(246, 177, 208, 0.4);
     border-radius: 12px;
     padding: 0.5rem 0.8rem;
-    background: rgba(255, 255, 255, 0.9);
-    color: #2d1b2e;
-    font-size: 0.9rem;
-    font-weight: 500;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1f1419;
+    font-size: 0.95rem;
+    font-weight: 600;
     backdrop-filter: blur(8px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(230, 54, 116, 0.1);
@@ -179,23 +181,24 @@
 }
 
 .filterSearch input::placeholder {
-    color: rgba(45, 27, 46, 0.6);
+    color: rgba(31, 20, 25, 0.7);
     font-style: italic;
+    font-weight: 500;
 }
 .filterSearch button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #f6b1d0, #f192bd);
-    color: white;
+    color: #ffffff;
     margin: 0.75rem 0 0 0;
     padding: 0.8rem 1.5rem;
     height: auto;
     min-height: 2.5rem;
     text-align: center;
     border-radius: 15px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     width: 100%;
     border: none;
     cursor: pointer;
@@ -203,8 +206,8 @@
     backdrop-filter: blur(8px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.8px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .filterSearch button:hover {

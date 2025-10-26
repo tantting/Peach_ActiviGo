@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import FetchContent from "../Components/HelperFunctions/FetchContent";
-import "../Styles/BookingStatistics.css";
+import FetchContent from "../../Components/HelperFunctions/FetchContent";
+import "../../Styles/BookingStatistics.css";
 
-export default function BookingStatistics() {
+export default function BookingStatisticsView() {
   const [adminStats, setAdminStats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
