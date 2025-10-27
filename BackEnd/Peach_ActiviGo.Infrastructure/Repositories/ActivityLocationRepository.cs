@@ -26,7 +26,11 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
                 .Include(activityLocation => activityLocation.Location)
                 .ToListAsync(ct);
         }
-
+        
+        public void Add (ActivityLocation activityLocation)
+        {
+            _context.ActivityLocations.AddAsync(activityLocation);
+        }
         public async Task<IEnumerable<ActivityLocation>> FilterActivityLocations(ActivityLocationFilter filter, CancellationToken ct)
         {
             var query = _context.ActivityLocations
