@@ -16,6 +16,7 @@ export default function FetchAllActivitySlots() {
       const data = await FetchPeachApi(ACTIVITY_SLOT_ENDPOINT, {
         method: "GET",
       });
+      console.log(data);
       setActivitySlots(Array.isArray(data) ? data : []);
     } catch (e) {
       setError(e.message || "Kunde inte hämta aktivitetstillfällen");
