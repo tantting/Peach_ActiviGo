@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { loginUser } from "../Components/HelperFunctions/AuthService"; // Import loginUser
 import { AuthContext } from "../Components/AuthContext"; // Import AuthContext
+import { toast } from "react-toastify";
 
 export default function LoginView() {
   const [formData, setFormData] = useState({
@@ -26,14 +27,14 @@ export default function LoginView() {
       const token = result?.token;
       if (token) {
         login(token); // Call login from AuthContext with the token
-        alert("Inloggning lyckades!");
+        toast.success("Inloggning lyckades!");
         navigate("/");
       } else {
-        alert("Fel vid inloggning, kontrollera email/lösenord.");
+        toast.error("Fel vid inloggning, kontrollera email/lösenord.");
         navigate("/login");
       }
     } catch (error) {
-      alert("Fel vid inloggning, kontrollera email/lösenord.");
+      toast.error("Fel vid inloggning, kontrollera email/lösenord.");
       console.error(error);
     }
   };

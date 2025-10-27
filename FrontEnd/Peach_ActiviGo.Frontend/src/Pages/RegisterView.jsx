@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate To navigate after registration
 import { registerUser } from "../Components/HelperFunctions/AuthService";
+import { toast } from "react-toastify";
 
 export default function RegisterView() {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ export default function RegisterView() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Lösenorden matchar inte!");
+      toast.error("Lösenorden matchar inte!");
       return;
     }
 
@@ -33,10 +34,10 @@ export default function RegisterView() {
         email: formData.email,
         password: formData.password,
       });
-      alert("Registrering lyckades! Du kan nu logga in.");
+      toast.success("Registrering lyckades! Du kan nu logga in.");
       navigate("/login"); // Navigate to login page after successful registration
     } catch (error) {
-      alert("Något gick fel vid registrering.");
+      toast.error("Något gick fel vid registrering.");
     }
     {
       /*Skicka formdatan till backend här!*/
@@ -98,7 +99,7 @@ export default function RegisterView() {
               autoComplete="on"
             />
           </div>
- 
+
           <button type="submit" className="auth-button">
             Registrera
           </button>
