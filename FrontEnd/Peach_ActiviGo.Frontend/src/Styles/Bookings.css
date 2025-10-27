@@ -8,14 +8,14 @@
 }
 
 .booking-card {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95), 
-    rgba(252, 228, 240, 0.8));
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(252, 228, 240, 0.8));
   border: 2px solid rgba(246, 177, 208, 0.3);
   border-radius: 20px;
   padding: 20px;
   backdrop-filter: blur(15px);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(246, 177, 208, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -24,7 +24,7 @@
 .booking-card:hover {
   transform: translateY(-5px) scale(1.02);
   border-color: var(--peach-blush);
-  box-shadow: 
+  box-shadow:
     0 20px 50px rgba(230, 54, 116, 0.4),
     0 0 0 3px rgba(248, 212, 101, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -202,7 +202,7 @@ button:has(.booking-button):active {
 
 .user-booking-detail:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 20px 50px rgba(230, 54, 116, 0.4),
     0 0 0 3px rgba(248, 212, 101, 0.3);
   border-color: var(--peach-blush);
