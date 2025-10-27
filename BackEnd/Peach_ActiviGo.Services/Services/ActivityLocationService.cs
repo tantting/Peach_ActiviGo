@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Peach_ActiviGo.Core.Filter;
 using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Core.Models;
 using Peach_ActiviGo.Services.DTOs.ActivityLocationDto;
 using Peach_ActiviGo.Services.Interface;
 
@@ -39,6 +40,18 @@ namespace Peach_ActiviGo.Services.Services
 
             return _mapper.Map<IEnumerable<ReadActivityLocationDto>>(activityLocations);
         }
+        
+        public async Task<ReadActivityLocationDto> CreateActivityLocationAsync(CreateActivityLocationDto dto, CancellationToken ct)
+        {
+            var activityLocation = _mapper.Map<ActivityLocation>(dto);
+            activityLocation.CreatedDate = DateOnly.FromDateTime(DateTime.Now);
+            activityLocation.UpdatedDate = DateOnly.FromDateTime(DateTime.Now);
+
+            _unitOfWork.ActivityLocations.Add(activityLocation);
+            await _unitOfWork.SaveChangesAsync(ct);
+
+            return _mapper.Map<ReadActivityLocationDto>(activityLocation);
+        }   
 
         public async Task<IEnumerable<ReadActivityLocationDto>> FilterActivityLocationsAsync(ActivityLocationFilterDto filter, CancellationToken ct)
         {

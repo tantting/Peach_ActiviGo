@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { buildImageUrl } from "../utils/constants";
 
 const ActivityLocationCard = ({ activityLocation }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="activity-card">
       <h2>Plats: {activityLocation.locationName}</h2>
@@ -19,7 +21,14 @@ const ActivityLocationCard = ({ activityLocation }) => {
           }}
         />
       </p>
-      <button>
+      <button
+        type="button"
+        onClick={() =>
+          navigate(`/activity/${activityLocation.id}`, {
+            state: { activityLocation },
+          })
+        }
+      >
         <Link
           to={`/activity/${activityLocation.id}`}
           state={{ activityLocation }}

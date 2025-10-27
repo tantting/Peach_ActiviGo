@@ -24,6 +24,7 @@ namespace Peach_ActiviGo.Services.Mapping
             // DTO -> Model
             CreateMap<ReadActivityLocationDto, ActivityLocation>();
             CreateMap<UpdateActivityLocationDto, ActivityLocation>();
+            CreateMap<CreateActivityLocationDto, ActivityLocation>();
 
             // Filter DTO -> Filter Model
             CreateMap<ActivityLocationFilterDto, ActivityLocationFilter>();

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FetchUpdateActivity from "../../../../Components/HelperFunctions/Admin/CRUDS/Activity/FetchUpdateActivity.jsx";
+import FetchContent from "../../../../Components/HelperFunctions/FetchContent.jsx";
 import "../../../../Styles/AdminView.css";
 
 export default function UpdateActivityView({
@@ -33,6 +34,27 @@ export default function UpdateActivityView({
     const { name, value } = e.target;
     setUpdateForm((p) => ({ ...p, [name]: value }));
   };
+
+  // Hämta kategorier för dropdown
+  const [categories, setCategories] = useState([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [categoriesError, setCategoriesError] = useState(null);
+
+  useEffect(() => {
+    const load = async () => {
+      setCategoriesLoading(true);
+      try {
+        const data = await FetchContent("/api/Categories");
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setCategoriesError("Kunde inte hämta kategorier");
+        setCategories([]);
+      } finally {
+        setCategoriesLoading(false);
+      }
+    };
+    load();
+  }, []);
 
   // ⬅️ UPDATE via hook — GET
   const handleFetchById = async (e) => {
@@ -174,14 +196,24 @@ export default function UpdateActivityView({
 
           <div className="form-row grid-2">
             <div>
-              <label>Kategori-ID</label>
-              <input
-                type="number"
+              <label>Kategori</label>
+              <select
                 name="categoryId"
                 value={updateForm.categoryId}
                 onChange={onUpdateChange}
-                min="1"
-              />
+              >
+                <option value="">-- Välj kategori --</option>
+                {!categoriesLoading &&
+                  Array.isArray(categories) &&
+                  categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+              </select>
+              {categoriesError && (
+                <p style={{ color: "var(--peach-royal)" }}>{categoriesError}</p>
+              )}
             </div>
           </div>
 
