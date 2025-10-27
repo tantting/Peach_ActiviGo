@@ -25,39 +25,46 @@ public class BookingSeed
             return;
         }
 
-        // Hämta ActivitySlots
-        var slots = await context.ActivitySlots.ToListAsync();
+        // Hämta alla slots och filtrera på StartTime >= 2025-10-27 12:00 (eftermiddagar)
+        DateTime minAllowedSlot = new DateTime(2025, 10, 27, 12, 0, 0);
+        var futureSlots = await context.ActivitySlots
+            .Where(s => s.StartTime >= minAllowedSlot)
+            .OrderBy(s => s.StartTime)
+            .ToListAsync();
 
-        if (!slots.Any())
+        if (!futureSlots.Any())
         {
-            Console.WriteLine("⚠️ Inga ActivitySlots hittades – kontrollera att du seedat dem.");
+            Console.WriteLine("⚠️ Inga ActivitySlots med StartTime >= 2025-10-27 12:00 hittades. Seed avbryts.");
             return;
         }
 
-        var random = new Random();
+        var rnd = new Random();
         var bookings = new List<Booking>();
 
-        for (int i = 0; i < 20; i++)
-        {
-            var user = users[random.Next(users.Count)];
-            var slot = slots[random.Next(slots.Count)];
+        int totalBookings = 30; // fler bokningar som du bad om
 
-            // Slumpa status: 80% Active, 20% Cancelled
-            var status = random.NextDouble() < 0.8 ? BookingStatus.Active : BookingStatus.Cancelled;
+        // skapa bookingar; vi kör genom futureSlots slumpmässigt
+        for (int i = 1; i <= totalBookings; i++)
+        {
+            var user = users[rnd.Next(users.Count)];
+            var slot = futureSlots[rnd.Next(futureSlots.Count)];
+
+            var status = rnd.NextDouble() < 0.8 ? BookingStatus.Active : BookingStatus.Cancelled;
 
             bookings.Add(new Booking
             {
+                // Låt EF sätta Id automatiskt (ta bort om du vill hårdkoda Id)
                 CustomerId = user.Id,
                 ActivitySlotId = slot.Id,
-                BookingDate = DateTime.Now.AddDays(-random.Next(0, 14)), // Bokningsdatum inom senaste 2 veckor
+                BookingDate = slot.StartTime, // här matchar bokningsdatum slotens starttid
                 Status = status,
-                CancelledAt = status == BookingStatus.Cancelled ? DateTime.Now.AddDays(-random.Next(0, 7)) : null
+                CancelledAt = status == BookingStatus.Cancelled ? (DateTime?)slot.StartTime.AddHours(-1) : null
             });
         }
 
         await context.Bookings.AddRangeAsync(bookings);
         await context.SaveChangesAsync();
 
-        Console.WriteLine("✅ 20 bokningar seedade!");
+        Console.WriteLine($"✅ {totalBookings} bokningar skapade (kopplade till slots med start >= {minAllowedSlot:yyyy-MM-dd HH:mm}).");
     }
 }
