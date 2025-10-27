@@ -26,11 +26,15 @@ export default function LoginView() {
       const token = result?.token;
       if (token) {
         login(token); // Call login from AuthContext with the token
+        alert("Inloggning lyckades!");
+        navigate("/");
+      } else {
+        alert("Fel vid inloggning, kontrollera email/lösenord.");
+        navigate("/login");
       }
-      alert("Inloggning lyckades!");
-      navigate("/");
     } catch (error) {
       alert("Fel vid inloggning, kontrollera email/lösenord.");
+      console.error(error);
     }
   };
 
