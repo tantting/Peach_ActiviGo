@@ -1,16 +1,17 @@
 # 🍑 Peach_ActiviGo — Project Overview & Runbook
 
-> A concise guide for running, understanding, and contributing to **Peach_ActiviGo** — inklusive arkitekturöversikt, lokal körning (migrations & seed, miljövariabler för väder-API), API-surface och rekommenderat team-workflow.
+> A concise guide for running and understanding **Peach_ActiviGo** — inklusive arkitekturöversikt, lokal körning (migrations & seed, miljövariabler för väder-API), API-surface och team-workflow.
 
 ---
 
 ## 1. Architecture & Layers (high level)
 
-- **API (Presentation)**
+- **API**
   - `Peach_ActiviGo.Api`
-  - ASP.NET Core Web API (.NET 8). Konfigureras i `Program.cs`.
-  - Middleware: `GlobalExceptionMiddleware`, JWT authentication (`JwtBearer`), authorization policy `AdminOnly`.
-  - Swagger är aktiverat i Development.
+  - ASP.NET Core Web API (.NET 8).
+  - Middleware: `GlobalExceptionMiddleware`
+  - JWT authentication (`JwtBearer`)
+  - Authorization policy `AdminOnly`
 
 - **Core / Domain**
   - `Peach_ActiviGo.Core`
@@ -18,15 +19,19 @@
 
 - **Infrastructure (data & Identity)**
   - `Peach_ActiviGo.Infrastructure`
-  - `AppDbContext` (EF Core + Identity), Migrations, seed data (`IdentitySeed`, `BookingSeed`), repositories.
+  - `AppDbContext` (EF Core + Identity)
+  - Migrations, seed data (`IdentitySeed`, `BookingSeed`), repositories.
 
 - **Services (business logic)**
   - `Peach_ActiviGo.Services`
-  - Business services, AutoMapper profiles, JWT token service, FluentValidation validators.
+  - Business services,
+  - AutoMapper profiles,
+  - JWT token service,
+  - FluentValidation validators.
 
 - **Frontend**
   - `FrontEnd/Peach_ActiviGo.Frontend`
-  - Vite-driven SPA. `src/utils/constants.js` innehåller API-vägar och bild-URL helper.
+  - React + Vite + Axios, `src/utils/constants.js` som bland annat innehåller API-vägar.
 
 ---
 
@@ -35,18 +40,40 @@
 ### Prerequisites
 - .NET 8 SDK
 - SQL Server (LocalDB, Docker SQL Server eller annan)
-- Node.js (för frontend)
+- React+Vite (för frontend)
 - (Valfritt) **Package Manager Console** i Visual Studio
 
 ### Configuration / environment variables
-- **Backend**: lägg till `appsettings.Development.json` (eller använd user secrets) med:
+- **Backend**: lägg till `appsettings.json` (eller använd user secrets) med:
   - `ConnectionStrings:DefaultConnection` → SQL Server connection string
   - `Jwt:Key`, `Jwt:Issuer`, `Jwt:Audience` → stark secret för dev
 - **Frontend** (.env för Vite): skapa `FrontEnd/Peach_ActiviGo.Frontend/.env.local`:
   - `VITE_API_BASE_URL=http://localhost:5000`
   - `VITE_WEATHER_API_KEY=your_openweathermap_api_key` (OpenWeatherMap eller motsvarande)
 
-Exempel `.env.local` (klistra in i filen):
+  Exempel:
+  ```
+  {
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source = localhost;Initial Catalog=NAMN_PÅ_DATABASEN;Integrated Security = True;Trust Server Certificate = true;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Jwt": {
+    "Issuer": "NAMN_TILL_ISSUER",
+    "Audience": "NAMN_TILL_AUDIENCE",
+    "Key": "SECRET_STRING" (MÅSTE VARA 64 KARAKTÄRER ELLER LÄNGRE)
+  },
+  "AllowedHosts": "*"
+  }
+
+  ```
+
+Exempel på .env-fil i Visual Studio Code:
 ```
 VITE_API_BASE_URL=http://localhost:5000
 VITE_WEATHER_API_KEY=your_openweathermap_api_key
@@ -55,7 +82,7 @@ VITE_WEATHER_API_KEY=your_openweathermap_api_key
 ### How migrations & seed run
 - `Program.cs` anropar vid startup:
   - `dbContext.Database.Migrate()` — applicerar pending migrations.
-  - `IdentitySeed.InitializeAsync(userManager, roleManager)` — skapar roller (`Admin`, `User`) och default-konton.
+  - `IdentitySeed.InitializeAsync(userManager, roleManager)` — skapar roller (`Admin`, `User`) och default-konton för dessa.
   - `BookingSeed.InitializeAsync(dbContext)` — seedar activities, locations, slots och bookings (BookingSeed kräver slots och letar efter slots med start >= `2025-10-27 12:00` i nuvarande seed).
 
 **Default seeded accounts (från `IdentitySeed`):**
@@ -104,7 +131,7 @@ npm run dev
 **Primary endpoints (examples)**
 
 - **Authentication**
-  - `POST /api/Authentication/login` — returnerar JWT (access + refresh där implementerat)
+  - `POST /api/Authentication/login` — returnerar JWT Access.
   - `POST /api/Authentication/CreateAccount` — registrera ny användare
 - **Booking**
   - `GET/POST/DELETE /api/Booking` — lista/skapa/avboka bookings (implementation-specifik)
@@ -124,7 +151,7 @@ npm run dev
 1. Klient hämtar activities → väljer activity location.
 2. Klient hämtar tillgängliga `ActivitySlots` för vald plats.
 3. Klient postar booking till `POST /api/Booking` med `ActivitySlotId`. Backend löser `CustomerId` från token och validerar kapacitet.
-4. Avbokning: backend sätter `Status = Cancelled` och `CancelledAt`.
+4. Avbokning: backend sätter `Status = Cancelled` och `CancelledAt` samt sparar bokningen till Historiken inne på "Mina Bokningar".
 
 **Validation & error handling**
 - FluentValidation-validators är registrerade för DTOs och körs i controllers.
@@ -138,26 +165,13 @@ npm run dev
 ## 4. Team workflow (recommended)
 
 ### Branching
-- `main` — skyddad, alltid deploybar
-- Feature branches: `feature/<short-desc>` (t.ex. `feature/activity-search`)
-- Bugfix: `bugfix/<issue-number>`
-- Hotfix: `hotfix/<issue>`
-- Release branches (valfritt): `release/vX.Y`
+- `main` — skyddad.
+- `Egen_namngivning` - För att jobba på en feature.
 
 ### Pull Requests
 - PR target: `main` (eller release branch)
-- Kräver 1–2 reviewers beroende på storlek.
-- PR template-fält:
-  - Summary / purpose
-  - Related issue(s)
-  - How to test locally (inkl. migrations/seed)
-  - Checklist: builds, tests, linter, inga secrets, docs uppdaterade
-- Merge-strategi: squash eller rebase (team-val), enforce CI green + approvals.
-
-### CI / Quality gates
-- Kör `dotnet build`, `dotnet test` för backend.
-- Kör ESLint/Prettier och enhetstester för frontend.
-- Kör eventuell DB-migration validation i staging pipeline.
+- Regel som kräver att 1 reviewer (som inte är PR Owner) går igenom koden.
+- Man kan inte Merge'a sin egna gren till Main.
 
 ### Code standards
 **C# (.NET 8)**
@@ -168,14 +182,9 @@ npm run dev
 - Använd `IUnitOfWork`/repository patterns som finns för DB-access.
 - Lägg XML summaries för komplexa publika API:er där det är hjälpsamt.
 
-**Formatting**
-- Använd gemensam `.editorconfig` eller kör **Format Document** i Visual Studio / `dotnet format`.
-- Commit-meddelanden: följ Conventional Commits (rekommenderat): `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`.
-
 **PR review checklist (kort)**
 - Kod bygger lokalt.
-- Unit tests passerar.
-- Inga secrets i repo.
+- Inga secrets/API-Keys i repo.
 - Migrations dokumenterade och migrationsfiler läggs i `Peach_ActiviGo.Infrastructure`.
 - API-ändringar dokumenterade (Swagger / README).
 
@@ -205,15 +214,13 @@ npm run dev
 ---
 
 ## Optional / Förslag på fler filer att lägga till
-- `docs/PR_TEMPLATE.md` eller `.github/pull_request_template.md`
-- `.env.example`
-- Minimal `.editorconfig`
-- `CONTRIBUTING.md` baserat på workflow ovan
+- `appsettings.json`-fil för Keys/Secret(Backend)
+- `.env`-fil för Keys/Secret(Frontend)
 
 ---
 
 ## Notes / Specifika implementationer att känna till
-- BookingSeed kräver att seeded slots har `StartTime >= 2025-10-27 12:00` för att bokningar ska skapas vid seed. Om du behöver annan seed-tidsram uppdatera seed-logiken.
+- BookingSeed kräver (just nu) att seeded slots har `StartTime >= 2025-10-27 12:00` för att bokningar ska skapas vid seed. Om du behöver annan seed-tidsram uppdatera seed-logiken.
 - IdentitySeed skapar rollerna `Admin` och `User` och några demo-konton — byt lösenord eller använd user-secrets i produktion.
 - CORS-policyn är satt till `AllowAll` i dev; begränsa detta i staging/production.
 
