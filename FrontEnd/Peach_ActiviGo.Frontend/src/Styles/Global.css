@@ -1,30 +1,40 @@
-
 /* Base Styles */
 :root {
   font-family: 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
-  
+
   /* 🌸 Princess Peach Magic Color Palette 🌸 */
-  --peach-dream: #f6b1d0;      /* Ljusrosa - drömlik huvudfärg */
-  --peach-blush: #f192bd;      /* Mediumrosa - elegant accent */
-  --peach-passion: #e63674;    /* Mörkrosa - kraftfull kontrast */
-  --peach-sky: #56bcd2;        /* Turkos - himmelska accenter */
-  --peach-sun: #f8d465;        /* Gul - solsken och glädje */
-  
+  --peach-dream: #f6b1d0;
+  /* Ljusrosa - drömlik huvudfärg */
+  --peach-blush: #f192bd;
+  /* Mediumrosa - elegant accent */
+  --peach-passion: #e63674;
+  /* Mörkrosa - kraftfull kontrast */
+  --peach-sky: #56bcd2;
+  /* Turkos - himmelska accenter */
+  --peach-sun: #f8d465;
+  /* Gul - solsken och glädje */
+
   /* Magiska tilläggsnyanser */
-  --peach-whisper: #fce4f0;    /* Mjukaste rosa */
-  --peach-cotton: #f9c9d4;     /* Bomullsrosa */
-  --peach-royal: #d12c5a;      /* Kunglig djuprosa */
-  --peach-breeze: #87d3e6;     /* Ljus turkos bris */
-  --peach-cream: #fdf1c7;      /* Krämig gul */
-  --peach-shadow: #2d1b2e;     /* Elegant mörk text */
-  
+  --peach-whisper: #fce4f0;
+  /* Mjukaste rosa */
+  --peach-cotton: #f9c9d4;
+  /* Bomullsrosa */
+  --peach-royal: #d12c5a;
+  /* Kunglig djuprosa */
+  --peach-breeze: #87d3e6;
+  /* Ljus turkos bris */
+  --peach-cream: #fdf1c7;
+  /* Krämig gul */
+  --peach-shadow: #2d1b2e;
+  /* Elegant mörk text */
+
   color-scheme: light;
   color: var(--peach-shadow);
-  
+
   /* Magisk gradient bakgrund */
-  background: 
+  background:
     radial-gradient(circle at 70% 80%, var(--peach-whisper) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, var(--peach-breeze) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, var(--peach-cream) 0%, transparent 50%),
@@ -57,7 +67,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
+  background:
     radial-gradient(circle at 15% 15%, rgba(246, 177, 208, 0.1) 0%, transparent 40%),
     radial-gradient(circle at 85% 85%, rgba(86, 188, 210, 0.1) 0%, transparent 40%),
     radial-gradient(circle at 50% 10%, rgba(248, 212, 101, 0.1) 0%, transparent 30%);
@@ -92,7 +102,7 @@ button {
   color: white;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
+  box-shadow:
     0 4px 20px rgba(241, 146, 189, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   position: relative;
@@ -108,17 +118,17 @@ button::before {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.4), 
-    transparent);
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
   transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:hover {
   background: linear-gradient(135deg, var(--peach-passion), var(--peach-blush));
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 8px 30px rgba(230, 54, 116, 0.5),
     0 0 0 4px rgba(248, 212, 101, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -170,7 +180,7 @@ button:focus-visible {
   .page-container {
     padding: 1.5rem;
   }
-  
+
   h1 {
     font-size: 2.8em;
   }
@@ -180,17 +190,17 @@ button:focus-visible {
   .page-container {
     padding: 1rem;
   }
-  
+
   h1 {
     font-size: 2.4em;
     line-height: 1.2;
   }
-  
+
   .page-container h1 {
     margin-bottom: 1.5rem;
   }
-  
-  .page-container > p {
+
+  .page-container>p {
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
@@ -200,27 +210,27 @@ button:focus-visible {
   .page-container {
     padding: 0.8rem;
   }
-  
+
   h1 {
     font-size: 2rem;
     line-height: 1.3;
   }
-  
+
   .page-container h1 {
     margin-bottom: 1rem;
   }
-  
-  .page-container > p {
+
+  .page-container>p {
     font-size: 0.95rem;
     margin-bottom: 1rem;
   }
-  
+
   .categories-list {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-top: 1rem;
   }
-  
+
   .category-item {
     padding: 1.5rem;
     margin: 0 0.5rem;
@@ -240,15 +250,15 @@ button:focus-visible {
 }
 
 .category-item {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.9), 
-    rgba(252, 228, 240, 0.8));
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(252, 228, 240, 0.8));
   padding: 2.5rem;
   border-radius: 25px;
   border: 2px solid rgba(246, 177, 208, 0.3);
   text-align: center;
   backdrop-filter: blur(15px);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(246, 177, 208, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -264,14 +274,12 @@ button:focus-visible {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    rgba(246, 177, 208, 0.1),
-    transparent,
-    rgba(86, 188, 210, 0.1),
-    transparent
-  );
+  background: conic-gradient(from 0deg,
+      transparent,
+      rgba(246, 177, 208, 0.1),
+      transparent,
+      rgba(86, 188, 210, 0.1),
+      transparent);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
 }
@@ -279,7 +287,7 @@ button:focus-visible {
 .category-item:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--peach-blush);
-  box-shadow: 
+  box-shadow:
     0 20px 50px rgba(230, 54, 116, 0.4),
     0 0 0 3px rgba(248, 212, 101, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -291,8 +299,13 @@ button:focus-visible {
 }
 
 @keyframes magicRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Contact */
@@ -304,9 +317,9 @@ button:focus-visible {
 }
 
 .contact-section {
-  background: linear-gradient(135deg, 
-    rgba(252, 228, 240, 0.3), 
-    rgba(249, 201, 212, 0.2));
+  background: linear-gradient(135deg,
+      rgba(252, 228, 240, 0.3),
+      rgba(249, 201, 212, 0.2));
   padding: 2rem;
   border-radius: 20px;
   border: 2px solid var(--peach-dream);
@@ -330,14 +343,14 @@ button:focus-visible {
 .contact-form {
   max-width: 500px;
   margin: 2rem auto;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95), 
-    rgba(252, 228, 240, 0.9));
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(252, 228, 240, 0.9));
   padding: 2.5rem;
   border-radius: 30px;
   border: 2px solid var(--peach-dream);
   backdrop-filter: blur(20px);
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(246, 177, 208, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   position: relative;
@@ -375,7 +388,7 @@ button:focus-visible {
   outline: none;
   border-color: var(--peach-passion);
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 
+  box-shadow:
     0 0 0 4px rgba(230, 54, 116, 0.2),
     0 8px 25px rgba(246, 177, 208, 0.3);
   transform: translateY(-2px);
@@ -391,7 +404,7 @@ button:focus-visible {
   font-size: 1.1rem;
   font-weight: 700;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(241, 146, 189, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -406,17 +419,17 @@ button:focus-visible {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.3), 
-    transparent);
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transition: left 0.6s;
 }
 
 .contact-form button:hover {
   background: linear-gradient(135deg, var(--peach-passion), var(--peach-blush));
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 12px 35px rgba(230, 54, 116, 0.5),
     0 0 0 3px rgba(248, 212, 101, 0.3);
 }
@@ -438,14 +451,14 @@ button:focus-visible {
 }
 
 .auth-form {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95), 
-    rgba(252, 228, 240, 0.9));
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(252, 228, 240, 0.9));
   padding: 3.5rem;
   border-radius: 35px;
   border: 2px solid var(--peach-dream);
   backdrop-filter: blur(20px);
-  box-shadow: 
+  box-shadow:
     0 25px 70px rgba(246, 177, 208, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   width: 100%;
@@ -461,10 +474,10 @@ button:focus-visible {
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(90deg, 
-    var(--peach-passion), 
-    var(--peach-blush), 
-    var(--peach-sky));
+  background: linear-gradient(90deg,
+      var(--peach-passion),
+      var(--peach-blush),
+      var(--peach-sky));
   border-radius: 35px 35px 0 0;
 }
 
@@ -495,7 +508,7 @@ button:focus-visible {
   outline: none;
   border-color: var(--peach-passion);
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 
+  box-shadow:
     0 0 0 4px rgba(230, 54, 116, 0.2),
     0 8px 25px rgba(246, 177, 208, 0.3);
   transform: translateY(-2px);
@@ -513,7 +526,7 @@ button:focus-visible {
   font-weight: 700;
   margin-top: 1.5rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(230, 54, 116, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -528,17 +541,17 @@ button:focus-visible {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.3), 
-    transparent);
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transition: left 0.6s;
 }
 
 .auth-button:hover {
   background: linear-gradient(135deg, var(--peach-blush), var(--peach-dream));
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 12px 35px rgba(241, 146, 189, 0.5),
     0 0 0 3px rgba(248, 212, 101, 0.3);
 }
@@ -590,4 +603,40 @@ button:focus-visible {
 
 .read-the-docs {
   color: #888;
+}
+
+/* React Toastify overrides */
+.Toastify__close-button {
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  color: red;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  border-radius: 50%;
+}
+
+.Toastify__close-button::before,
+.Toastify__close-button::after {
+  content: none !important;
+}
+
+.Toastify__close-button>svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  opacity: 1;
+  outline: none;
 }

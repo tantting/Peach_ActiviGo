@@ -6,6 +6,7 @@ import {
 import FetchPeachApi from "../Components/HelperFunctions/FetchPeachApi.jsx";
 import UserBookingCard from "../Components/UserBookingCard.jsx";
 import { releaseBookedSlot } from "../Components/HelperFunctions/FetchActivitySlots.jsx";
+import { toast } from "react-toastify";
 import "../Styles/Bookings.css";
 
 export default function MyBookingsView() {
@@ -52,31 +53,29 @@ export default function MyBookingsView() {
       return;
     }
 
-    if (window.confirm("Vill du verkligen avboka denna bokning?")) {
-      try {
-        const cancelledBooking = await cancelBooking(id);
-        alert("Bokning avbokad!");
+    try {
+      const cancelledBooking = await cancelBooking(id);
+      toast.success("Bokning avbokad!");
 
-        setActiveBookings((prev) => prev.filter((b) => b.id !== id));
+      setActiveBookings((prev) => prev.filter((b) => b.id !== id));
 
-        const slotId =
-          bookingToCancel.activitySlotId || bookingToCancel.activitySlot?.id;
-        if (slotId !== undefined && slotId !== null) {
-          releaseBookedSlot(slotId);
-        }
-
-        const cancelledPayload =
-          cancelledBooking && typeof cancelledBooking === "object"
-            ? { ...bookingToCancel, ...cancelledBooking }
-            : { ...bookingToCancel, status: "Cancelled" };
-
-        setCancelledBookings((prev) => [
-          ...prev.filter((b) => b.id !== cancelledPayload.id),
-          cancelledPayload,
-        ]);
-      } catch (error) {
-        alert("Kunde inte avboka: " + error.message);
+      const slotId =
+        bookingToCancel.activitySlotId || bookingToCancel.activitySlot?.id;
+      if (slotId !== undefined && slotId !== null) {
+        releaseBookedSlot(slotId);
       }
+
+      const cancelledPayload =
+        cancelledBooking && typeof cancelledBooking === "object"
+          ? { ...bookingToCancel, ...cancelledBooking }
+          : { ...bookingToCancel, status: "Cancelled" };
+
+      setCancelledBookings((prev) => [
+        ...prev.filter((b) => b.id !== cancelledPayload.id),
+        cancelledPayload,
+      ]);
+    } catch (error) {
+      toast.error("Kunde inte avboka: " + error.message);
     }
   };
 

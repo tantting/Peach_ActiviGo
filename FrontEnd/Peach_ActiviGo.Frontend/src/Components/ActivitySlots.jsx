@@ -5,6 +5,7 @@ import { AuthContext } from "./AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import createBooking from "./HelperFunctions/CreateBooking.jsx";
 import { isTokenValid } from "./HelperFunctions/AuthService.js";
+import { toast } from "react-toastify";
 
 /**
  *
@@ -26,21 +27,21 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
 
     // Om inte inloggad, omdirigera till login-sidan
     if (!isAuthenticated) {
-      alert("Du måste logga in för att boka en aktivitet.");
+      toast.info("Du måste logga in för att boka en aktivitet.");
       navigate("/login");
       return;
     }
 
     // Dubbelkolla token-validitet
     if (!tokenValid) {
-      alert("Din session har gått ut. Vänligen logga in igen.");
+      toast.warning("Din session har gått ut. Vänligen logga in igen.");
       navigate("/login");
       return;
     }
 
     // Kontrollera om slot har ett ID
     if (!slot.id) {
-      alert("Fel: Kunde inte hitta slot-ID för bokning.");
+      toast.error("Fel: Kunde inte hitta slot-ID för bokning.");
       return;
     }
 
@@ -69,7 +70,7 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
       }
 
       // Ändra string till den plats som bokningarna ska hamna på för en user
-      alert(
+      toast.success(
         "Bokning lyckades! Du kan se dina bokningar under 'Mina bokningar'."
       );
     } catch (error) {
@@ -79,7 +80,7 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
         [index]: { loading: false, error: error.message },
       }));
 
-      alert(`Fel vid bokning: ${error.message}`);
+      toast.error(`Fel vid bokning: ${error.message}`);
     }
   };
   if (loading) return <div>Laddar lediga tider...</div>;
