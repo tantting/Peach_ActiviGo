@@ -3,6 +3,8 @@ import FetchPeachApi from "../../../FetchPeachApi.jsx";
 import { API_ENDPOINTS } from "../../../../../utils/constants.js";
 
 const ACTIVITYLOCATION_ENDPOINT = API_ENDPOINTS.activityLocation;
+// Specific create route on the backend
+const ACTIVITYLOCATION_CREATE_ENDPOINT = `${ACTIVITYLOCATION_ENDPOINT}/CreateActivityLocation`;
 
 export default function FetchCreateActivityLocation() {
   const [loading, setLoading] = useState(false);
@@ -14,7 +16,8 @@ export default function FetchCreateActivityLocation() {
     setError("");
     setOkMessage("");
     try {
-      await FetchPeachApi(ACTIVITYLOCATION_ENDPOINT, {
+      // POST to the backend's CreateActivityLocation action
+      await FetchPeachApi(ACTIVITYLOCATION_CREATE_ENDPOINT, {
         method: "POST",
         data: payload,
       });
