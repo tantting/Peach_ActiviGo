@@ -90,6 +90,13 @@ export default function CreateLocationView({
         </div>
 
         <div className="form-row grid-2">
+          <a
+            href="https://www.maps.ie/coordinates.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Hitta koordinater
+          </a>
           <div>
             <label>Latitude</label>
             <input
