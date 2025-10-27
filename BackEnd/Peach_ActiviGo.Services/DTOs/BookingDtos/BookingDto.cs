@@ -20,7 +20,9 @@ namespace Peach_ActiviGo.Services.DTOs.BookingDtos
         public DateTime? CancelledAt { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int NumberOfParticipants { get; set; }
         public bool IsUpcoming { get; set; }
         public int ActivitySlotId { get; set; }
+        public int RemainingSlotCapacity { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Peach_ActiviGo.Core.Enums;
 using Peach_ActiviGo.Core.Interface;
 using Peach_ActiviGo.Core.Models;
@@ -50,18 +51,50 @@ public class BookingService : IBookingService
         {
             throw new InvalidOperationException("User already has an active booking for this activity slot.");
         }
+        
+        // Hämta ActivitySlot med lås (optimistisk eller pessimistic)
+        var slot = await _unitOfWork.ActivitySlots.GetByIdAsync(dto.ActivitySlotId);
+        if (slot == null || slot.IsCancelled)
+            throw new InvalidOperationException("Activity slot not found or is cancelled.");
+
+        if (slot.RemainingCapacity < dto.NumberOfParticipants)
+        {
+            throw new InvalidOperationException($"Not enough capacity. Remaining: {slot.RemainingCapacity}");
+        }
 
         var booking = new Booking
         {
             CustomerId = userId,
             ActivitySlotId = dto.ActivitySlotId,
+            NumberOfParticipants = dto.NumberOfParticipants,
             Status = Core.Enums.BookingStatus.Active,
             CancelledAt = null,
-            BookingDate = DateTime.UtcNow
+            BookingDate = DateTime.UtcNow,
         };
+        
+        // Minska tillgänglig kapacitet
+        slot.RemainingCapacity -= dto.NumberOfParticipants;
+        await _unitOfWork.ActivitySlots.UpdateAsync(slot);
 
         _unitOfWork.Bookings.AddBooking(booking);
-        await _unitOfWork.SaveChangesAsync(ct);
+
+        // Spara med hantering av samtidighetskonflikter, pga resterande kapacitet på slot (hänger samman med TimestanpRow i ActivitySlot)
+        try
+        {
+            await _unitOfWork.SaveChangesAsync(ct);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            // Någon annan hann uppdatera sloten innan du sparade
+            throw new InvalidOperationException(
+                "Activity slot capacity just changed. Please try again."
+            );
+        }
+        catch (DbUpdateException ex)
+        {
+            // Logga gärna här om du har ILogger
+            throw new InvalidOperationException("Database error while creating booking.", ex);
+        }
 
         // Ladda om med samma Includes som i GetById/GetAll
         var saved = await _unitOfWork.Bookings.GetBookingByIdAsync(booking.Id, ct);
@@ -93,6 +126,10 @@ public class BookingService : IBookingService
 
         if (nowUtc > cutoffTime)
             throw new InvalidOperationException("Cannot cancel booking after the cut-off time.");
+        
+        // Återställ slotens kapacitet
+        existingBooking.ActivitySlot.RemainingCapacity += existingBooking.NumberOfParticipants;
+        await _unitOfWork.ActivitySlots.UpdateAsync(existingBooking.ActivitySlot);
 
         // s�tt status
         existingBooking.Status = Core.Enums.BookingStatus.Cancelled;
@@ -106,6 +143,13 @@ public class BookingService : IBookingService
     {
         var entity = await _unitOfWork.Bookings.GetBookingByIdAsync(id, ct);
         if (entity is null) return;
+        
+        // Ladda ActivitySlot
+        await _context.Entry(entity).Reference(b => b.ActivitySlot).LoadAsync(ct);
+
+        //  Återställ slotens kapacitet
+        entity.ActivitySlot.RemainingCapacity += entity.NumberOfParticipants;
+        await _unitOfWork.ActivitySlots.UpdateAsync(entity.ActivitySlot);
 
         _unitOfWork.Bookings.DeleteBooking(entity);
         await _unitOfWork.SaveChangesAsync(ct);

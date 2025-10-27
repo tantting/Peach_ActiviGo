@@ -12,6 +12,7 @@ namespace Peach_ActiviGo.Core.Models
         
         public int ActivitySlotId { get; set; }
         public ActivitySlot ActivitySlot { get; set; }
+        public int NumberOfParticipants { get; set; }
 
         public BookingStatus Status { get; set; } = BookingStatus.Active;
         public DateTime? CancelledAt { get; set; }

@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,14 +37,14 @@ namespace Peach_ActiviGo.Api.Controllers
         // GetAllbyId
         [HttpGet("{id}", Name = "GetBookingById")]
         [ProducesResponseType(typeof(Booking), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Booking>> GetBookingById(int id, CancellationToken ct)
+        public async Task<ActionResult<BookingDto>> GetBookingById(int id, CancellationToken ct)
         {
-            var booking = await _bookingService.GetBookingByIdAsync(id, ct);
-            if (booking == null)
+            var bookingDto = await _bookingService.GetBookingByIdAsync(id, ct);
+            if (bookingDto == null)
             {
                 return NotFound(new { errorMessage = "Booking not found!" });
             }
-            return Ok(booking);
+            return Ok(bookingDto);
         }
 
         // GetAll By MemberId and status
@@ -64,7 +65,7 @@ namespace Peach_ActiviGo.Api.Controllers
         [Authorize]
         [HttpPost(Name = "CreateBooking")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto dto, CancellationToken ct, IValidator<BookingCreateDto> validator)
+        public async Task<ActionResult> CreateBooking([FromBody] BookingCreateDto dto, CancellationToken ct, [FromServices] IValidator<BookingCreateDto> validator)
         {
             var validationResult = await validator.ValidateAsync(dto);
 
@@ -72,6 +73,7 @@ namespace Peach_ActiviGo.Api.Controllers
             {
                 return BadRequest(validationResult.Errors);
             }
+            
             //There are multiple NameIdentifier-claims in the token, so we need to get them all and pick the last one
             var nameIdentifierClaims = User.Claims
                 .Where(c => c.Type == ClaimTypes.NameIdentifier)
@@ -87,13 +89,30 @@ namespace Peach_ActiviGo.Api.Controllers
 
             if (user == null)
                 return BadRequest($"Ingen användare med ID '{userId}' hittades i databasen.");
-            
-            if (userId == null)
+
+            try
             {
-                return Unauthorized(new { errorMessage = "User not authorized." });
+                var result = await _bookingService.CreateBookingAsync(dto, userId, ct);
+                return CreatedAtRoute("GetBookingById", new { id = result.Id }, result);
             }
-            await _bookingService.CreateBookingAsync(dto, userId, ct);
-            return CreatedAtRoute("GetAllBookings", null);
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new
+                {
+                    message = "Invalid operation",
+                    details = new[] { ex.Message },
+                    timestamp = DateTime.UtcNow
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "An unexpected error occurred",
+                    details = new[] { ex.Message },
+                    timestamp = DateTime.UtcNow
+                });
+            }
         }
 
         // Avboka före Cut-off)
