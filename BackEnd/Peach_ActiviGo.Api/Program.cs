@@ -160,6 +160,8 @@ builder.Services.AddScoped<IValidator<UpdateLocationDto>, UpdateLocationDtoValid
 builder.Services.AddScoped<IValidator<ActivitySlotRequestDto>, ActivitySlotValidator>();
 builder.Services.AddScoped<IValidator<UpdateActivityLocationDto>, UpdateActivityLocationDtoValidator>();
 builder.Services.AddScoped<IValidator<BookingCreateDto>, CreateBookingDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateActivityLocationDto>, CreateActivityLocationDtoValidator>();
+
 
 var app = builder.Build();
 app.UseStaticFiles();
