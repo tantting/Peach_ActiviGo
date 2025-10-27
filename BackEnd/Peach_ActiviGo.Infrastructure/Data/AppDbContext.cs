@@ -126,65 +126,65 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
         );
 
         modelBuilder.Entity<ActivitySlot>().HasData(
-            // --- ActivityLocation 1 (Varberg – Surfkurs)
-            new ActivitySlot { Id = 1, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 9, 0, 0),  EndTime = new DateTime(2025, 10, 25, 10, 0, 0),  SlotCapacity = 10 },
-            new ActivitySlot { Id = 2, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 11, 0, 0), EndTime = new DateTime(2025, 10, 25, 12, 0, 0), SlotCapacity = 10 },
-            new ActivitySlot { Id = 3, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 13, 0, 0), EndTime = new DateTime(2025, 10, 25, 14, 0, 0), SlotCapacity = 10 },
-            new ActivitySlot { Id = 4, ActivityLocationId = 1, StartTime = new DateTime(2025, 10, 25, 15, 0, 0), EndTime = new DateTime(2025, 10, 25, 16, 0, 0), SlotCapacity = 10 },
+    // ActivityLocationId = 1 → 2025-10-27
+    new ActivitySlot { Id = 1,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,14,00,0), EndTime = new DateTime(2025,10,27,15,30,0), SlotCapacity = 15 },
+    new ActivitySlot { Id = 2,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,16,00,0), EndTime = new DateTime(2025,10,27,17,30,0), SlotCapacity = 15 },
+    new ActivitySlot { Id = 3,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,18,00,0), EndTime = new DateTime(2025,10,27,19,30,0), SlotCapacity = 15 },
+    new ActivitySlot { Id = 4,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,20,00,0), EndTime = new DateTime(2025,10,27,21,30,0), SlotCapacity = 15 },
 
-            // --- ActivityLocation 2 (Göteborg – Surfkurs)
-            new ActivitySlot { Id = 5, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 9, 0, 0),  EndTime = new DateTime(2025, 10, 26, 10, 0, 0),  SlotCapacity = 9 },
-            new ActivitySlot { Id = 6, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 11, 0, 0), EndTime = new DateTime(2025, 10, 26, 12, 0, 0), SlotCapacity = 9 },
-            new ActivitySlot { Id = 7, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 13, 0, 0), EndTime = new DateTime(2025, 10, 26, 14, 0, 0), SlotCapacity = 9 },
-            new ActivitySlot { Id = 8, ActivityLocationId = 2, StartTime = new DateTime(2025, 10, 26, 15, 0, 0), EndTime = new DateTime(2025, 10, 26, 16, 0, 0), SlotCapacity = 9 },
+    // ActivityLocationId = 2 → 2025-10-28
+    new ActivitySlot { Id = 5,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,14,00,0), EndTime = new DateTime(2025,10,28,15,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 6,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,16,00,0), EndTime = new DateTime(2025,10,28,17,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 7,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,18,00,0), EndTime = new DateTime(2025,10,28,19,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 8,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,20,00,0), EndTime = new DateTime(2025,10,28,21,30,0), SlotCapacity = 12 },
 
-            // --- ActivityLocation 3 (Stockholm – Yogapass)
-            new ActivitySlot { Id = 9,  ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 9, 0, 0),  EndTime = new DateTime(2025, 10, 27, 10, 0, 0),  SlotCapacity = 8 },
-            new ActivitySlot { Id = 10, ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 11, 0, 0), EndTime = new DateTime(2025, 10, 27, 12, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 11, ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 13, 0, 0), EndTime = new DateTime(2025, 10, 27, 14, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 12, ActivityLocationId = 3, StartTime = new DateTime(2025, 10, 27, 15, 0, 0), EndTime = new DateTime(2025, 10, 27, 16, 0, 0), SlotCapacity = 8 },
+    // ActivityLocationId = 3 → 2025-10-29
+    new ActivitySlot { Id = 9,  ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,14,00,0), EndTime = new DateTime(2025,10,29,15,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 10, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,16,00,0), EndTime = new DateTime(2025,10,29,17,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 11, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,18,00,0), EndTime = new DateTime(2025,10,29,19,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 12, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,20,00,0), EndTime = new DateTime(2025,10,29,21,30,0), SlotCapacity = 10 },
 
-            // --- ActivityLocation 4 (Malmö – Yogapass)
-            new ActivitySlot { Id = 13, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 9, 0, 0),  EndTime = new DateTime(2025, 10, 28, 10, 0, 0),  SlotCapacity = 8 },
-            new ActivitySlot { Id = 14, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 11, 0, 0), EndTime = new DateTime(2025, 10, 28, 12, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 15, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 13, 0, 0), EndTime = new DateTime(2025, 10, 28, 14, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 16, ActivityLocationId = 4, StartTime = new DateTime(2025, 10, 28, 15, 0, 0), EndTime = new DateTime(2025, 10, 28, 16, 0, 0), SlotCapacity = 8 },
+    // ActivityLocationId = 4 → 2025-10-30
+    new ActivitySlot { Id = 13, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,14,00,0), EndTime = new DateTime(2025,10,30,15,30,0), SlotCapacity = 8 },
+    new ActivitySlot { Id = 14, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,16,00,0), EndTime = new DateTime(2025,10,30,17,30,0), SlotCapacity = 8 },
+    new ActivitySlot { Id = 15, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,18,00,0), EndTime = new DateTime(2025,10,30,19,30,0), SlotCapacity = 8 },
+    new ActivitySlot { Id = 16, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,20,00,0), EndTime = new DateTime(2025,10,30,21,30,0), SlotCapacity = 8 },
 
-            // --- ActivityLocation 5 (Umeå – Klättring)
-            new ActivitySlot { Id = 17, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 9, 0, 0),  EndTime = new DateTime(2025, 10, 29, 10, 0, 0),  SlotCapacity = 12 },
-            new ActivitySlot { Id = 18, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 11, 0, 0), EndTime = new DateTime(2025, 10, 29, 12, 0, 0), SlotCapacity = 12 },
-            new ActivitySlot { Id = 19, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 13, 0, 0), EndTime = new DateTime(2025, 10, 29, 14, 0, 0), SlotCapacity = 12 },
-            new ActivitySlot { Id = 20, ActivityLocationId = 5, StartTime = new DateTime(2025, 10, 29, 15, 0, 0), EndTime = new DateTime(2025, 10, 29, 16, 0, 0), SlotCapacity = 12 },
+    // ActivityLocationId = 5 → 2025-10-31
+    new ActivitySlot { Id = 17, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,14,00,0), EndTime = new DateTime(2025,10,31,15,30,0), SlotCapacity = 18 },
+    new ActivitySlot { Id = 18, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,16,00,0), EndTime = new DateTime(2025,10,31,17,30,0), SlotCapacity = 18 },
+    new ActivitySlot { Id = 19, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,18,00,0), EndTime = new DateTime(2025,10,31,19,30,0), SlotCapacity = 18 },
+    new ActivitySlot { Id = 20, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,20,00,0), EndTime = new DateTime(2025,10,31,21,30,0), SlotCapacity = 18 },
 
-            // --- ActivityLocation 6 (Varberg – Mountainbike)
-            new ActivitySlot { Id = 21, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 9, 0, 0),  EndTime = new DateTime(2025, 10, 30, 10, 0, 0),  SlotCapacity = 14 },
-            new ActivitySlot { Id = 22, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 11, 0, 0), EndTime = new DateTime(2025, 10, 30, 12, 0, 0), SlotCapacity = 14 },
-            new ActivitySlot { Id = 23, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 13, 0, 0), EndTime = new DateTime(2025, 10, 30, 14, 0, 0), SlotCapacity = 14 },
-            new ActivitySlot { Id = 24, ActivityLocationId = 6, StartTime = new DateTime(2025, 10, 30, 15, 0, 0), EndTime = new DateTime(2025, 10, 30, 16, 0, 0), SlotCapacity = 14 },
+    // ActivityLocationId = 6 → 2025-11-01
+    new ActivitySlot { Id = 21, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,14,00,0), EndTime = new DateTime(2025,11,1,15,30,0), SlotCapacity = 14 },
+    new ActivitySlot { Id = 22, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,16,00,0), EndTime = new DateTime(2025,11,1,17,30,0), SlotCapacity = 14 },
+    new ActivitySlot { Id = 23, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,18,00,0), EndTime = new DateTime(2025,11,1,19,30,0), SlotCapacity = 14 },
+    new ActivitySlot { Id = 24, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,20,00,0), EndTime = new DateTime(2025,11,1,21,30,0), SlotCapacity = 14 },
 
-            // --- ActivityLocation 7 (Göteborg – Stand Up Paddle)
-            new ActivitySlot { Id = 25, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 9, 0, 0),  EndTime = new DateTime(2025, 10, 31, 10, 0, 0),  SlotCapacity = 10 },
-            new ActivitySlot { Id = 26, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 11, 0, 0), EndTime = new DateTime(2025, 10, 31, 12, 0, 0), SlotCapacity = 10 },
-            new ActivitySlot { Id = 27, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 13, 0, 0), EndTime = new DateTime(2025, 10, 31, 14, 0, 0), SlotCapacity = 10 },
-            new ActivitySlot { Id = 28, ActivityLocationId = 7, StartTime = new DateTime(2025, 10, 31, 15, 0, 0), EndTime = new DateTime(2025, 10, 31, 16, 0, 0), SlotCapacity = 10 },
+    // ActivityLocationId = 7 → 2025-11-02
+    new ActivitySlot { Id = 25, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,14,00,0), EndTime = new DateTime(2025,11,2,15,30,0), SlotCapacity = 16 },
+    new ActivitySlot { Id = 26, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,16,00,0), EndTime = new DateTime(2025,11,2,17,30,0), SlotCapacity = 16 },
+    new ActivitySlot { Id = 27, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,18,00,0), EndTime = new DateTime(2025,11,2,19,30,0), SlotCapacity = 16 },
+    new ActivitySlot { Id = 28, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,20,00,0), EndTime = new DateTime(2025,11,2,21,30,0), SlotCapacity = 16 },
 
-            // --- ActivityLocation 8 (Stockholm – Spinning)
-            new ActivitySlot { Id = 29, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 9, 0, 0),  EndTime = new DateTime(2025, 11, 1, 10, 0, 0),  SlotCapacity = 12 },
-            new ActivitySlot { Id = 30, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 11, 0, 0), EndTime = new DateTime(2025, 11, 1, 12, 0, 0), SlotCapacity = 12 },
-            new ActivitySlot { Id = 31, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 13, 0, 0), EndTime = new DateTime(2025, 11, 1, 14, 0, 0), SlotCapacity = 12 },
-            new ActivitySlot { Id = 32, ActivityLocationId = 8, StartTime = new DateTime(2025, 11, 1, 15, 0, 0), EndTime = new DateTime(2025, 11, 1, 16, 0, 0), SlotCapacity = 12 },
+    // ActivityLocationId = 8 → 2025-11-03
+    new ActivitySlot { Id = 29, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,14,00,0), EndTime = new DateTime(2025,11,3,15,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 30, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,16,00,0), EndTime = new DateTime(2025,11,3,17,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 31, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,18,00,0), EndTime = new DateTime(2025,11,3,19,30,0), SlotCapacity = 12 },
+    new ActivitySlot { Id = 32, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,20,00,0), EndTime = new DateTime(2025,11,3,21,30,0), SlotCapacity = 12 },
 
-            // --- ActivityLocation 9 (Malmö – Saunagus)
-            new ActivitySlot { Id = 33, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 9, 0, 0),  EndTime = new DateTime(2025, 11, 2, 10, 0, 0),  SlotCapacity = 8 },
-            new ActivitySlot { Id = 34, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 11, 0, 0), EndTime = new DateTime(2025, 11, 2, 12, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 35, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 13, 0, 0), EndTime = new DateTime(2025, 11, 2, 14, 0, 0), SlotCapacity = 8 },
-            new ActivitySlot { Id = 36, ActivityLocationId = 9, StartTime = new DateTime(2025, 11, 2, 15, 0, 0), EndTime = new DateTime(2025, 11, 2, 16, 0, 0), SlotCapacity = 8 },
+    // ActivityLocationId = 9 → 2025-11-04
+    new ActivitySlot { Id = 33, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,14,00,0), EndTime = new DateTime(2025,11,4,15,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 34, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,16,00,0), EndTime = new DateTime(2025,11,4,17,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 35, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,18,00,0), EndTime = new DateTime(2025,11,4,19,30,0), SlotCapacity = 10 },
+    new ActivitySlot { Id = 36, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,20,00,0), EndTime = new DateTime(2025,11,4,21,30,0), SlotCapacity = 10 },
 
-            // --- ActivityLocation 10 (Umeå – Paintball)
-            new ActivitySlot { Id = 37, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 9, 0, 0),  EndTime = new DateTime(2025, 11, 3, 10, 0, 0),  SlotCapacity = 15 },
-            new ActivitySlot { Id = 38, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 11, 0, 0), EndTime = new DateTime(2025, 11, 3, 12, 0, 0), SlotCapacity = 15 },
-            new ActivitySlot { Id = 39, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 13, 0, 0), EndTime = new DateTime(2025, 11, 3, 14, 0, 0), SlotCapacity = 15 },
-            new ActivitySlot { Id = 40, ActivityLocationId = 10, StartTime = new DateTime(2025, 11, 3, 15, 0, 0), EndTime = new DateTime(2025, 11, 3, 16, 0, 0), SlotCapacity = 15 }
-        );
+    // ActivityLocationId = 10 → 2025-11-05
+    new ActivitySlot { Id = 37, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,14,00,0), EndTime = new DateTime(2025,11,5,15,30,0), SlotCapacity = 20 },
+    new ActivitySlot { Id = 38, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,16,00,0), EndTime = new DateTime(2025,11,5,17,30,0), SlotCapacity = 20 },
+    new ActivitySlot { Id = 39, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,18,00,0), EndTime = new DateTime(2025,11,5,19,30,0), SlotCapacity = 20 },
+    new ActivitySlot { Id = 40, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,20,00,0), EndTime = new DateTime(2025,11,5,21,30,0), SlotCapacity = 20 }
+);
     }
 }

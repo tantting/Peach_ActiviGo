@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Peach_ActiviGo.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Peach_ActiviGo.Infrastructure.Data;
 namespace Peach_ActiviGo.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251027044801_NewSeedAgain")]
+    partial class NewSeedAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -522,400 +525,400 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             Id = 1,
                             ActivityLocationId = 1,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 27, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 25, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 15,
-                            StartTime = new DateTime(2025, 10, 27, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             ActivityLocationId = 1,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 27, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 15,
-                            StartTime = new DateTime(2025, 10, 27, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 25, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             ActivityLocationId = 1,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 27, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 25, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 15,
-                            StartTime = new DateTime(2025, 10, 27, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 25, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
                             ActivityLocationId = 1,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 27, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 15,
-                            StartTime = new DateTime(2025, 10, 27, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 25, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
                             ActivityLocationId = 2,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 28, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 26, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 10, 28, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 9,
+                            StartTime = new DateTime(2025, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
                             ActivityLocationId = 2,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 28, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 10, 28, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 9,
+                            StartTime = new DateTime(2025, 10, 26, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
                             ActivityLocationId = 2,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 28, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 26, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 10, 28, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 9,
+                            StartTime = new DateTime(2025, 10, 26, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
                             ActivityLocationId = 2,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 28, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 26, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 10, 28, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 9,
+                            StartTime = new DateTime(2025, 10, 26, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
                             ActivityLocationId = 3,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 29, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 27, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 10, 29, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
                             ActivityLocationId = 3,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 29, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 10, 29, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
                             ActivityLocationId = 3,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 29, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 27, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 10, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
                             ActivityLocationId = 3,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 29, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 27, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 10, 29, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 10, 27, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
                             ActivityLocationId = 4,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 28, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 8,
-                            StartTime = new DateTime(2025, 10, 30, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
                             ActivityLocationId = 4,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 30, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 8,
-                            StartTime = new DateTime(2025, 10, 30, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 28, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
                             ActivityLocationId = 4,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 30, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 28, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 8,
-                            StartTime = new DateTime(2025, 10, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 28, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
                             ActivityLocationId = 4,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 30, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 28, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 8,
-                            StartTime = new DateTime(2025, 10, 30, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 28, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
                             ActivityLocationId = 5,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 31, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 29, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 18,
-                            StartTime = new DateTime(2025, 10, 31, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 29, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
                             ActivityLocationId = 5,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 31, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 29, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 18,
-                            StartTime = new DateTime(2025, 10, 31, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 29, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
                             ActivityLocationId = 5,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 31, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 29, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 18,
-                            StartTime = new DateTime(2025, 10, 31, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 29, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
                             ActivityLocationId = 5,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 10, 31, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 29, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 18,
-                            StartTime = new DateTime(2025, 10, 31, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 12,
+                            StartTime = new DateTime(2025, 10, 29, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 21,
                             ActivityLocationId = 6,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 30, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 14,
-                            StartTime = new DateTime(2025, 11, 1, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 22,
                             ActivityLocationId = 6,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 1, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 30, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 14,
-                            StartTime = new DateTime(2025, 11, 1, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 30, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 23,
                             ActivityLocationId = 6,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 30, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 14,
-                            StartTime = new DateTime(2025, 11, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 30, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 24,
                             ActivityLocationId = 6,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 1, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 30, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 14,
-                            StartTime = new DateTime(2025, 11, 1, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 10, 30, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 25,
                             ActivityLocationId = 7,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 2, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 31, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 16,
-                            StartTime = new DateTime(2025, 11, 2, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 31, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 26,
                             ActivityLocationId = 7,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 2, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 31, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 16,
-                            StartTime = new DateTime(2025, 11, 2, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 31, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 27,
                             ActivityLocationId = 7,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 2, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 31, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 16,
-                            StartTime = new DateTime(2025, 11, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 31, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 28,
                             ActivityLocationId = 7,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 2, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 10, 31, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 16,
-                            StartTime = new DateTime(2025, 11, 2, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 10,
+                            StartTime = new DateTime(2025, 10, 31, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 29,
                             ActivityLocationId = 8,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 3, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 11, 3, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 11, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 30,
                             ActivityLocationId = 8,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 3, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 11, 1, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 31,
                             ActivityLocationId = 8,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 3, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 1, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 11, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 11, 1, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 32,
                             ActivityLocationId = 8,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 3, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
                             SlotCapacity = 12,
-                            StartTime = new DateTime(2025, 11, 3, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartTime = new DateTime(2025, 11, 1, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 33,
                             ActivityLocationId = 9,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 4, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 11, 4, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 11, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 34,
                             ActivityLocationId = 9,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 4, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 11, 4, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 11, 2, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 35,
                             ActivityLocationId = 9,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 4, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 2, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 11, 4, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 11, 2, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 36,
                             ActivityLocationId = 9,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 4, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 2, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 10,
-                            StartTime = new DateTime(2025, 11, 4, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 8,
+                            StartTime = new DateTime(2025, 11, 2, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 37,
                             ActivityLocationId = 10,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 5, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 3, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 20,
-                            StartTime = new DateTime(2025, 11, 5, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 15,
+                            StartTime = new DateTime(2025, 11, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 38,
                             ActivityLocationId = 10,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 5, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 3, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 20,
-                            StartTime = new DateTime(2025, 11, 5, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 15,
+                            StartTime = new DateTime(2025, 11, 3, 11, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 39,
                             ActivityLocationId = 10,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 5, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 3, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 20,
-                            StartTime = new DateTime(2025, 11, 5, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 15,
+                            StartTime = new DateTime(2025, 11, 3, 13, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 40,
                             ActivityLocationId = 10,
                             CreatedDate = new DateOnly(2025, 10, 27),
-                            EndTime = new DateTime(2025, 11, 5, 21, 30, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2025, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            SlotCapacity = 20,
-                            StartTime = new DateTime(2025, 11, 5, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                            SlotCapacity = 15,
+                            StartTime = new DateTime(2025, 11, 3, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
