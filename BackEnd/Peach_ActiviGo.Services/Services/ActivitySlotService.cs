@@ -39,7 +39,9 @@ namespace Peach_ActiviGo.Services.Services
                 StartTime = dto.StartTime,
                 EndTime = dto.EndTime,
                 ActivityLocationId = dto.ActivityLocationId,
-                IsCancelled = false
+                IsCancelled = false,
+                SlotCapacity = dto.SlotCapacity,
+                RemainingCapacity = dto.SlotCapacity
             };
 
             await _repo.AddAsync(slot);
@@ -83,5 +85,9 @@ namespace Peach_ActiviGo.Services.Services
 
             return true;
         }
+        // public int GetRemainingCapacity(dto.ActivitySlotId)
+        // {
+        //     return 
+        // }
     }
 }

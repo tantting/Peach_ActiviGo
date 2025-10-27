@@ -9,5 +9,6 @@ namespace Peach_ActiviGo.Services.DTOs.BookingDtos
     public class BookingCreateDto
     {
         public int ActivitySlotId { get; set; }
+        public int NumberOfParticipants { get; set; }
     }
 }

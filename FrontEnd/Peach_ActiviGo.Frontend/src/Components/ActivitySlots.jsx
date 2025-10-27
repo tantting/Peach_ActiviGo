@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const [bookingStates, setBookingStates] = useState({});
+  const [participants, setParticipants] = useState({});
   const navigate = useNavigate();
 
   const handleBooking = async (slot, index) => {
@@ -45,6 +46,9 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
       return;
     }
 
+    // Antal deltagare från inputfält
+    const numberOfParticipants = participants[index] || 1;
+
     // Sätt loading state för denna specifika slot
     setBookingStates((prev) => ({
       ...prev,
@@ -54,9 +58,11 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
     try {
       const bookingData = {
         activitySlotId: slot.id,
+        numberOfParticipants,
       };
 
-      await createBooking(bookingData);
+      // NY: returnerar BookingDto med remainingSlotCapacity
+      const bookingDto = await createBooking(bookingData);
 
       // Sätt success state
       setBookingStates((prev) => ({
@@ -64,9 +70,12 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
         [index]: { loading: false, success: true, error: null },
       }));
 
-      // Ta bort sloten från listan efter lyckad bokning
+      // NY: uppdatera slot.remainingCapacity med backend-data
+      slot.remainingCapacity = bookingDto.remainingSlotCapacity;
+
+      // NY: callback om sloten ska tas bort/uppdateras i parent
       if (onSlotBooked) {
-        onSlotBooked(slot.id);
+        onSlotBooked(slot.id, bookingDto.remainingSlotCapacity);
       }
 
       // Ändra string till den plats som bokningarna ska hamna på för en user
@@ -108,13 +117,37 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
               <strong>Sluttid:</strong>{" "}
               {new Date(slot.endTime).toLocaleString("sv-SE")}
             </p>
+            <p>
+              <strong>Lediga platser:</strong> {slot.remainingCapacity}
+            </p>
+
+            {/* Input för antal deltagare */}
+            <label>
+              Antal deltagare:
+              <input
+                style={{ width: "50px" }}
+                type="number"
+                min={1}
+                max={slot.remainingCapacity}
+                value={participants[index] || 1}
+                onChange={(e) =>
+                  setParticipants((prev) => ({
+                    ...prev,
+                    [index]: Math.min(
+                      Math.max(1, parseInt(e.target.value) || 1),
+                      slot.remainingCapacity // 🔹 NY
+                    ),
+                  }))
+                }
+              />
+            </label>
 
             <button
               className={`book-slot-button ${isLoading ? "loading" : ""} ${
                 isSuccess ? "success" : ""
               } ${hasError ? "error" : ""}`}
               onClick={() => handleBooking(slot, index)}
-              disabled={isLoading || isSuccess}
+              disabled={isLoading || isSuccess || slot.remainingCapacity === 0}
             >
               {isLoading
                 ? "Bokar..."
@@ -122,6 +155,8 @@ const ActivitySlots = ({ slots, loading, error, onSlotBooked }) => {
                 ? "Bokad!"
                 : hasError
                 ? "Försök igen"
+                : slot.remainingCapacity === 0
+                ? "Fullbokad"
                 : "Boka denna tid"}
             </button>
 

@@ -71,17 +71,17 @@ const FetchActivitySlots = (activityLocationId = null) => {
     apiCall();
   }, [activityLocationId]);
 
-  // Funktion för att ta bort en slot efter lyckad bokning
-  const removeSlot = (slotId) => {
-    // Markera som bokad i localStorage
-    markSlotAsBooked(slotId);
-
-    // Ta bort från aktuell lista
-    setSlots((prevSlots) => prevSlots.filter((slot) => slot.id !== slotId));
+  // Funktion för att uppdatera slotcapacity efter bokning
+  const updateSlotCapacity = (slotId, remainingCapacity) => {
+    setSlots((prevSlots) =>
+      prevSlots.map((slot) =>
+        slot.id === slotId ? { ...slot, remainingCapacity } : slot
+      )
+    );
   };
 
   // Returnera data som en custom hook
-  return { slots, loading, error, removeSlot };
+  return { slots, loading, error, updateSlotCapacity };
 };
 
 export default FetchActivitySlots;

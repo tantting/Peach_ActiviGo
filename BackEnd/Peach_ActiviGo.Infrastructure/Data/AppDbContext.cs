@@ -127,64 +127,64 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<ActivitySlot>().HasData(
     // ActivityLocationId = 1 → 2025-10-27
-    new ActivitySlot { Id = 1,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,14,00,0), EndTime = new DateTime(2025,10,27,15,30,0), SlotCapacity = 15 },
-    new ActivitySlot { Id = 2,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,16,00,0), EndTime = new DateTime(2025,10,27,17,30,0), SlotCapacity = 15 },
-    new ActivitySlot { Id = 3,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,18,00,0), EndTime = new DateTime(2025,10,27,19,30,0), SlotCapacity = 15 },
-    new ActivitySlot { Id = 4,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,20,00,0), EndTime = new DateTime(2025,10,27,21,30,0), SlotCapacity = 15 },
+new ActivitySlot { Id = 1,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,14,00,0), EndTime = new DateTime(2025,10,27,15,30,0), SlotCapacity = 15, RemainingCapacity = 15 },
+new ActivitySlot { Id = 2,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,16,00,0), EndTime = new DateTime(2025,10,27,17,30,0), SlotCapacity = 15, RemainingCapacity = 9 },
+new ActivitySlot { Id = 3,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,18,00,0), EndTime = new DateTime(2025,10,27,19,30,0), SlotCapacity = 15, RemainingCapacity = 4 },
+new ActivitySlot { Id = 4,  ActivityLocationId = 1, StartTime = new DateTime(2025,10,27,20,00,0), EndTime = new DateTime(2025,10,27,21,30,0), SlotCapacity = 15, RemainingCapacity = 12 },
 
-    // ActivityLocationId = 2 → 2025-10-28
-    new ActivitySlot { Id = 5,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,14,00,0), EndTime = new DateTime(2025,10,28,15,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 6,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,16,00,0), EndTime = new DateTime(2025,10,28,17,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 7,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,18,00,0), EndTime = new DateTime(2025,10,28,19,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 8,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,20,00,0), EndTime = new DateTime(2025,10,28,21,30,0), SlotCapacity = 12 },
+// ActivityLocationId = 2 → 2025-10-28
+new ActivitySlot { Id = 5,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,14,00,0), EndTime = new DateTime(2025,10,28,15,30,0), SlotCapacity = 12, RemainingCapacity = 11 },
+new ActivitySlot { Id = 6,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,16,00,0), EndTime = new DateTime(2025,10,28,17,30,0), SlotCapacity = 12, RemainingCapacity = 5 },
+new ActivitySlot { Id = 7,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,18,00,0), EndTime = new DateTime(2025,10,28,19,30,0), SlotCapacity = 12, RemainingCapacity = 2 },
+new ActivitySlot { Id = 8,  ActivityLocationId = 2, StartTime = new DateTime(2025,10,28,20,00,0), EndTime = new DateTime(2025,10,28,21,30,0), SlotCapacity = 12, RemainingCapacity = 12 },
 
-    // ActivityLocationId = 3 → 2025-10-29
-    new ActivitySlot { Id = 9,  ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,14,00,0), EndTime = new DateTime(2025,10,29,15,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 10, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,16,00,0), EndTime = new DateTime(2025,10,29,17,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 11, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,18,00,0), EndTime = new DateTime(2025,10,29,19,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 12, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,20,00,0), EndTime = new DateTime(2025,10,29,21,30,0), SlotCapacity = 10 },
+// ActivityLocationId = 3 → 2025-10-29
+new ActivitySlot { Id = 9,  ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,14,00,0), EndTime = new DateTime(2025,10,29,15,30,0), SlotCapacity = 10, RemainingCapacity = 10 },
+new ActivitySlot { Id = 10, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,16,00,0), EndTime = new DateTime(2025,10,29,17,30,0), SlotCapacity = 10, RemainingCapacity = 7 },
+new ActivitySlot { Id = 11, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,18,00,0), EndTime = new DateTime(2025,10,29,19,30,0), SlotCapacity = 10, RemainingCapacity = 3 },
+new ActivitySlot { Id = 12, ActivityLocationId = 3, StartTime = new DateTime(2025,10,29,20,00,0), EndTime = new DateTime(2025,10,29,21,30,0), SlotCapacity = 10, RemainingCapacity = 9 },
 
-    // ActivityLocationId = 4 → 2025-10-30
-    new ActivitySlot { Id = 13, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,14,00,0), EndTime = new DateTime(2025,10,30,15,30,0), SlotCapacity = 8 },
-    new ActivitySlot { Id = 14, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,16,00,0), EndTime = new DateTime(2025,10,30,17,30,0), SlotCapacity = 8 },
-    new ActivitySlot { Id = 15, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,18,00,0), EndTime = new DateTime(2025,10,30,19,30,0), SlotCapacity = 8 },
-    new ActivitySlot { Id = 16, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,20,00,0), EndTime = new DateTime(2025,10,30,21,30,0), SlotCapacity = 8 },
+// ActivityLocationId = 4 → 2025-10-30
+new ActivitySlot { Id = 13, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,14,00,0), EndTime = new DateTime(2025,10,30,15,30,0), SlotCapacity = 8, RemainingCapacity = 8 },
+new ActivitySlot { Id = 14, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,16,00,0), EndTime = new DateTime(2025,10,30,17,30,0), SlotCapacity = 8, RemainingCapacity = 5 },
+new ActivitySlot { Id = 15, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,18,00,0), EndTime = new DateTime(2025,10,30,19,30,0), SlotCapacity = 8, RemainingCapacity = 3 },
+new ActivitySlot { Id = 16, ActivityLocationId = 4, StartTime = new DateTime(2025,10,30,20,00,0), EndTime = new DateTime(2025,10,30,21,30,0), SlotCapacity = 8, RemainingCapacity = 7 },
 
-    // ActivityLocationId = 5 → 2025-10-31
-    new ActivitySlot { Id = 17, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,14,00,0), EndTime = new DateTime(2025,10,31,15,30,0), SlotCapacity = 18 },
-    new ActivitySlot { Id = 18, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,16,00,0), EndTime = new DateTime(2025,10,31,17,30,0), SlotCapacity = 18 },
-    new ActivitySlot { Id = 19, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,18,00,0), EndTime = new DateTime(2025,10,31,19,30,0), SlotCapacity = 18 },
-    new ActivitySlot { Id = 20, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,20,00,0), EndTime = new DateTime(2025,10,31,21,30,0), SlotCapacity = 18 },
+// ActivityLocationId = 5 → 2025-10-31
+new ActivitySlot { Id = 17, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,14,00,0), EndTime = new DateTime(2025,10,31,15,30,0), SlotCapacity = 18, RemainingCapacity = 18 },
+new ActivitySlot { Id = 18, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,16,00,0), EndTime = new DateTime(2025,10,31,17,30,0), SlotCapacity = 18, RemainingCapacity = 10 },
+new ActivitySlot { Id = 19, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,18,00,0), EndTime = new DateTime(2025,10,31,19,30,0), SlotCapacity = 18, RemainingCapacity = 6 },
+new ActivitySlot { Id = 20, ActivityLocationId = 5, StartTime = new DateTime(2025,10,31,20,00,0), EndTime = new DateTime(2025,10,31,21,30,0), SlotCapacity = 18, RemainingCapacity = 15 },
 
-    // ActivityLocationId = 6 → 2025-11-01
-    new ActivitySlot { Id = 21, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,14,00,0), EndTime = new DateTime(2025,11,1,15,30,0), SlotCapacity = 14 },
-    new ActivitySlot { Id = 22, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,16,00,0), EndTime = new DateTime(2025,11,1,17,30,0), SlotCapacity = 14 },
-    new ActivitySlot { Id = 23, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,18,00,0), EndTime = new DateTime(2025,11,1,19,30,0), SlotCapacity = 14 },
-    new ActivitySlot { Id = 24, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,20,00,0), EndTime = new DateTime(2025,11,1,21,30,0), SlotCapacity = 14 },
+// ActivityLocationId = 6 → 2025-11-01
+new ActivitySlot { Id = 21, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,14,00,0), EndTime = new DateTime(2025,11,1,15,30,0), SlotCapacity = 14, RemainingCapacity = 14 },
+new ActivitySlot { Id = 22, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,16,00,0), EndTime = new DateTime(2025,11,1,17,30,0), SlotCapacity = 14, RemainingCapacity = 9 },
+new ActivitySlot { Id = 23, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,18,00,0), EndTime = new DateTime(2025,11,1,19,30,0), SlotCapacity = 14, RemainingCapacity = 4 },
+new ActivitySlot { Id = 24, ActivityLocationId = 6, StartTime = new DateTime(2025,11,1,20,00,0), EndTime = new DateTime(2025,11,1,21,30,0), SlotCapacity = 14, RemainingCapacity = 12 },
 
-    // ActivityLocationId = 7 → 2025-11-02
-    new ActivitySlot { Id = 25, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,14,00,0), EndTime = new DateTime(2025,11,2,15,30,0), SlotCapacity = 16 },
-    new ActivitySlot { Id = 26, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,16,00,0), EndTime = new DateTime(2025,11,2,17,30,0), SlotCapacity = 16 },
-    new ActivitySlot { Id = 27, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,18,00,0), EndTime = new DateTime(2025,11,2,19,30,0), SlotCapacity = 16 },
-    new ActivitySlot { Id = 28, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,20,00,0), EndTime = new DateTime(2025,11,2,21,30,0), SlotCapacity = 16 },
+// ActivityLocationId = 7 → 2025-11-02
+new ActivitySlot { Id = 25, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,14,00,0), EndTime = new DateTime(2025,11,2,15,30,0), SlotCapacity = 16, RemainingCapacity = 16 },
+new ActivitySlot { Id = 26, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,16,00,0), EndTime = new DateTime(2025,11,2,17,30,0), SlotCapacity = 16, RemainingCapacity = 10 },
+new ActivitySlot { Id = 27, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,18,00,0), EndTime = new DateTime(2025,11,2,19,30,0), SlotCapacity = 16, RemainingCapacity = 5 },
+new ActivitySlot { Id = 28, ActivityLocationId = 7, StartTime = new DateTime(2025,11,2,20,00,0), EndTime = new DateTime(2025,11,2,21,30,0), SlotCapacity = 16, RemainingCapacity = 13 },
 
-    // ActivityLocationId = 8 → 2025-11-03
-    new ActivitySlot { Id = 29, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,14,00,0), EndTime = new DateTime(2025,11,3,15,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 30, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,16,00,0), EndTime = new DateTime(2025,11,3,17,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 31, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,18,00,0), EndTime = new DateTime(2025,11,3,19,30,0), SlotCapacity = 12 },
-    new ActivitySlot { Id = 32, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,20,00,0), EndTime = new DateTime(2025,11,3,21,30,0), SlotCapacity = 12 },
+// ActivityLocationId = 8 → 2025-11-03
+new ActivitySlot { Id = 29, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,14,00,0), EndTime = new DateTime(2025,11,3,15,30,0), SlotCapacity = 12, RemainingCapacity = 12 },
+new ActivitySlot { Id = 30, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,16,00,0), EndTime = new DateTime(2025,11,3,17,30,0), SlotCapacity = 12, RemainingCapacity = 8 },
+new ActivitySlot { Id = 31, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,18,00,0), EndTime = new DateTime(2025,11,3,19,30,0), SlotCapacity = 12, RemainingCapacity = 4 },
+new ActivitySlot { Id = 32, ActivityLocationId = 8, StartTime = new DateTime(2025,11,3,20,00,0), EndTime = new DateTime(2025,11,3,21,30,0), SlotCapacity = 12, RemainingCapacity = 11 },
 
-    // ActivityLocationId = 9 → 2025-11-04
-    new ActivitySlot { Id = 33, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,14,00,0), EndTime = new DateTime(2025,11,4,15,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 34, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,16,00,0), EndTime = new DateTime(2025,11,4,17,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 35, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,18,00,0), EndTime = new DateTime(2025,11,4,19,30,0), SlotCapacity = 10 },
-    new ActivitySlot { Id = 36, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,20,00,0), EndTime = new DateTime(2025,11,4,21,30,0), SlotCapacity = 10 },
+// ActivityLocationId = 9 → 2025-11-04
+new ActivitySlot { Id = 33, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,14,00,0), EndTime = new DateTime(2025,11,4,15,30,0), SlotCapacity = 10, RemainingCapacity = 10 },
+new ActivitySlot { Id = 34, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,16,00,0), EndTime = new DateTime(2025,11,4,17,30,0), SlotCapacity = 10, RemainingCapacity = 6 },
+new ActivitySlot { Id = 35, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,18,00,0), EndTime = new DateTime(2025,11,4,19,30,0), SlotCapacity = 10, RemainingCapacity = 3 },
+new ActivitySlot { Id = 36, ActivityLocationId = 9, StartTime = new DateTime(2025,11,4,20,00,0), EndTime = new DateTime(2025,11,4,21,30,0), SlotCapacity = 10, RemainingCapacity = 9 },
 
-    // ActivityLocationId = 10 → 2025-11-05
-    new ActivitySlot { Id = 37, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,14,00,0), EndTime = new DateTime(2025,11,5,15,30,0), SlotCapacity = 20 },
-    new ActivitySlot { Id = 38, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,16,00,0), EndTime = new DateTime(2025,11,5,17,30,0), SlotCapacity = 20 },
-    new ActivitySlot { Id = 39, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,18,00,0), EndTime = new DateTime(2025,11,5,19,30,0), SlotCapacity = 20 },
-    new ActivitySlot { Id = 40, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,20,00,0), EndTime = new DateTime(2025,11,5,21,30,0), SlotCapacity = 20 }
+// ActivityLocationId = 10 → 2025-11-05
+new ActivitySlot { Id = 37, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,14,00,0), EndTime = new DateTime(2025,11,5,15,30,0), SlotCapacity = 20, RemainingCapacity = 20 },
+new ActivitySlot { Id = 38, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,16,00,0), EndTime = new DateTime(2025,11,5,17,30,0), SlotCapacity = 20, RemainingCapacity = 13 },
+new ActivitySlot { Id = 39, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,18,00,0), EndTime = new DateTime(2025,11,5,19,30,0), SlotCapacity = 20, RemainingCapacity = 8 },
+new ActivitySlot { Id = 40, ActivityLocationId = 10, StartTime = new DateTime(2025,11,5,20,00,0), EndTime = new DateTime(2025,11,5,21,30,0), SlotCapacity = 20, RemainingCapacity = 16 }
 );
     }
 }

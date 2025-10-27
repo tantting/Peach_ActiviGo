@@ -24,7 +24,7 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
     slots: activitySlots,
     loading: slotsLoading,
     error: slotsError,
-    removeSlot,
+    updateSlotCapacity,
   } = FetchActivitySlots(activityLocation?.id);
 
   if (loading) {
@@ -112,7 +112,7 @@ export default function ActivityDetail({ activityLocation, loading, error }) {
           slots={activitySlots}
           loading={slotsLoading}
           error={slotsError}
-          onSlotBooked={removeSlot}
+          onSlotBooked={updateSlotCapacity}
         />
       </div>
     </div>

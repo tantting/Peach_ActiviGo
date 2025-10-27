@@ -90,6 +90,9 @@ export default function UserBookingCard({
           <p>
             <strong>Slut:</strong> {endTime}
           </p>
+          <p>
+            <strong>Antal platser</strong>: {booking.numberOfParticipants}
+          </p>
         </div>
       </div>
 

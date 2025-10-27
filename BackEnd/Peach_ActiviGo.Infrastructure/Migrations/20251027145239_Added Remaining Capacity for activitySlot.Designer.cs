@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Peach_ActiviGo.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Peach_ActiviGo.Infrastructure.Data;
 namespace Peach_ActiviGo.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251027145239_Added Remaining Capacity for activitySlot")]
+    partial class AddedRemainingCapacityforactivitySlot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -533,7 +536,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 27, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 15,
+                            RemainingCapacity = 0,
                             SlotCapacity = 15,
                             StartTime = new DateTime(2025, 10, 27, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -544,7 +547,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 27, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 9,
+                            RemainingCapacity = 0,
                             SlotCapacity = 15,
                             StartTime = new DateTime(2025, 10, 27, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -555,7 +558,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 27, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 4,
+                            RemainingCapacity = 0,
                             SlotCapacity = 15,
                             StartTime = new DateTime(2025, 10, 27, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -566,7 +569,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 27, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 12,
+                            RemainingCapacity = 0,
                             SlotCapacity = 15,
                             StartTime = new DateTime(2025, 10, 27, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -577,7 +580,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 28, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 11,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 10, 28, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -588,7 +591,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 28, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 5,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 10, 28, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -599,7 +602,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 28, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 2,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 10, 28, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -610,7 +613,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 28, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 12,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 10, 28, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -621,7 +624,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 29, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 10,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 10, 29, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -632,7 +635,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 29, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 7,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 10, 29, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -643,7 +646,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 29, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 3,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 10, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -654,7 +657,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 29, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 9,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 10, 29, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -665,7 +668,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 8,
+                            RemainingCapacity = 0,
                             SlotCapacity = 8,
                             StartTime = new DateTime(2025, 10, 30, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -676,7 +679,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 30, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 5,
+                            RemainingCapacity = 0,
                             SlotCapacity = 8,
                             StartTime = new DateTime(2025, 10, 30, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -687,7 +690,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 30, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 3,
+                            RemainingCapacity = 0,
                             SlotCapacity = 8,
                             StartTime = new DateTime(2025, 10, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -698,7 +701,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 30, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 7,
+                            RemainingCapacity = 0,
                             SlotCapacity = 8,
                             StartTime = new DateTime(2025, 10, 30, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -709,7 +712,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 31, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 18,
+                            RemainingCapacity = 0,
                             SlotCapacity = 18,
                             StartTime = new DateTime(2025, 10, 31, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -720,7 +723,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 31, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 10,
+                            RemainingCapacity = 0,
                             SlotCapacity = 18,
                             StartTime = new DateTime(2025, 10, 31, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -731,7 +734,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 31, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 6,
+                            RemainingCapacity = 0,
                             SlotCapacity = 18,
                             StartTime = new DateTime(2025, 10, 31, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -742,7 +745,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 10, 31, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 15,
+                            RemainingCapacity = 0,
                             SlotCapacity = 18,
                             StartTime = new DateTime(2025, 10, 31, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -753,7 +756,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 1, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 14,
+                            RemainingCapacity = 0,
                             SlotCapacity = 14,
                             StartTime = new DateTime(2025, 11, 1, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -764,7 +767,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 1, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 9,
+                            RemainingCapacity = 0,
                             SlotCapacity = 14,
                             StartTime = new DateTime(2025, 11, 1, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -775,7 +778,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 1, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 4,
+                            RemainingCapacity = 0,
                             SlotCapacity = 14,
                             StartTime = new DateTime(2025, 11, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -786,7 +789,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 1, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 12,
+                            RemainingCapacity = 0,
                             SlotCapacity = 14,
                             StartTime = new DateTime(2025, 11, 1, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -797,7 +800,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 2, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 16,
+                            RemainingCapacity = 0,
                             SlotCapacity = 16,
                             StartTime = new DateTime(2025, 11, 2, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -808,7 +811,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 2, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 10,
+                            RemainingCapacity = 0,
                             SlotCapacity = 16,
                             StartTime = new DateTime(2025, 11, 2, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -819,7 +822,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 2, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 5,
+                            RemainingCapacity = 0,
                             SlotCapacity = 16,
                             StartTime = new DateTime(2025, 11, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -830,7 +833,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 2, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 13,
+                            RemainingCapacity = 0,
                             SlotCapacity = 16,
                             StartTime = new DateTime(2025, 11, 2, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -841,7 +844,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 3, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 12,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 11, 3, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -852,7 +855,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 3, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 8,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 11, 3, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -863,7 +866,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 3, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 4,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 11, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -874,7 +877,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 3, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 11,
+                            RemainingCapacity = 0,
                             SlotCapacity = 12,
                             StartTime = new DateTime(2025, 11, 3, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -885,7 +888,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 4, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 10,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 11, 4, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -896,7 +899,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 4, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 6,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 11, 4, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -907,7 +910,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 4, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 3,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 11, 4, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -918,7 +921,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 4, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 9,
+                            RemainingCapacity = 0,
                             SlotCapacity = 10,
                             StartTime = new DateTime(2025, 11, 4, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -929,7 +932,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 5, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 20,
+                            RemainingCapacity = 0,
                             SlotCapacity = 20,
                             StartTime = new DateTime(2025, 11, 5, 14, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -940,7 +943,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 5, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 13,
+                            RemainingCapacity = 0,
                             SlotCapacity = 20,
                             StartTime = new DateTime(2025, 11, 5, 16, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -951,7 +954,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 5, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 8,
+                            RemainingCapacity = 0,
                             SlotCapacity = 20,
                             StartTime = new DateTime(2025, 11, 5, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -962,7 +965,7 @@ namespace Peach_ActiviGo.Infrastructure.Migrations
                             CreatedDate = new DateOnly(2025, 10, 27),
                             EndTime = new DateTime(2025, 11, 5, 21, 30, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
-                            RemainingCapacity = 16,
+                            RemainingCapacity = 0,
                             SlotCapacity = 20,
                             StartTime = new DateTime(2025, 11, 5, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         });

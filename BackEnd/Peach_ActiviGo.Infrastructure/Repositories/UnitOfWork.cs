@@ -1,5 +1,6 @@
 using AutoMapper;
 using Peach_ActiviGo.Core.Interface;
+using Peach_ActiviGo.Core.Interfaces;
 using Peach_ActiviGo.Infrastructure.Data;
 
 namespace Peach_ActiviGo.Infrastructure.Repositories;
@@ -10,6 +11,7 @@ public class UnitOfWork : IUnitOfWork
     private ILocationRepository _locations;
     private IBookingRepository _bookings;
     private IActivityLocationRepository _activityLocation;
+    private IActivitySlotRepository _activitySlots;
 
 
     public UnitOfWork(AppDbContext context)
@@ -20,6 +22,7 @@ public class UnitOfWork : IUnitOfWork
     public ILocationRepository Locations => _locations ??= new LocationRepository(_context);
     public IBookingRepository Bookings => _bookings ??= new BookingRepository(_context);
     public IActivityLocationRepository ActivityLocations => _activityLocation ??= new ActivityLocationRepository(_context);
+    public IActivitySlotRepository ActivitySlots => _activitySlots ??= new ActivitySlotRepository(_context);
 
     public async Task<int> SaveChangesAsync(CancellationToken ct)
     {
