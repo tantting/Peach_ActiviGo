@@ -13,6 +13,9 @@ import DeleteLocationView from "./CRUDSView/Location/DeleteLocationView.jsx";
 import CreateActivitySlotView from "./CRUDSView/ActivitySlot/CreateActivitySlotView.jsx";
 import UpdateActivitySlotView from "./CRUDSView/ActivitySlot/UpdateActivitySlotView.jsx";
 import DeleteActivitySlotView from "./CRUDSView/ActivitySlot/DeleteActivitySlotView.jsx";
+// ActivityLocation CRUD Components
+import CreateActivityLocationView from "./CRUDSView/ActivityLocation/CreateActivityLocationView.jsx";
+import GetAllActivityLocationsView from "./CRUDSView/ActivityLocation/GetAllActivityLocationsView.jsx";
 
 // Existing Page Components
 import BookingStatisticsView from "./BookingStatisticsView.jsx";
@@ -40,6 +43,14 @@ export default function AdminView() {
   const openUpdateActivitySlot = () => setSelectedAction("updateActivitySlot");
   const openListActivitySlots = () => setSelectedAction("listActivitySlots");
   const openDeleteActivitySlot = () => setSelectedAction("deleteActivitySlot");
+  const openCreateActivityLocation = () =>
+    setSelectedAction("createActivityLocation");
+  const openUpdateActivityLocation = () =>
+    setSelectedAction("updateActivityLocation");
+  const openListActivityLocations = () =>
+    setSelectedAction("listActivityLocations");
+  const openDeleteActivityLocation = () =>
+    setSelectedAction("deleteActivityLocation");
   const openStatistics = () => setSelectedAction("statistics");
   const goBack = () => setSelectedAction(null);
 
@@ -95,6 +106,23 @@ export default function AdminView() {
           </button>
           <button className="admin-card" onClick={openDeleteActivitySlot}>
             <span className="card-title">Radera tillfälle</span>
+          </button>
+        </ul>
+
+        {/* AKTIVITET-PLATSER */}
+        <ul className="admin-card-list">
+          <p className="admin-header-title">Aktivitet-platser</p>
+          <button className="admin-card" onClick={openCreateActivityLocation}>
+            <span className="card-title">Lägg till aktivitet-plats</span>
+          </button>
+          <button className="admin-card" onClick={openListActivityLocations}>
+            <span className="card-title">Hämta alla aktivitet-platser</span>
+          </button>
+          <button className="admin-card" onClick={openUpdateActivityLocation}>
+            <span className="card-title">Uppdatera aktivitet-plats</span>
+          </button>
+          <button className="admin-card" onClick={openDeleteActivityLocation}>
+            <span className="card-title">Radera aktivitet-plats</span>
           </button>
         </ul>
 
@@ -197,6 +225,27 @@ export default function AdminView() {
       )}
       {selectedAction === "deleteActivitySlot" && (
         <DeleteActivitySlotView onBack={goBack} />
+      )}
+
+      {selectedAction === "createActivityLocation" && (
+        <CreateActivityLocationView onBack={goBack} />
+      )}
+      {selectedAction === "listActivityLocations" && (
+        <section className="action-panel">
+          <div className="panel-header">
+            <h2>Alla aktivitet-platser</h2>
+            <p>Visar hela listan från API:t.</p>
+          </div>
+          <GetAllActivityLocationsView
+            showTitle={false}
+            containerClassName="statistics-embedded"
+          />
+          <div className="panel-actions">
+            <button type="button" className="btn ghost" onClick={goBack}>
+              Tillbaka
+            </button>
+          </div>
+        </section>
       )}
 
       {selectedAction === "statistics" && (

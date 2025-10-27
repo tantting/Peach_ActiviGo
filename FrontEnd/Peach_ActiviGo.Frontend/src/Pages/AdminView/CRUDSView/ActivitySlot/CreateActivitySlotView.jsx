@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FetchCreateActivitySlot from "../../../../Components/HelperFunctions/Admin/CRUDS/ActivitySlots/FetchCreateActivitySlot.jsx";
+import FetchAllActivityLocations from "../../../../Components/HelperFunctions/Admin/CRUDS/ActivityLocation/FetchAllActivityLocations.jsx";
 import "../../../../Styles/AdminView.css";
 
 export default function CreateActivitySlotView({
@@ -22,6 +23,13 @@ export default function CreateActivitySlotView({
     error: createActivitySlotError,
     okMessage: createActivitySlotOkMessage,
   } = FetchCreateActivitySlot();
+
+  // Hämta alla ActivityLocations för dropdown
+  const {
+    activityLocations,
+    loading: activityLocationsLoading,
+    error: activityLocationsError,
+  } = FetchAllActivityLocations();
 
   // onChange handler
   const onCreateActivitySlotChange = (e) => {
@@ -96,15 +104,34 @@ export default function CreateActivitySlotView({
 
         <div className="form-row grid-2">
           <div>
-            <label>ActivityLocation-ID</label>
-            <input
-              type="number"
+            <label>Aktivitet-plats</label>
+            <select
               name="activityLocationId"
               value={createActivitySlotForm.activityLocationId}
               onChange={onCreateActivitySlotChange}
-              min="1"
               required
-            />
+            >
+              <option value="">-- Välj aktivitet-plats --</option>
+              {!activityLocationsLoading &&
+                Array.isArray(activityLocations) &&
+                activityLocations.map((al) => (
+                  <option key={al.id} value={al.id}>
+                    {al.activity?.name ||
+                      al.activityName ||
+                      `Akt:${al.activityId}`}{" "}
+                    -{" "}
+                    {al.location?.name ||
+                      al.locationName ||
+                      `Plats:${al.locationId}`}{" "}
+                    {al.capacity ? ` (kap ${al.capacity})` : ""}
+                  </option>
+                ))}
+            </select>
+            {activityLocationsError && (
+              <p style={{ color: "var(--peach-royal)" }}>
+                {activityLocationsError}
+              </p>
+            )}
           </div>
           <div>
             <label>Kapacitet</label>

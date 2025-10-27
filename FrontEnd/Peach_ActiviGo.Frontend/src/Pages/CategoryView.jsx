@@ -35,6 +35,7 @@ export default function CategoryView() {
       <div className="categories-list">
         {categories.map((category) => (
           <div className="category-item" key={category.name}>
+            <h6>{category.id}</h6>
             <h3>{category.name}</h3>
             <p>{category.description}</p>
           </div>
