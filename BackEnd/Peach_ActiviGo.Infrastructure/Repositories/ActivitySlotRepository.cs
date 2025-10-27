@@ -18,7 +18,7 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
         {
             return await _context.ActivitySlots
                 .Include(s => s.ActivityLocation)
-                .ToListAsync();
+                .OrderBy(s => s.StartTime).ToListAsync();
         }
 
         public async Task<ActivitySlot?> GetByIdAsync(int id)
