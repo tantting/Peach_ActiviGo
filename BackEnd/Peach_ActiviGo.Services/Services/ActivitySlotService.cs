@@ -83,5 +83,9 @@ namespace Peach_ActiviGo.Services.Services
 
             return true;
         }
+        // public int GetRemainingCapacity(dto.ActivitySlotId)
+        // {
+        //     return 
+        // }
     }
 }
