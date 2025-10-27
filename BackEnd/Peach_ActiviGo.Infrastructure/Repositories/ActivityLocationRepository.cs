@@ -31,12 +31,6 @@ namespace Peach_ActiviGo.Infrastructure.Repositories
         {
             _context.ActivityLocations.AddAsync(activityLocation);
         }
-        
-        public async Task SaveChangesAsync(CancellationToken ct)
-        {
-            await  _context.SaveChangesAsync(ct);
-        }
-
         public async Task<IEnumerable<ActivityLocation>> FilterActivityLocations(ActivityLocationFilter filter, CancellationToken ct)
         {
             var query = _context.ActivityLocations

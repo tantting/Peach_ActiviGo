@@ -8,7 +8,6 @@ namespace Peach_ActiviGo.Core.Interface
         Task<ActivityLocation> GetActivityLocationByIdAsync(int id, CancellationToken ct);
         Task<IEnumerable<ActivityLocation>> GetAllActivityLocationsAsync(CancellationToken ct);
         void Add(ActivityLocation activityLocation);
-        Task SaveChangesAsync(CancellationToken ct);
         Task<IEnumerable<ActivityLocation>> FilterActivityLocations(ActivityLocationFilter filter,
             CancellationToken ct);
     }
