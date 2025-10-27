@@ -42,6 +42,20 @@ namespace Peach_ActiviGo.Api.Controllers
 
             return Ok(locations);
         }
+        
+        //Create ActivittyLocation
+        [HttpPost("CreateActivityLocation")]
+        public async Task<IActionResult> CreateActivityLocation([FromBody] CreateActivityLocationDto dto, CancellationToken ct, IValidator<CreateActivityLocationDto> validator)
+        {
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }       
+            var result = await _activityLocationService.CreateActivityLocationAsync(dto, ct);
+            return Ok(result);
+        }
+        
 
         [HttpPost("FilterActivityLocations")]
         public async Task<IActionResult> FilterActivityLocations([FromBody] ActivityLocationFilterDto filter, CancellationToken ct)
