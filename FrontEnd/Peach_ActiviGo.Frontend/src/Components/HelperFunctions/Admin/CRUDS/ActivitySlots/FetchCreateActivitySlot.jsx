@@ -26,6 +26,7 @@ export default function FetchCreateActivitySlot() {
       setLoading(false);
     }
   };
+  console.log(createActivitySlot);
 
   return { createActivitySlot, loading, error, okMessage };
 }

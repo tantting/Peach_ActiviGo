@@ -74,7 +74,9 @@ const FetchActivitySlots = (activityLocationId = null) => {
   // Funktion för att uppdatera slotcapacity efter bokning
   const updateSlotCapacity = (slotId, remainingCapacity) => {
     setSlots((prevSlots) =>
-      prevSlots.map((slot) => (slot.id ? { ...slot, remainingCapacity } : slot))
+      prevSlots.map((slot) =>
+        slot.id === slotId ? { ...slot, remainingCapacity } : slot
+      )
     );
   };
 

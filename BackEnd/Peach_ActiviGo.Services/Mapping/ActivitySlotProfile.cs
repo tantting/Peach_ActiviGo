@@ -8,7 +8,8 @@ namespace Peach_ActiviGo.Services.Mapping
     {
         public ActivitySlotProfile()
         {
-            CreateMap<ActivitySlotRequestDto, ActivitySlot>();
+            CreateMap<ActivitySlotRequestDto, ActivitySlot>()
+                .ForMember(dest => dest.SlotCapacity, opt => opt.MapFrom(src => src.SlotCapacity));
             CreateMap<ActivitySlot, ActivitySlotResponseDto>();
         }
     }
