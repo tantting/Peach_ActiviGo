@@ -1,5 +1,6 @@
 import React from "react";
 import { API_BASE_URL } from "../../utils/constants";
+import { getToken } from "./AuthService";
 
 const FetchContent = async (UrlAddOn, payload = null, method = null) => {
   try {
@@ -12,6 +13,17 @@ const FetchContent = async (UrlAddOn, payload = null, method = null) => {
         "Content-Type": "application/json",
       },
     };
+
+    // Lägg till Authorization-header om token finns
+    try {
+      const token = getToken();
+      if (token) {
+        options.headers["Authorization"] = `Bearer ${token}`;
+      }
+    } catch (err) {
+      console.warn("Kunde inte hämta token för Authorization-header:", err);
+    }
+
     // Lägg till body bara om payload finns och det inte är GET
     if (payload && httpMethod !== "GET") {
       options.body = JSON.stringify(payload);
