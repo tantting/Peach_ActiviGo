@@ -25,7 +25,6 @@ public class BookingSeed
             return;
         }
 
-        // Hämta alla slots och filtrera på StartTime >= 2025-10-27 12:00 (eftermiddagar)
         DateTime minAllowedSlot = new DateTime(2025, 10, 27, 12, 0, 0);
         var futureSlots = await context.ActivitySlots
             .Where(s => s.StartTime >= minAllowedSlot)
@@ -40,10 +39,8 @@ public class BookingSeed
 
         var rnd = new Random();
         var bookings = new List<Booking>();
+        int totalBookings = 30;
 
-        int totalBookings = 30; // fler bokningar som du bad om
-
-        // skapa bookingar; vi kör genom futureSlots slumpmässigt
         for (int i = 1; i <= totalBookings; i++)
         {
             var user = users[rnd.Next(users.Count)];
@@ -51,15 +48,24 @@ public class BookingSeed
 
             var status = rnd.NextDouble() < 0.8 ? BookingStatus.Active : BookingStatus.Cancelled;
 
+            // Slumpmässigt antal deltagare mellan 1 och slotens SlotCapacity
+            int participants = rnd.Next(1, slot.SlotCapacity + 1);
+
             bookings.Add(new Booking
             {
-                // Låt EF sätta Id automatiskt (ta bort om du vill hårdkoda Id)
                 CustomerId = user.Id,
                 ActivitySlotId = slot.Id,
-                BookingDate = slot.StartTime, // här matchar bokningsdatum slotens starttid
+                NumberOfParticipants = participants,
+                BookingDate = slot.StartTime,
                 Status = status,
                 CancelledAt = status == BookingStatus.Cancelled ? (DateTime?)slot.StartTime.AddHours(-1) : null
             });
+
+            // Justera slotens RemainingCapacity om du vill hålla den realistisk
+            if (status == BookingStatus.Active)
+            {
+                slot.RemainingCapacity = Math.Max(0, slot.RemainingCapacity - participants);
+            }
         }
 
         await context.Bookings.AddRangeAsync(bookings);
